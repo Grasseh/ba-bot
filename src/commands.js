@@ -1,4 +1,4 @@
-const { help, status, duel, accept, cancel } = require('./generics');
+const { help, status, duel, accept, cancel } = require('./commands/generics');
 
 
 let commands = {

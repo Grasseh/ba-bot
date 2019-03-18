@@ -1,6 +1,6 @@
-const state = require('./state');
+const state = require('../state');
 const Discord = require('discord.js');
-const Duel = require('./entities/duel');
+const Duel = require('../entities/duel');
 
 let generics = {
     help: (args, msg) => {
@@ -66,6 +66,18 @@ let generics = {
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
             .setColor(0xAA0000)
+            .setDescription('You are not currently in a duel!')
+        msg.channel.send(embed);
+        return;
+    },
+    move: (args, msg) => {
+        let currentDuel = state.getState().getCurrentDuel(msg.author.id);
+        if (currentDuel && currentDuel.isPlaying) {
+            return currentDuel.move(msg);
+        }
+        let embed = new Discord.RichEmbed()
+            .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
+            .setColor(0xffffff)
             .setDescription('You are not currently in a duel!')
         msg.channel.send(embed);
         return;
