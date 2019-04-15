@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const state = require('../state');
 const Player = require('./player');
-const Dice = require('../utils/dice');
+const WaitingState = require('../duelstates/waitingstate');
 
 class Duel{
-    constructor(playerOne, invited){
-        this.status = "waiting";
+    constructor(playerOne, invited, dice){
+        this.state = new WaitingState(this, dice);
         this.turnphase = "";
         this.players = [playerOne.replace('!','')];
         this.invited = [invited.replace('!','')];
@@ -16,7 +16,7 @@ class Duel{
     accept(msg){
         this.players.push(`<@${msg.author.id}>`);
         this.invited = this.invited.filter(inv => inv !== `<@${msg.author.id}>`);
-        this.status = "playing";
+        this.state = this.state.nextState();
         for(let player of this.players){
             this.playerstates.push(new Player(player));
         }
@@ -25,7 +25,7 @@ class Duel{
             .setColor(0xAAAA00)
             .setDescription(`Duel has begun!`);
         msg.channel.send(embed);
-        this.beginDuel(msg);
+        this.state.run(msg);
     }
 
     cancel(msg){
@@ -38,7 +38,7 @@ class Duel{
     }
 
     isPlaying(){
-        return this.status = "playing";
+        return typeof(this.state) !== "WaitingState";
     }
     
     isPlayerTurn(player){
@@ -49,64 +49,11 @@ class Duel{
         return this.playerstates[this.turnPlayer];
     }
 
-    nextPlayer(msg){
-        this.turnPlayer = (this.turnPlayer + 1) % this.playerstates.length;
-        this.beginTurn(msg);
-    }
-
-    beginDuel(msg){
-        let highest = 0;
-        let highestId = -2;
-        let i = -1;
-        let tied = true;
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
-            .setDescription(`Duel has been begun! Rolls for initiative!`);
-        msg.channel.send(embed);
-        while(tied){
-            highest = 0;
-            i = -1;
-            for (let player of this.playerstates) {
-                let roll = Dice.d20();
-                let embed = new Discord.RichEmbed()
-                    .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                    .setColor(0x0000AA)
-                    .setDescription(`Initiative roll for ${player.name}!`)
-                    .addField(`d20`, `${roll.sum}`);
-                msg.channel.send(embed);
-                if (roll.sum === highest) {
-                    tied = true;
-                }
-                if (roll.sum > highest) {
-                    highest = roll.sum;
-                    highestId = i;
-                    tied = false;
-                }
-                i++;
-            }
-        }
-        this.turnPlayer = highestId;
-        this.nextPlayer(msg);
-    }
-
-    beginTurn(msg){
-        this.turnphase = "start";
-        this.getCurrentPlayer().cooldown();
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
-            .setDescription(`Beginning of ${this.playerstates[this.turnPlayer].name}'s turn!`)
-            .addField(`Actions available:`, `Stand Still with !stand or Move with NOTIMPLEMENTED`);
-        msg.channel.send(embed);
-    }
-
     displayStatus(msg){
-        let status = {
-            "waiting" : this.displayWaiting.bind(this),
-            "playing" : this.displayPlaying.bind(this)
+        if(this.isPlaying){
+            return this.displayPlaying(msg);
         }
-        status[this.status](msg);
+        return this.displayWaiting(msg);
     }
 
     displayWaiting(msg){

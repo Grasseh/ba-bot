@@ -21,7 +21,7 @@ class Dice{
 
 }
 
-module.exports = new Dice();
+module.exports = Dice;
 
 function* range(start, end) {
     for (let i = start; i <= end; i++) {

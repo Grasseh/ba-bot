@@ -1,8 +1,9 @@
 let commands = require('./commands.js');
 const state = require('./state');
+const Dice = require('./utils/dice');
 
 class Processor {
-    processMessage(msg) {
+    processMessage(msg, dice = new Dice()) {
         let message = msg.content;
         let user = msg.author;
         let channel = msg.channel;
@@ -18,7 +19,7 @@ class Processor {
 
             args = args.splice(1);
             if(cmd in commands){
-                commands[cmd](args, msg);
+                commands[cmd](args, msg, dice);
                 return;
             }
             return;

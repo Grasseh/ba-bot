@@ -16,20 +16,10 @@ let generics = {
         msg.channel.send(embed);
         return;
     },
-    status: (args, msg) => {
-        //Check if user is in a duel
-        let currentDuel = state.getState().getCurrentDuel(msg.author.id);
-        if (currentDuel) {
-            return currentDuel.displayStatus(msg);
-        }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xffffff)
-            .setDescription('You are not currently in a duel!')
-        msg.channel.send(embed);
-        return;
+    status: (args, msg, duel) => {
+        return currentDuel.displayStatus(msg);
     },
-    duel: (args, msg) => {
+    duel: (args, msg, duel, dice) => {
         if (state.getState().getCurrentDuel(msg.author.id)) {
             let embed = new Discord.RichEmbed()
                 .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
@@ -38,7 +28,7 @@ let generics = {
             msg.channel.send(embed);
             return;
         }
-        state.getState().duels.push(new Duel(`<@${msg.author.id}>`, args[0])); 
+        state.getState().duels.push(new Duel(`<@${msg.author.id}>`, args[0], dice)); 
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0xAAAA00)
@@ -46,43 +36,12 @@ let generics = {
         msg.channel.send(embed);
         return;
     },
-    accept: (args, msg) => {
-        let currentDuel = state.getState().getCurrentDuel(msg.author.id);
-        if (currentDuel) {
-            return currentDuel.accept(msg);
-        }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAA0000)
-            .setDescription('You are not currently in a duel!')
-        msg.channel.send(embed);
-        return;
+    accept: (args, msg, currentDuel) => {
+        return currentDuel.accept(msg);
     },
-    cancel: (args, msg) => {
-        let currentDuel = state.getState().getCurrentDuel(msg.author.id);
-        if (currentDuel) {
-            return currentDuel.cancel(msg);
-        }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAA0000)
-            .setDescription('You are not currently in a duel!')
-        msg.channel.send(embed);
-        return;
-    },
-    move: (args, msg) => {
-        let currentDuel = state.getState().getCurrentDuel(msg.author.id);
-        if (currentDuel && currentDuel.isPlaying) {
-            return currentDuel.move(msg);
-        }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xffffff)
-            .setDescription('You are not currently in a duel!')
-        msg.channel.send(embed);
-        return;
-    },
-    
+    cancel: (args, msg, currentDuel) => {
+        return currentDuel.cancel(msg);
+    }
 }
 
 module.exports = generics;
