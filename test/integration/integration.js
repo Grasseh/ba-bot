@@ -51,6 +51,22 @@ describe('Integration', function() {
                 },
                 guild : "d"
             };
+            let msg4 = {
+                content : "!stand",
+                author :  { id : 2},
+                channel : {
+                    send : sinon.stub()
+                },
+                guild : "d"
+            };
+            let msg5 = {
+                content : "!status",
+                author :  { id : 2},
+                channel : {
+                    send : sinon.stub()
+                },
+                guild : "d"
+            };
             state.getState().logger = console;
             state.getState().bot = {
                 user : {a : 'a'}
@@ -70,6 +86,8 @@ describe('Integration', function() {
             msgp.processMessage(msg1, diceStub);
             msgp.processMessage(msg3, diceStub);
             msgp.processMessage(msg2, diceStub);
+            msgp.processMessage(msg4, diceStub);
+            msgp.processMessage(msg5, diceStub);
             assert.equal(msg1.channel.send.getCall(0).args[0].description, "<@2>, you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.");
             assert.equal(msg3.channel.send.getCall(0).args[0].description, "You are not currently in a duel!");
             assert.equal(msg2.channel.send.getCall(0).args[0].description, "Duel has begun!");
@@ -79,6 +97,8 @@ describe('Integration', function() {
             assert.equal(msg2.channel.send.getCall(4).args[0].description, "Initiative roll for <@1>!");
             assert.equal(msg2.channel.send.getCall(5).args[0].description, "Initiative roll for <@2>!");
             assert.equal(msg2.channel.send.getCall(6).args[0].description, "Beginning of <@2>'s turn!");
+            assert.equal(msg4.channel.send.getCall(0).args[0].description, "Beginning of <@1>'s turn!");
+            assert.equal(msg5.channel.send.getCall(0).args[0].author.name, "Bondage Arena Duel Status!");
         });
     });
 });

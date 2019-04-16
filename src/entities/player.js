@@ -21,7 +21,7 @@ class Player{
         }
     }
     
-    move(){
+    stand(){
         this.effects.push(new StandingStill());
     }
 }

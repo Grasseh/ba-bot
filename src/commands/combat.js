@@ -12,8 +12,8 @@ let combat = {
             msg.channel.send(embed);
             return;
         }
-        currentDuel.getCurrentPlayer().move();
-        currentDuel.nextPlayer(msg);
+        currentDuel.getCurrentPlayer().stand();
+        currentDuel.state.nextState('stand', msg);
     },
     
 }

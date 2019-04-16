@@ -17,7 +17,7 @@ let generics = {
         return;
     },
     status: (args, msg, duel) => {
-        return currentDuel.displayStatus(msg);
+        return duel.displayStatus(msg);
     },
     duel: (args, msg, duel, dice) => {
         if (state.getState().getCurrentDuel(msg.author.id)) {

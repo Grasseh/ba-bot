@@ -7,8 +7,11 @@ class StartTurnState extends DuelState{
         return ['status', 'stand'];
     }
 
-    nextState(){
-        return new StartTurnState(this.duel, this.dice);
+    nextState(action, msg){
+        let state;
+        if (action == 'stand')
+            state = new StartTurnState(this.duel, this.dice);
+        state.run(msg);
     }
 
     run(msg){
