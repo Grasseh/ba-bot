@@ -83,7 +83,7 @@ class Duel{
             }
             embed.addField(`Player #${no} `, `
                 **${player.name}**
-                Class : ${player.class}\n
+                Class : ${player.getClassName()}\n
                 Restraints : ${restraints}\n
                 Status effects : ${status}\n
             `);

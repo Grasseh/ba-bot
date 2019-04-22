@@ -20,6 +20,10 @@ class Player{
             }
         }
     }
+
+    getClassName(){
+        return this.class.getClassName();
+    }
     
     stand(){
         this.effects.push(new StandingStill());

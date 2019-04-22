@@ -1,7 +1,7 @@
 const state = require('../state');
 const DuelState = require('./DuelState');
 const Discord = require('discord.js');
-const ActionState = require('./actionState');
+const stateFactory = require('./stateFactory');
 
 class StartTurnState extends DuelState{
     getValidActions(){
@@ -9,11 +9,9 @@ class StartTurnState extends DuelState{
     }
 
     nextState(action, msg){
-        let state;
         if (action == 'stand')
-            state = new ActionState(this.duel, this.dice);
-        this.duel.state = state;
-        state.run(msg);
+            stateFactory.createState('action', this.duel, this.dice)
+        this.duel.state.run(msg);
     }
 
     run(msg){

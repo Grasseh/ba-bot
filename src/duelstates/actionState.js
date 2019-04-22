@@ -1,6 +1,6 @@
 const state = require('../state');
 const DuelState = require('./DuelState');
-const StartTurnState = require('./startTurnState');
+const stateFactory = require('./stateFactory');
 const Discord = require('discord.js');
 
 class ActionState extends DuelState{
@@ -9,15 +9,13 @@ class ActionState extends DuelState{
     }
 
     nextState(action, msg, args){
-        let nxState;
         let valid = false;
         if(action == "attack"){
             valid = this.attack(msg, args);
         }
         if(valid){
-            nxState = new StartTurnState(this.duel, this.dice);
-            this.duel.state = nxState;
-            nxState.run(msg);
+            stateFactory.createState('startTurn', this.duel, this.dice);
+            this.duel.state.run(msg);
             return;
         }
         let spells = this.duel.getCurrentPlayer().getSpellList().join();
@@ -38,7 +36,7 @@ class ActionState extends DuelState{
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
-            .setDescription(`${this.duel.getCurrentPlayer().name} has moved!`)
+            .setDescription(`${this.duel.getCurrentPlayer().name}'s Action Phase!`)
             .addField(`Actions available:`, `Attack with !attack <command> or Escape a binding with !escape <bodypart>`)
             .addField(`Attacks available:`, `${spells}`)
             .addField(`Bound bodyparts:`, `${escapable}`);
@@ -75,6 +73,15 @@ class ActionState extends DuelState{
             return true;
         }
         //Roll for effect
+        let effectRoll = this.dice.d20();
+        totalRoll = effectRoll.sum;
+        embed = new Discord.RichEmbed()
+            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
+            .setColor(0x0000AA)
+            .setDescription(`Effect roll for ${player.name} using ${args[0]}!`)
+            .addField(`d20`, `${diceRoll.sum}`)
+            .addField(`total`, `${totalRoll}`);
+        msg.channel.send(embed);
 
         //Apply effect
 

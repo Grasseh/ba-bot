@@ -9,6 +9,10 @@ class SkunkWarlock extends playerClass{
         }
     }
 
+    getClassName(){
+        return "Skunk Warlock";
+    }
+
     /*
     Summon Latex Muzzle
     Form a latex muzzle on your target!
