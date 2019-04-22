@@ -1,5 +1,5 @@
 const DuelState = require('./DuelState');
-const InitiativeState = require('./InitiativeState');
+const stateFactory = require('./stateFactory');
 
 class WaitingState extends DuelState{
     getValidActions(){
@@ -7,7 +7,7 @@ class WaitingState extends DuelState{
     }
 
     nextState(action){
-        return new InitiativeState(this.duel, this.dice);
+        stateFactory.createState('initiative', this.duel, this.dice);
     }
 }
 

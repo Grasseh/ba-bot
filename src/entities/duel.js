@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const state = require('../state');
 const Player = require('./player');
-const WaitingState = require('../duelstates/waitingstate');
+const stateFactory = require('../duelstates/statefactory');
 
 class Duel{
     constructor(playerOne, invited, dice){
-        this.state = new WaitingState(this, dice);
+        stateFactory.createState('waiting', this, dice);
         this.turnphase = "";
         this.players = [playerOne.replace('!','')];
         this.invited = [invited.replace('!','')];
@@ -16,7 +16,7 @@ class Duel{
     accept(msg){
         this.players.push(`<@${msg.author.id}>`);
         this.invited = this.invited.filter(inv => inv !== `<@${msg.author.id}>`);
-        this.state = this.state.nextState();
+        this.state.nextState();
         for(let player of this.players){
             this.playerstates.push(new Player(player));
         }
