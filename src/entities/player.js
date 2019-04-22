@@ -1,16 +1,16 @@
 const StandingStill = require('../status/standstill');
+const SkunkWarlock = require('../classes/skunk');
 
 class Player{
     constructor(name){
         this.name = name;
-        this.class = "Skunk Warlock";
+        this.class = new SkunkWarlock();
         this.classCode = "skw";
         this.restraints = [];
         this.effects = [];
     }
 
     addRestraint(restraint){
-
     }
 
     cooldown(){
@@ -24,6 +24,11 @@ class Player{
     stand(){
         this.effects.push(new StandingStill());
     }
+
+    getSpellList(){
+        return this.class.getSpellList();
+    }
+
 }
 
 module.exports = Player;

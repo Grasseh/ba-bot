@@ -45,7 +45,7 @@ class InitiativeState extends DuelState{
             }
         }
         this.duel.turnPlayer = highestId;
-        this.duel.state = new StartTurnState(this.duel);
+        this.duel.state = new StartTurnState(this.duel, this.dice);
         this.duel.state.run(msg);
     }
 }

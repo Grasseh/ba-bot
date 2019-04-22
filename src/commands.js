@@ -1,5 +1,5 @@
 const { help, status, duel, accept, cancel } = require('./commands/generics');
-const { stand, move } = require('./commands/combat');
+const { stand, move, attack, escape } = require('./commands/combat');
 const commandPreProcessor = require('./commandPreProcessor');
 
 let commands = {
@@ -8,7 +8,9 @@ let commands = {
     duel : duel,
     accept : accept,
     cancel : cancel,
-    stand : stand
+    stand : stand,
+    attack : attack,
+    escape : escape
 }
 
 for(let key of Object.keys(commands)){
