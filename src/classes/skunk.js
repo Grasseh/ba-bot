@@ -18,8 +18,8 @@ class SkunkWarlock extends playerClass{
         return "Skunk Warlock";
     }
 
-    castSpell(spellName, effectRoll, self, enemy){
-        return this.spells[spellName](effectRoll, self, enemy);
+    castSpell(spellName, effectRoll, self, enemy, crit = false){
+        return this.spells[spellName](effectRoll, self, enemy, crit);
     }
 
     /*
@@ -34,7 +34,7 @@ class SkunkWarlock extends playerClass{
     13-19   Hard	        Gagged  Blinded	 The latex becomes a full-face mask with a cute snout.
     20      Extreme	        Hooded	         Latex spreads over the whole head in a hood, forming a skunk muzzle.
     */
-    muzzle(effectRoll, self, enemy){
+    muzzle(effectRoll, self, enemy, crit){
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
@@ -42,6 +42,7 @@ class SkunkWarlock extends playerClass{
         let muzzle = enemy.getRestraints().filter(r => {return r.getName() == "Latex Muzzle"});
         let difficultyTable = [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,4];
         let difficulty = difficultyTable[effectRoll - 1];
+        difficulty += crit ? 1 : 0;
         if(muzzle.length > 0){
             muzzle = muzzle[0];
             muzzle.difficulty += difficulty;

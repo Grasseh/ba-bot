@@ -55,6 +55,8 @@ class ActionState extends DuelState{
         let totalRoll = diceRoll.sum;
         let player = this.duel.getCurrentPlayer();
         let target = this.duel.getOtherPlayer();
+        let crit = false;
+        let critFail = false;
         let additionals = [];
             //Add Player hit effect
             for(let effect of player.effects){
@@ -81,8 +83,17 @@ class ActionState extends DuelState{
             embed.addField(additional.name, additional.value);
         }
         embed.addField(`total`, `${totalRoll}`);
+        if(diceRoll.sum == 20){
+            crit = true;
+            embed.addField(`CRITICAL HIT!`, `+1 To Effect Tier!`);
+        }
+        if(diceRoll.sum == 1){
+            critFail = true;
+            embed.addField(`CRITICAL FAIL!`, `You hit yourself!`);
+            target = player;
+        }
         msg.channel.send(embed);
-        if (totalRoll < 11) {
+        if (totalRoll < 11 && !critFail) {
             embed = new Discord.RichEmbed()
                 .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
                 .setColor(0x0000AA)
@@ -103,7 +114,7 @@ class ActionState extends DuelState{
         msg.channel.send(embed);
 
         //Apply effect
-        embed = player.class.castSpell(spell, totalRoll, player, target, msg);
+        embed = player.class.castSpell(spell, totalRoll, player, target, crit);
         msg.channel.send(embed);
         return true;
     }
