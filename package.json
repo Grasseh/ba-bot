@@ -13,7 +13,7 @@
         "winston-daily-rotate-file": "^3.5.1"
     },
     "scripts": {
-        "start": "nodemon",
+        "start": "node src/bot.js",
         "test": "mocha test --recursive"
     },
     "devDependencies": {

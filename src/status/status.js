@@ -12,6 +12,14 @@ class Status{
     cooldown(){
 
     }
+
+    toHit(){
+        return 0;
+    }
+
+    toEnemyHit(){
+        return 0;
+    }
 }
 
 module.exports = Status;

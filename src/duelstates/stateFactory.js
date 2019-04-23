@@ -13,7 +13,6 @@ class FileFactory{
             'initiative' : InitiativeState
         }
 
-        console.log(states);
         let toCreate = states[state];
         duel.state = new toCreate(duel, dice);
     }

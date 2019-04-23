@@ -49,6 +49,11 @@ class Duel{
         return this.playerstates[this.turnPlayer];
     }
 
+    getOtherPlayer(){
+        //Note : To be Removed if more than duels are implemented
+        return this.playerstates[(this.turnPlayer + 1) % 2];
+    }
+
     displayStatus(msg){
         if(this.isPlaying){
             return this.displayPlaying(msg);

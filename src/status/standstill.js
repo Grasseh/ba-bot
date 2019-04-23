@@ -16,6 +16,10 @@ class StandingStill extends Status{
         this.time--;
         return this.time <= 0;
     }
+
+    toEnemyHit(){
+        return 4;
+    }
 }
 
 module.exports = StandingStill;

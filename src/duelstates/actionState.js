@@ -54,14 +54,29 @@ class ActionState extends DuelState{
         let diceRoll = this.dice.d20();
         let totalRoll = diceRoll.sum;
         let player = this.duel.getCurrentPlayer();
-            //Add enemy hit effects
-            //Remove player avoid effect
+        let target = this.duel.getOtherPlayer();
+        let additionals = [];
+            //Add Player hit effect
+            for(let effect of player.effects){
+                let toHit = effect.toHit();
+                additionals.push({name : effect.name, value : toHit});
+                totalRoll += toHit;
+            }
+            //Add target hit effects
+            for(let effect of target.effects){
+                let toEnemyHit = effect.toEnemyHit();
+                additionals.push({name : effect.name, value : toEnemyHit});
+                totalRoll += toEnemyHit;
+            }
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Hit roll for ${player.name} using ${args[0]}!`)
             .addField(`d20`, `${diceRoll.sum}`)
             .addField(`total`, `${totalRoll}`);
+        for(let additional of additionals){
+            embed.addField(additional.name, additional.value);
+        }
         msg.channel.send(embed);
         if (totalRoll < 11) {
             embed = new Discord.RichEmbed()
@@ -79,7 +94,7 @@ class ActionState extends DuelState{
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Effect roll for ${player.name} using ${args[0]}!`)
-            .addField(`d20`, `${diceRoll.sum}`)
+            .addField(`d20`, `${effectRoll.sum}`)
             .addField(`total`, `${totalRoll}`);
         msg.channel.send(embed);
 
