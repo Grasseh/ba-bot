@@ -4,7 +4,7 @@ class Hooded extends Status{
     constructor(binding){
         super();
         this.name = "Hooded";
-        this.effect = "Gagged, Blinded, and additional +2 Enemy Hit";
+        this.effect = "3 Traps, -3 Hit, +5 Enemy Hit, Cannot use any spell-type attacks (Not currently implemented) ";
         this.time = 0;
         this.binding = binding;
     }
