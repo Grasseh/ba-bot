@@ -81,7 +81,7 @@ class Duel{
             let restraints = "";
             let status = "";
             for(let restraint of player.restraints){
-                restraints += `${restraint.name} - ${restraint.location} - ${restraint.difficulty}\n`;
+                restraints += `${restraint.getName()} - ${restraint.getLocation()} - ${restraint.getDifficulty()} - ${restraint.getDescription()}\n`;
             }
             for(let effect of player.effects){
                 status += effect.display();

@@ -59,24 +59,28 @@ class ActionState extends DuelState{
             //Add Player hit effect
             for(let effect of player.effects){
                 let toHit = effect.toHit();
-                additionals.push({name : effect.name, value : toHit});
-                totalRoll += toHit;
+                if(toHit !== 0){
+                    additionals.push({ name: effect.name, value: toHit });
+                    totalRoll += toHit;
+                }
             }
             //Add target hit effects
             for(let effect of target.effects){
                 let toEnemyHit = effect.toEnemyHit();
-                additionals.push({name : effect.name, value : toEnemyHit});
-                totalRoll += toEnemyHit;
+                if(toEnemyHit !== 0){
+                    additionals.push({ name: effect.name, value: toEnemyHit });
+                    totalRoll += toEnemyHit;
+                }
             }
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Hit roll for ${player.name} using ${args[0]}!`)
             .addField(`d20`, `${diceRoll.sum}`)
-            .addField(`total`, `${totalRoll}`);
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);
         }
+        embed.addField(`total`, `${totalRoll}`);
         msg.channel.send(embed);
         if (totalRoll < 11) {
             embed = new Discord.RichEmbed()
@@ -99,7 +103,8 @@ class ActionState extends DuelState{
         msg.channel.send(embed);
 
         //Apply effect
-
+        embed = player.class.castSpell(spell, totalRoll, player, target, msg);
+        msg.channel.send(embed);
         return true;
     }
 

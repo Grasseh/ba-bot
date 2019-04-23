@@ -3,6 +3,7 @@ class Status{
         this.name = "Generic Status";
         this.effect = "Generic Effect";
         this.extra = "";
+        this.binding = null;
     }
     
     display(){
@@ -10,7 +11,7 @@ class Status{
     }
 
     cooldown(){
-
+        return false;
     }
 
     toHit(){
@@ -18,6 +19,10 @@ class Status{
     }
 
     toEnemyHit(){
+        return 0;
+    }
+
+    toTraps(){
         return 0;
     }
 }

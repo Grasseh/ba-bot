@@ -11,6 +11,15 @@ class Player{
     }
 
     addRestraint(restraint){
+        this.restraints.push(restraint);
+    }
+    
+    getRestraints(){
+        return this.restraints;
+    }
+
+    addEffect(effect){
+        this.effects.push(effect);
     }
 
     cooldown(){
