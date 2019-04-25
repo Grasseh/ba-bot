@@ -28,6 +28,14 @@ let generics = {
             msg.channel.send(embed);
             return;
         }
+        if (`<@${msg.author.id.replace('!','')}>` === args[0].replace('!','')){
+            let embed = new Discord.RichEmbed()
+                .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
+                .setColor(0xAA0000)
+                .setDescription('You cannot duel yourself! ')
+            msg.channel.send(embed);
+            return;
+        }
         state.getState().duels.push(new Duel(`<@${msg.author.id}>`, args[0], dice)); 
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)

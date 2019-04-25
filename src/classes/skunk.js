@@ -17,10 +17,10 @@ class SkunkWarlock extends playerClass{
         super();
         this.spells = {
             'muzzle' : this.muzzle.bind(this),
+            'heels' : this.heels.bind(this),
             'mittens' : this.mittens.bind(this),
         };
         this.actions = {
-            'heels' : this.heels.bind(this),
         };
     }
 
