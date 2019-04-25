@@ -70,7 +70,7 @@ class ActionState extends DuelState{
             for(let effect of target.effects){
                 let toEnemyHit = effect.toEnemyHit();
                 if(toEnemyHit !== 0){
-                    additionals.push({ name: effect.name, value: toEnemyHit });
+                    additionals.push({ name: `Enemy ${effect.name}`, value: toEnemyHit });
                     totalRoll += toEnemyHit;
                 }
             }
