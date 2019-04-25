@@ -1,28 +1,38 @@
 const playerClass = require('./playerClass');
-const LatexMuzzle = require('../restraints/latexMuzzle');
-const LatexHeel = require('../restraints/latexHeel');
+const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
+const LatexHeel = require('../restraints/skunk/latexHeel');
+const LatexMittens = require('../restraints/skunk/latexMittens');
 const Blinded = require('../status/blinded');
 const Gagged = require('../status/gagged');
 const Hooded = require('../status/hooded');
 const Encumbered = require('../status/encumbered');
 const Hobbled = require('../status/hobbled');
 const Incapacitated = require('../status/incapacitated');
+const Bound = require('../status/bound');
+const Harnessed = require('../status/harnessed');
+const Mittened = require('../status/mittened');
 
 class SkunkWarlock extends playerClass{
     constructor(){
         super();
         this.spells = {
             'muzzle' : this.muzzle.bind(this),
+            'mittens' : this.mittens.bind(this),
+        };
+        this.actions = {
             'heels' : this.heels.bind(this),
-        }
+        };
     }
 
     getClassName(){
         return "Skunk Warlock";
     }
 
-    castSpell(spellName, effectRoll, self, enemy, crit = false){
-        return this.spells[spellName](effectRoll, self, enemy, crit);
+    doAction(action, effectRoll, self, enemy, crit = false){
+        if(this.isSpell(action))
+            return this.spells[action](effectRoll, self, enemy, crit);
+        if(this.isNonSpell(action))
+            return this.actions[action](effectRoll, self, enemy, crit);
     }
 
     /*
@@ -56,9 +66,19 @@ class SkunkWarlock extends playerClass{
         return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexHeel, statusTable);
     }
 
-    getSpellList(){
-        return Object.keys(this.spells);
+    mittens(effectRoll, self, enemy, crit){
+        let spellName = "Latex Mittens";
+        let effectTable = this.getGenericEffectTable();
+        let statusTable = [
+            [],
+            [Bound],
+            [Harnessed],
+            [Mittened],
+            [Mittened]
+        ];
+        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMittens, statusTable);
     }
+
 }
 
 module.exports = SkunkWarlock;

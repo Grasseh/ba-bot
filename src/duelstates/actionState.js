@@ -18,20 +18,20 @@ class ActionState extends DuelState{
             this.duel.state.run(msg);
             return;
         }
-        let spells = this.duel.getCurrentPlayer().getSpellList().join();
+        let actions = this.duel.getCurrentPlayer().getAllActions().join(', ');
         let escapable = "Escaping is not implemented yet";
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Invalid command or bodypart! ${this.duel.getCurrentPlayer().name}'s turn.`)
             .addField(`Actions available:`, `Attack with !attack <command> or Escape a binding with !escape <bodypart>`)
-            .addField(`Attacks available:`, `${spells}`)
+            .addField(`Attacks available:`, `${actions}`)
             .addField(`Bound bodyparts:`, `${escapable}`);
         msg.channel.send(embed);
     }
 
     run(msg){
-        let spells = this.duel.getCurrentPlayer().getSpellList().join();
+        let spells = this.duel.getCurrentPlayer().getAllActions().join(', ');
         let escapable = "Escaping is not implemented yet";
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
@@ -45,8 +45,8 @@ class ActionState extends DuelState{
 
     attack(msg, args){
         //Check if action is valid
-        let spell = args[0];
-        if(!this.duel.getCurrentPlayer().getSpellList().includes(spell)){
+        let action = args[0];
+        if(!this.duel.getCurrentPlayer().getAllActions().includes(action)){
             return false;
         }
 
@@ -58,12 +58,22 @@ class ActionState extends DuelState{
         let crit = false;
         let critFail = false;
         let additionals = [];
-            //Add Player hit effect
+            //Add Player hit effects
             for(let effect of player.effects){
                 let toHit = effect.toHit();
                 if(toHit !== 0){
                     additionals.push({ name: effect.name, value: toHit });
                     totalRoll += toHit;
+                }
+                let toSpellHit = effect.toSpellHit();
+                if(toSpellHit !== 0 && player.class.isSpell(action)){
+                    additionals.push({ name: effect.name, value: toSpellHit });
+                    totalRoll += toSpellHit;
+                }
+                let toNonSpellHit = effect.toNonSpellHit();
+                if(toNonSpellHit !== 0 && player.class.isNonSpell(action)){
+                    additionals.push({ name: effect.name, value: toNonSpellHit });
+                    totalRoll += toNonSpellHit;
                 }
             }
             //Add target hit effects
@@ -93,7 +103,7 @@ class ActionState extends DuelState{
             target = player;
         }
         msg.channel.send(embed);
-        if (totalRoll < 11 && !critFail) {
+        if (!crit && totalRoll < 11 && !critFail) {
             embed = new Discord.RichEmbed()
                 .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
                 .setColor(0x0000AA)
@@ -114,7 +124,7 @@ class ActionState extends DuelState{
         msg.channel.send(embed);
 
         //Apply effect
-        embed = player.class.castSpell(spell, totalRoll, player, target, crit);
+        embed = player.class.doAction(action, totalRoll, player, target, crit);
         msg.channel.send(embed);
         return true;
     }

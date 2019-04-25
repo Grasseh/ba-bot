@@ -13,10 +13,6 @@ class Hobbled extends Status{
         return `${ this.name } - ${ this.effect } \n`;
     }
 
-    toHit(){
-        return 0;
-    }
-
     toEnemyHit(){
         return 4;
     }

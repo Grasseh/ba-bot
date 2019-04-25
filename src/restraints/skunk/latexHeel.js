@@ -1,4 +1,4 @@
-const Restraint = require('./restraint');
+const Restraint = require('../restraint');
 
 class LatexHeel extends Restraint{
     constructor(difficulty){

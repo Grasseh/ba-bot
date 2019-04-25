@@ -25,6 +25,26 @@ class Status{
     toTraps(){
         return 0;
     }
+
+    toSpellHit(){
+        return 0;
+    }
+
+    toNonSpellHit(){
+        return 0;
+    }
+
+    toEscapeGagsHarderThanEasy(){
+        return 0;
+    }
+
+    toEscapeLegs(){
+        return 0;
+    }
+
+    toEscapeLegsHarderThanEasy(){
+        return 0;
+    }
 }
 
 module.exports = Status;

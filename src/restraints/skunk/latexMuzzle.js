@@ -1,4 +1,4 @@
-const Restraint = require('./restraint');
+const Restraint = require('../restraint');
 
 class LatexMuzzle extends Restraint{
     constructor(difficulty){

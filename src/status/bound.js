@@ -1,10 +1,10 @@
 const Status = require('./status');
 
-class Gagged extends Status{
+class Bound extends Status{
     constructor(binding){
         super();
-        this.name = "Gagged";
-        this.effect = "-20 to Spell Attacks";
+        this.name = "Bound";
+        this.effect = "-2 Non-Spell Hit";
         this.time = 0;
         this.binding = binding;
     }
@@ -13,10 +13,10 @@ class Gagged extends Status{
         return `${ this.name } - ${ this.effect } \n`;
     }
 
-    toSpellHit(){
-        return -20;
+    toNonSpellHit(){
+        return -2;
     }
 
 }
 
-module.exports = Gagged;
+module.exports = Bound;

@@ -76,7 +76,7 @@ describe('Integration', function() {
                 guild : "d"
             };
             let msgAttackTwo = {
-                content : "!attack muzzle",
+                content : "!attack heels",
                 author :  { id : 2},
                 channel : {
                     send : sinon.stub()
@@ -109,9 +109,9 @@ describe('Integration', function() {
                 { dice: [18], sum: 18 },
                 { dice: [19], sum: 19 }, //Init 4
                 { dice: [5], sum: 5 }, //Attack roll 1 (Miss)
-                { dice: [7], sum: 7 }, //Attack roll 2 (Hit)
+                { dice: [7], sum: 7 }, //Attack roll 2 (Hit because still)
                 { dice: [13], sum: 13 }, //Effect roll 1 (Hard)
-                { dice: [8], sum: 8 }, //attack roll 3 (Miss Because of muzzle)
+                { dice: [19], sum: 19 }, //attack roll 3 (Miss Because of muzzle)
                 { dice: [6], sum: 6 }, //attack roll 4 (Hit because of muzzle)
                 { dice: [1], sum: 1 }, //Effect roll 2 (Extreme)
             
@@ -148,8 +148,8 @@ describe('Integration', function() {
             assert.equal(msgStandTwo.channel.send.getCall(0).args[0].description, "<@2>'s Action Phase!");
             assert.equal(msgStatus.channel.send.getCall(0).args[0].author.name, "Bondage Arena Duel Status!");
             assert.equal(msgFailAttack.channel.send.getCall(0).args[0].description, "Invalid command or bodypart! <@2>\'s turn.");
-            assert.equal(msgAttackTwo.channel.send.getCall(0).args[0].description, "Hit roll for <@2> using muzzle!");
-            assert.equal(msgAttackTwo.channel.send.getCall(1).args[0].description, "Result for <@2> using muzzle!");
+            assert.equal(msgAttackTwo.channel.send.getCall(0).args[0].description, "Hit roll for <@2> using heels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(1).args[0].description, "Result for <@2> using heels!");
             assert.equal(msgAttackTwo.channel.send.getCall(2).args[0].description, "Beginning of <@1>'s turn!");
             assert.equal(msgStandOne.channel.send.getCall(0).args[0].description, "<@1>'s Action Phase!");
             assert.equal(msgAttackOne.channel.send.getCall(0).args[0].description, "Hit roll for <@1> using muzzle!");
@@ -157,8 +157,8 @@ describe('Integration', function() {
             assert.equal(msgAttackOne.channel.send.getCall(2).args[0].description, "<@2> has been hit by Latex Muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(3).args[0].description, "Beginning of <@2>'s turn!");
             assert.equal(msgStandTwo.channel.send.getCall(1).args[0].description, "<@2>'s Action Phase!");
-            assert.equal(msgAttackTwo.channel.send.getCall(3).args[0].description, "Hit roll for <@2> using muzzle!");
-            assert.equal(msgAttackTwo.channel.send.getCall(4).args[0].description, "Result for <@2> using muzzle!");
+            assert.equal(msgAttackTwo.channel.send.getCall(3).args[0].description, "Hit roll for <@2> using heels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(4).args[0].description, "Result for <@2> using heels!");
             assert.equal(msgAttackTwo.channel.send.getCall(5).args[0].description, "Beginning of <@1>'s turn!");
             assert.equal(msgStandOne.channel.send.getCall(1).args[0].description, "<@1>'s Action Phase!");
             assert.equal(msgAttackOne.channel.send.getCall(4).args[0].description, "Hit roll for <@1> using muzzle!");

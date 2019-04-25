@@ -41,6 +41,14 @@ class Player{
     getSpellList(){
         return this.class.getSpellList();
     }
+    
+    getNonSpellList(){
+        return this.class.getNonSpellList();
+    }
+
+    getAllActions(){
+        return this.class.getAllActions();
+    }
 
 }
 

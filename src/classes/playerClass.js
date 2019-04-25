@@ -16,7 +16,7 @@ class playerClass{
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`${enemy.name} has been hit by ${spellName}!`);
-        let existingRestraint = enemy.getRestraints().filter(r => {return r.getName() == spellName});
+        let existingRestraint = enemy.getRestraints().filter(r => r.getName() === spellName);
         let appliedRestraint;
         let difficulty = effectTable[effectRoll - 1];
         difficulty += crit ? 1 : 0;
@@ -43,6 +43,26 @@ class playerClass{
         embed.addField(`Difficulty:`, appliedRestraint.getDifficulty());
         embed.addField(`Description:`, appliedRestraint.getDescription());
         return embed;
+    }
+
+    getSpellList(){
+        return Object.keys(this.spells);
+    }
+
+    getNonSpellList(){
+        return Object.keys(this.actions);
+    }
+
+    getAllActions(){
+        return this.getSpellList().concat(this.getNonSpellList());
+    }
+
+    isSpell(action){
+        return this.getSpellList().includes(action);
+    }
+
+    isNonSpell(action){
+        return this.getNonSpellList().includes(action);
     }
 }
 
