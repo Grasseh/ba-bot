@@ -57,7 +57,6 @@ class Escape{
 
     escapeEasy(player, restraint, position, totalRoll, critFail, msg){
         if(critFail){
-            this.removeEffects(restraint, player);
             this.increaseDifficulty(restraint, player, msg);
             return {valid : true, changedState : false};
         }
@@ -79,12 +78,12 @@ class Escape{
             return {valid : true, changedState : false};
         }
         //7+
+        this.freeFrom(restraint, player, msg);
         return { valid: true, changedState: false };
     }
 
     escapeMedium(player, restraint, position, totalRoll, critFail, msg){
         if(critFail){
-            this.removeEffects(restraint, player);
             this.increaseDifficulty(restraint, player, msg);
             return {valid : true, changedState : false};
         }
@@ -101,14 +100,13 @@ class Escape{
             return {valid : true, changedState : false};
         }
         //15+
-        this.freeFrom(restrain, player);
+        this.freeFrom(restraint, player, msg);
         return { valid: true, changedState: false };
     }
 
 
     escapeHard(player, restraint, position, totalRoll, critFail, msg){
         if(critFail){
-            this.removeEffects(restraint, player);
             this.increaseDifficulty(restraint, player, msg);
             return {valid : true, changedState : false};
         }
@@ -131,7 +129,6 @@ class Escape{
 
     escapeExtreme(player, restraint, position, totalRoll, critFail, msg){
         if (critFail) {
-            this.removeEffects(restraint, player);
             this.increaseDifficulty(restraint, player, msg);
             return {valid : true, changedState : false};
         }
@@ -170,6 +167,7 @@ class Escape{
     }
 
     increaseDifficulty(restraint, player, msg, value = 1){
+        this.removeEffects(restraint, player);
         restraint.difficulty += value;
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
@@ -179,7 +177,7 @@ class Escape{
         if(value < 0)
             embed.setDescription(`${player.name} reduced its ${restraint.name} difficulty!`)
         let addedEffects = '';
-        for (let StatusEffect of restraint.statusTable[difficulty - 1]) {
+        for (let StatusEffect of restraint.statusTable[restraint.difficulty - 1]) {
             player.addEffect(new StatusEffect(restraint.id));
             addedEffects += `${player.name} is now ${StatusEffect.name}!\n`;
         }
@@ -190,7 +188,7 @@ class Escape{
         msg.channel.send(embed);
     }
 
-    freeFrom(restraint, player){
+    freeFrom(restraint, player, msg){
         this.removeRestraint(restraint, player);
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
@@ -205,7 +203,7 @@ class Escape{
 
     removeRestraint(restraint, player){
         //Remove Effect
-        this.removeEffect(restraint, player);
+        this.removeEffects(restraint, player);
         //Remove restraint
         player.restraints = player.restraints.filter(r => r.id !== restraint.id);
     }

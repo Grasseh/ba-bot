@@ -1,5 +1,5 @@
 const { help, status, duel, accept, cancel } = require('./commands/generics');
-const { stand, move, attack, escape } = require('./commands/combat');
+const { stand, move, attack, escape, increase } = require('./commands/combat');
 const commandPreProcessor = require('./commandPreProcessor');
 
 let commands = {
@@ -10,6 +10,7 @@ let commands = {
     cancel : cancel,
     stand : stand,
     attack : attack,
+    increase : increase,
     escape : escape
 }
 

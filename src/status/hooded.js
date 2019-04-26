@@ -4,7 +4,7 @@ class Hooded extends Status{
     constructor(binding){
         super();
         this.name = "Hooded";
-        this.effect = "-3 Traps, -3 Hit, +5 Enemy Hit, -20 to Spell Attacks";
+        this.effect = "-3 Traps, -3 Hit, +5 Enemy Hit, -30 to Spell Attacks";
         this.time = 0;
         this.binding = binding;
     }
@@ -26,7 +26,7 @@ class Hooded extends Status{
     }
 
     toSpellHit() {
-        return -20;
+        return -30;
     }
 }
 

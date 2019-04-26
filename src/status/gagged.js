@@ -4,7 +4,7 @@ class Gagged extends Status{
     constructor(binding){
         super();
         this.name = "Gagged";
-        this.effect = "-20 to Spell Attacks";
+        this.effect = "-30 to Spell Attacks";
         this.time = 0;
         this.binding = binding;
     }
@@ -14,7 +14,7 @@ class Gagged extends Status{
     }
 
     toSpellHit(){
-        return -20;
+        return -30;
     }
 
 }

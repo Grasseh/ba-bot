@@ -4,7 +4,7 @@ class Mittened extends Status{
     constructor(binding){
         super();
         this.name = "Mittened";
-        this.effect = "-20 Non-Spell Hit, -20 to escape gags and legs harder than easy.";
+        this.effect = "-30 Non-Spell Hit, -30 to escape gags and legs harder than easy.";
         this.time = 0;
         this.binding = binding;
     }
@@ -14,15 +14,15 @@ class Mittened extends Status{
     }
 
     toNonSpellHit(){
-        return -20;
+        return -30;
     }
 
     toEscapeGagsHarderThanEasy(){
-        return -20;
+        return -30;
     }
 
     toEscapeLegsHarderThanEasy(){
-        return -20;
+        return -30;
     }
 
 }
