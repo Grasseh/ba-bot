@@ -1,4 +1,7 @@
 const Restraint = require('../restraint');
+const Bound = require('../../status/bound');
+const Harnessed = require('../../status/harnessed');
+const Mittened = require('../../status/mittened');
 
 class LatexMittens extends Restraint{
     constructor(difficulty){
@@ -6,6 +9,13 @@ class LatexMittens extends Restraint{
         this.location = "Arms";
         this.name = "Latex Mittens";
         this.difficulty = difficulty;
+        this.statusTable = [
+            [],
+            [Bound],
+            [Harnessed],
+            [Mittened],
+            [Mittened]
+        ];
     }
 
     getDescription(){

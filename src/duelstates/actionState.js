@@ -10,8 +10,11 @@ class ActionState extends DuelState{
 
     nextState(action, msg, args){
         let valid = false;
-        if(action == "attack"){
+        if(action === "attack"){
             valid = this.attack(msg, args);
+        }
+        if(action === 'escape'){
+            valid = this.escape(msg, args);
         }
         if(valid){
             stateFactory.createState('startTurn', this.duel, this.dice);
@@ -19,7 +22,10 @@ class ActionState extends DuelState{
             return;
         }
         let actions = this.duel.getCurrentPlayer().getAllActions().join(', ');
-        let escapable = "Escaping is not implemented yet";
+        let escapable = this.duel.getCurrentPlayer().getBoundBodyParts().join(', ');
+        if(escapable === ''){
+            escapable = 'none';
+        }
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
@@ -32,7 +38,10 @@ class ActionState extends DuelState{
 
     run(msg){
         let spells = this.duel.getCurrentPlayer().getAllActions().join(', ');
-        let escapable = "Escaping is not implemented yet";
+        let escapable = this.duel.getCurrentPlayer().getBoundBodyParts().join(', ');
+        if(escapable === ''){
+            escapable = 'none';
+        }
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)

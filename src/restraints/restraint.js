@@ -7,6 +7,13 @@ class Restraint{
         this.description = "Generic Restraint, effect : none";
         this.location = "Toe";
         this.id = crypto.randomBytes(32).toString("hex");
+        this.statusTable = [
+            [],
+            [],
+            [],
+            [],
+            []
+        ];
     }   
 
     getDifficulty(){

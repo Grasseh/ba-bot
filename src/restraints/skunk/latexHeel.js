@@ -1,4 +1,7 @@
 const Restraint = require('../restraint');
+const Encumbered = require('../../status/encumbered');
+const Hobbled = require('../../status/hobbled');
+const Incapacitated = require('../../status/incapacitated');
 
 class LatexHeel extends Restraint{
     constructor(difficulty){
@@ -6,6 +9,13 @@ class LatexHeel extends Restraint{
         this.location = "Legs";
         this.name = "Latex Heels";
         this.difficulty = difficulty;
+        this.statusTable = [
+            [],
+            [Encumbered],
+            [Hobbled],
+            [Incapacitated],
+            [Incapacitated]
+        ];
     }
 
     getDescription(){

@@ -2,15 +2,6 @@ const playerClass = require('./playerClass');
 const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
 const LatexHeel = require('../restraints/skunk/latexHeel');
 const LatexMittens = require('../restraints/skunk/latexMittens');
-const Blinded = require('../status/blinded');
-const Gagged = require('../status/gagged');
-const Hooded = require('../status/hooded');
-const Encumbered = require('../status/encumbered');
-const Hobbled = require('../status/hobbled');
-const Incapacitated = require('../status/incapacitated');
-const Bound = require('../status/bound');
-const Harnessed = require('../status/harnessed');
-const Mittened = require('../status/mittened');
 
 class SkunkWarlock extends playerClass{
     constructor(){
@@ -43,40 +34,19 @@ class SkunkWarlock extends playerClass{
     muzzle(effectRoll, self, enemy, crit){
         let spellName = "Latex Muzzle";
         let effectTable = this.getGenericEffectTable();
-        let statusTable = [
-            [Gagged],
-            [Gagged],
-            [Gagged, Blinded],
-            [Hooded],
-            [Hooded]
-        ];
-        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMuzzle, statusTable);
+        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMuzzle);
     }
 
     heels(effectRoll, self, enemy, crit){
         let spellName = "Latex Heels";
         let effectTable = this.getGenericEffectTable();
-        let statusTable = [
-            [],
-            [Encumbered],
-            [Hobbled],
-            [Incapacitated],
-            [Incapacitated]
-        ];
-        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexHeel, statusTable);
+        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexHeel);
     }
 
     mittens(effectRoll, self, enemy, crit){
         let spellName = "Latex Mittens";
         let effectTable = this.getGenericEffectTable();
-        let statusTable = [
-            [],
-            [Bound],
-            [Harnessed],
-            [Mittened],
-            [Mittened]
-        ];
-        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMittens, statusTable);
+        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMittens);
     }
 
 }

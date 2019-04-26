@@ -1,10 +1,20 @@
 const Restraint = require('../restraint');
+const Blinded = require('../../status/blinded');
+const Gagged = require('../../status/gagged');
+const Hooded = require('../../status/hooded');
 
 class LatexMuzzle extends Restraint{
     constructor(difficulty){
         super();
         this.location = "Head";
         this.name = "Latex Muzzle";
+        this.statusTable = [
+            [Gagged],
+            [Gagged],
+            [Gagged, Blinded],
+            [Hooded],
+            [Hooded]
+        ];
         this.difficulty = difficulty;
     }
 

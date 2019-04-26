@@ -29,7 +29,7 @@ describe('Integration', function() {
         it('Should gimme status in duel', function () {
             let msgDuel = {
                 content : "!duel <@2>",
-                author : { id : 1},
+                author : { id : "1"},
                 channel : {
                     send : sinon.stub()
                 },
@@ -37,7 +37,7 @@ describe('Integration', function() {
             }
             let msgNotInDuel = {
                 content : "!accept",
-                author :  { id : 3},
+                author :  { id : '3'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -45,7 +45,7 @@ describe('Integration', function() {
             };
             let msgAccept = {
                 content : "!accept",
-                author :  { id : 2},
+                author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -53,7 +53,7 @@ describe('Integration', function() {
             };
             let msgStandTwo = {
                 content : "!stand",
-                author :  { id : 2},
+                author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -61,7 +61,7 @@ describe('Integration', function() {
             };
             let msgStatus = {
                 content : "!status",
-                author :  { id : 2},
+                author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -69,7 +69,7 @@ describe('Integration', function() {
             };
             let msgFailAttack = {
                 content : "!attack muzzl",
-                author :  { id : 2},
+                author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -77,7 +77,7 @@ describe('Integration', function() {
             };
             let msgAttackTwo = {
                 content : "!attack heels",
-                author :  { id : 2},
+                author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -85,7 +85,7 @@ describe('Integration', function() {
             };
             let msgStandOne = {
                 content : "!stand",
-                author :  { id : 1},
+                author :  { id : '1'},
                 channel : {
                     send : sinon.stub()
                 },
@@ -93,7 +93,7 @@ describe('Integration', function() {
             };
             let msgAttackOne = {
                 content : "!attack muzzle",
-                author :  { id : 1},
+                author :  { id : '1'},
                 channel : {
                     send : sinon.stub()
                 },

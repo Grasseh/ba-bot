@@ -50,6 +50,10 @@ class Player{
         return this.class.getAllActions();
     }
 
+    getBoundBodyParts(){
+        return this.restraints.map(r => r.getLocation());
+    }
+
 }
 
 module.exports = Player;

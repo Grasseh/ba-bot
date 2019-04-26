@@ -11,7 +11,7 @@ class playerClass{
         return [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,4];
     }
 
-    applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, Restraint, statusArray){
+    applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, Restraint){
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
@@ -34,7 +34,7 @@ class playerClass{
             enemy.addRestraint(appliedRestraint);
         }
         let addedEffects = '';
-        for(let StatusEffect of statusArray[difficulty - 1]){
+        for(let StatusEffect of appliedRestraint.statusTable[difficulty - 1]){
             enemy.addEffect(new StatusEffect(appliedRestraint.id));
             addedEffects += `${enemy.name} is now ${StatusEffect.name}!\n`;
         }
