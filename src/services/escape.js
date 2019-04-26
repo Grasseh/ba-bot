@@ -4,6 +4,13 @@ const Discord = require('discord.js');
 
 class Escape{
     escape(player, restraintToEscape, position, dice, msg){
+        //Attempt auto-escape
+        for(let status of player.effects){
+            if(status.name === "Auto Escape" && status.binding === restraintToEscape.id && restraintToEscape.difficulty === 1){
+                this.freeFrom(restraintToEscape, player, msg);
+                return { valid: true, changedState: false };
+            }
+        }
         let diceRoll = dice.d20();
         let totalRoll = diceRoll.sum;
         let critFail = totalRoll === 1;
