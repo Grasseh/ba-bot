@@ -83,6 +83,14 @@ describe('Integration', function() {
                 },
                 guild : "d"
             };
+            let msgEscapeTwo = {
+                content : "!escape head",
+                author :  { id : '2'},
+                channel : {
+                    send : sinon.stub()
+                },
+                guild : "d"
+            };
             let msgStandOne = {
                 content : "!stand",
                 author :  { id : '1'},
@@ -114,6 +122,7 @@ describe('Integration', function() {
                 { dice: [19], sum: 19 }, //attack roll 3 (Miss Because of muzzle)
                 { dice: [6], sum: 6 }, //attack roll 4 (Hit because of muzzle)
                 { dice: [1], sum: 1 }, //Effect roll 2 (Extreme)
+                { dice: [5], sum: 5 }, //Escape roll 1
             
             ];
             let diceFn = function () {
@@ -136,6 +145,8 @@ describe('Integration', function() {
             msgp.processMessage(msgAttackTwo, diceStub);
             msgp.processMessage(msgStandOne, diceStub);
             msgp.processMessage(msgAttackOne, diceStub);
+            msgp.processMessage(msgStandTwo, diceStub);
+            msgp.processMessage(msgEscapeTwo, diceStub);
             assert.equal(msgDuel.channel.send.getCall(0).args[0].description, "<@2>, you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.");
             assert.equal(msgNotInDuel.channel.send.getCall(0).args[0].description, "You are not currently in a duel!");
             assert.equal(msgAccept.channel.send.getCall(0).args[0].description, "Duel has begun!");
@@ -165,6 +176,9 @@ describe('Integration', function() {
             assert.equal(msgAttackOne.channel.send.getCall(5).args[0].description, "Effect roll for <@1> using muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(6).args[0].description, "<@2> has been hit by Latex Muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(7).args[0].description, "Beginning of <@2>'s turn!");
+            assert.equal(msgEscapeTwo.channel.send.getCall(0).args[0].description, "Escape roll for <@2>, attempting to free head!");
+            assert.equal(msgEscapeTwo.channel.send.getCall(1).args[0].description, "<@2> failed to free itself from its Latex Muzzle!");
+            assert.equal(msgEscapeTwo.channel.send.getCall(2).args[0].description, "Beginning of <@1>'s turn!");
         });
     });
 });

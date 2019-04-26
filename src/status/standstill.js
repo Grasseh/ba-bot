@@ -4,7 +4,7 @@ class StandingStill extends Status{
     constructor(){
         super();
         this.name = "Standing Still";
-        this.effect = "+4 to Enemy Hit";
+        this.effect = "+4 to Enemy Hit, +2 to all Escape Rolls";
         this.time = 1;
     }
 
@@ -19,6 +19,10 @@ class StandingStill extends Status{
 
     toEnemyHit(){
         return 4;
+    }
+
+    toEscape(){
+        return 2;
     }
 }
 

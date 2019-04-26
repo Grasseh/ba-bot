@@ -14,6 +14,10 @@ class Status{
         return false;
     }
 
+    cooldownOther(){
+        return false;
+    }
+
     toHit(){
         return 0;
     }
@@ -31,6 +35,10 @@ class Status{
     }
 
     toNonSpellHit(){
+        return 0;
+    }
+
+    toEscape(){
         return 0;
     }
 

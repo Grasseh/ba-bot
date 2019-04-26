@@ -17,6 +17,7 @@ class StartTurnState extends DuelState{
     run(msg){
         this.duel.turnPlayer = (this.duel.turnPlayer + 1) % this.duel.playerstates.length;
         this.duel.getCurrentPlayer().cooldown();
+        this.duel.getOtherPlayer().cooldownOther();
         let embed = new Discord.RichEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)

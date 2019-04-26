@@ -6,10 +6,12 @@ class FileFactory{
         const StartTurnState = require('./startTurnState');
         const WaitingState = require('./waitingstate');
         const InitiativeState = require('./initiativestate');
+        const FlubbedEscapeState = require('./flubbedEscapeState');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
             'waiting' : WaitingState,
+            'flubbedEscape' : FlubbedEscapeState,
             'initiative' : InitiativeState
         }
 

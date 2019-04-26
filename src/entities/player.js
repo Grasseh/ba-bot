@@ -30,6 +30,14 @@ class Player{
         }
     }
 
+    cooldownOther(){
+        for (let effect of this.effects){
+            if(effect.cooldownOther()){
+                this.effects = this.effects.filter(eff => eff !== effect);
+            }
+        }
+    }
+
     getClassName(){
         return this.class.getClassName();
     }
@@ -51,7 +59,11 @@ class Player{
     }
 
     getBoundBodyParts(){
-        return this.restraints.map(r => r.getLocation());
+        return this.restraints.map(r => r.getLocation().toLowerCase());
+    }
+
+    getEscapableBodyParts(){
+        return this.restraints.filter(r => r.difficulty < 5).map(r => r.getLocation().toLowerCase());
     }
 
 }
