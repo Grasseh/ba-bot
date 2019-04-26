@@ -11,12 +11,12 @@ class FlubbedEscapeState extends DuelState{
 
     nextState(action, msg, args){
         if (action == 'increase'){
-            position = args[0].toLowerCase();
+            let position = args[0].toLowerCase();
             let escapable = this.duel.getCurrentPlayer().getEscapableBodyParts();
             if (escapable.includes(position)){
                 let restraint = this.duel.getCurrentPlayer().restraints.filter(r => r.location.toLowerCase() === position && r.difficulty < 5);
                 let escaping = new EscapeClass();
-                escaping.increaseDifficulty(restraint, this.duel.getCurrentPlayer(), msg);
+                escaping.increaseDifficulty(restraint[0], this.duel.getCurrentPlayer(), msg);
                 stateFactory.createState('startTurn', this.duel, this.dice);
                 return this.duel.state.run(msg);
             }
