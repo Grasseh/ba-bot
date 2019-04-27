@@ -1,4 +1,5 @@
 const embedUtils = require('../utils/embeds');
+const crypto = require("crypto");
 const state = require('../state');
 const Player = require('./player');
 const stateFactory = require('../duelstates/statefactory');
@@ -7,6 +8,7 @@ class Duel{
     constructor(playerOne, invited, dice){
         stateFactory.createState('waiting', this, dice);
         this.turnphase = "";
+        this.id = crypto.randomBytes(32).toString("hex");
         this.players = [playerOne.replace('!','')];
         this.invited = [invited.replace('!','')];
         this.playerstates = [];
