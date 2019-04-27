@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 const state = require('../state');
 const Player = require('./player');
 const stateFactory = require('../duelstates/statefactory');
@@ -20,9 +20,7 @@ class Duel{
         for(let player of this.players){
             this.playerstates.push(new Player(player));
         }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAAAA00)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`Duel has begun!`);
         msg.channel.send(embed);
         this.state.run(msg);
@@ -30,9 +28,7 @@ class Duel{
 
     cancel(msg){
         state.getState().duels = state.getState().duels.filter(duel => duel !== this);
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAAAA00)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`Duel has been cancelled!`);
         msg.channel.send(embed);
     }
@@ -62,19 +58,15 @@ class Duel{
     }
 
     displayWaiting(msg){
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAAAA00)
+        let embed = embedUtils.getStatusEmbed()
             .setDescription(`${this.players[0]}, you are currently waiting for your partner to accept your challenge.`)
-            .addField(`Waiting List`, `${this.invited[0]} you have been challenged to a Bondage Arena duel! Write \`!accept\` to accept or \`!cancel\` to decline.`)
+            .addField(`Waiting List`, `${this.invited[0]} you have been challenged to a Bondage Arena duel! Write \`!accept\` to accept or \`!cancel\` to decline.`);
 
         msg.channel.send(embed);
     }
     
     displayPlaying(msg){
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel Status!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAAAA00);
+        let embed = embedUtils.getStatusEmbed()
         let no = 0;
         for(let player of this.playerstates){
             no++;

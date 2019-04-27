@@ -1,5 +1,5 @@
 const state = require('./state');
-const Discord = require('discord.js');
+const embedUtils = require('./utils/embeds');
 
 class Preprocessor{
     constructor(){
@@ -16,16 +16,12 @@ class Preprocessor{
         }
         this.duel = state.getState().getCurrentDuel(msg.author.id);
         if (!this.duel) {
-            this.message = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
+            this.message = embedUtils.getPlayerErrorEmbed()
                 .setDescription('You are not currently in a duel!')
             return this.getReturns();
         }
         if (!this.duel.state.isValidAction(cmd)){
-            this.message = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
+            this.message = embedUtils.getPlayerErrorEmbed()
                 .setDescription('You cannot currently use this command!')
             return this.getReturns()
         }

@@ -1,7 +1,6 @@
-const state = require('../state');
 const DuelState = require('./DuelState');
-const Discord = require('discord.js');
 const stateFactory = require('./stateFactory');
+const embedUtils = require('../utils/embeds'); 
 
 class StartTurnState extends DuelState{
     getValidActions(){
@@ -16,14 +15,26 @@ class StartTurnState extends DuelState{
 
     run(msg){
         this.duel.turnPlayer = (this.duel.turnPlayer + 1) % this.duel.playerstates.length;
+        let gameOver = this.checkWinCondition();
+        if(gameOver){
+            return this.duel.gameOver();
+        }
         this.duel.getCurrentPlayer().cooldown();
         this.duel.getOtherPlayer().cooldownOther();
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`Beginning of ${this.duel.playerstates[this.duel.turnPlayer].name}'s turn!`)
             .addField(`Actions available:`, `Stand Still with !stand or Move with NOTIMPLEMENTED`);
         msg.channel.send(embed);
+    }
+
+    checkWinCondition(){
+        if(this.duel.getCurrentPlayer().isFullExtreme()){
+            //Check if is currently in lose condition
+            //If yes, and one turn, display message
+            //If yes, and zero turn, GAME OVER and return true
+            //If no, create status at two turns and display message
+        }
+        return false;
     }
 }
 

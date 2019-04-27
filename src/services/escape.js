@@ -1,6 +1,6 @@
 const state = require('../state');
 const AutoEscape = require('../status/autoEscape');
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 
 class Escape{
     escape(player, restraintToEscape, position, dice, msg){
@@ -38,9 +38,7 @@ class Escape{
                 totalRoll += toEscapeLegsHarderThanEasy;
             }
         }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`Escape roll for ${player.name}, attempting to free ${position}!`)
             .addField(`d20`, `${diceRoll.sum}`)
         for(let additional of additionals){
@@ -68,18 +66,14 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 3){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} failed to free itself from its ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 6){
             player.addEffect(new AutoEscape(restraint.id));
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} loosen slightly its ${restraint.name}. If it is not tightened, it can be auto-escaped next turn!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
@@ -95,9 +89,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 6){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} failed to free itself from its ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
@@ -118,9 +110,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 10){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} failed to free itself from its ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
@@ -140,9 +130,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 15){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} failed to free itself from its ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
@@ -161,9 +149,7 @@ class Escape{
             return {valid : true, changedState : true};
         }
         if(totalRoll <= 19){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} failed to free itself from its ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
@@ -176,9 +162,7 @@ class Escape{
     increaseDifficulty(restraint, player, msg, value = 1){
         this.removeEffects(restraint, player);
         restraint.difficulty += value;
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getCombatEmbed()
         if(value > 0)
             embed.setDescription(`${player.name} increased its ${restraint.name} difficulty!`)
         if(value < 0)
@@ -197,9 +181,7 @@ class Escape{
 
     freeFrom(restraint, player, msg){
         this.removeRestraint(restraint, player);
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`${player.name} freed itself from its ${restraint.name}!`)
         msg.channel.send(embed);
     }

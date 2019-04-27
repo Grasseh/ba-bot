@@ -66,6 +66,15 @@ class Player{
         return this.restraints.filter(r => r.difficulty < 5).map(r => r.getLocation().toLowerCase());
     }
 
+    isFullExtreme(){
+        let values = [
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Legs"),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Arms"),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Head"),
+        ];
+        return values.every(x => x.length > 0);
+    }
+
 }
 
 module.exports = Player;

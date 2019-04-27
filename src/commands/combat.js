@@ -1,14 +1,11 @@
-const state = require('../state');
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 
 let combat = {
     stand: (args, msg, currentDuel) => {
         //Check if user is in a duel and it is his turn
         if(!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
-                .setDescription('It is currently not your turn!')
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
             msg.channel.send(embed);
             return;
         }
@@ -17,10 +14,8 @@ let combat = {
     },
     attack: (args, msg, currentDuel) => {
         if (!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)) {
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
-                .setDescription('It is currently not your turn!')
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
             msg.channel.send(embed);
             return;
         }
@@ -28,10 +23,8 @@ let combat = {
     },
     escape: (args, msg, currentDuel) => {
         if (!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)) {
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
-                .setDescription('It is currently not your turn!')
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
             msg.channel.send(embed);
             return;
         }
@@ -39,10 +32,8 @@ let combat = {
     },
     increase: (args, msg, currentDuel) => {
         if (!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)) {
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Status!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xffffff)
-                .setDescription('It is currently not your turn!')
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
             msg.channel.send(embed);
             return;
         }

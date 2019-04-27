@@ -1,12 +1,10 @@
 const state = require('../state');
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 const Duel = require('../entities/duel');
 
 let generics = {
     help: (args, msg) => {
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Help!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xffffff)
+        let embed = embedUtils.getBotInfoEmbed()
             .setDescription('List of basic commands')
             .addField('`!help`', 'Displays this message')
             .addField('`!status`', 'Displays the status of your current fight.')
@@ -21,26 +19,20 @@ let generics = {
     },
     duel: (args, msg, duel, dice) => {
         if (state.getState().getCurrentDuel(msg.author.id)) {
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xAA0000)
+            let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription('You are already in a duel! Check your current duel status with `!status`! ')
             msg.channel.send(embed);
             return;
         }
         if (`<@${msg.author.id.replace('!','')}>` === args[0].replace('!','')){
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0xAA0000)
+            let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription('You cannot duel yourself! ')
             msg.channel.send(embed);
             return;
         }
         state.getState().duels.push(new Duel(`<@${msg.author.id}>`, args[0], dice)); 
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0xAAAA00)
-            .setDescription(`${args[0]}, you have been challenged to a Bondage Arena duel! Write \`!accept\` to accept or \`!cancel\` to decline.`)
+            let embed = embedUtils.getPlayerActionEmbed()
+                .setDescription(`${args[0]}, you have been challenged to a Bondage Arena duel! Write \`!accept\` to accept or \`!cancel\` to decline.`)
         msg.channel.send(embed);
         return;
     },

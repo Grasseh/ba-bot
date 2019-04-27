@@ -1,8 +1,8 @@
 const state = require('../state');
 const DuelState = require('./DuelState');
 const stateFactory = require('./stateFactory');
-const Discord = require('discord.js');
 const EscapeClass = require('../services/escape');
+const embedUtils = require('../utils/embeds');
 
 class ActionState extends DuelState{
     getValidActions(){
@@ -29,9 +29,7 @@ class ActionState extends DuelState{
             if (escapable === '') {
                 escapable = 'none';
             }
-            let embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid command or bodypart! ${this.duel.getCurrentPlayer().name}'s turn.`)
                 .addField(`Actions available:`, `Attack with !attack <command> or Escape a binding with !escape <bodypart>`)
                 .addField(`Attacks available:`, `${actions}`)
@@ -46,9 +44,7 @@ class ActionState extends DuelState{
         if(escapable === ''){
             escapable = 'none';
         }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`${this.duel.getCurrentPlayer().name}'s Action Phase!`)
             .addField(`Actions available:`, `Attack with !attack <command> or Escape a binding with !escape <bodypart>`)
             .addField(`Attacks available:`, `${spells}`)
@@ -97,9 +93,7 @@ class ActionState extends DuelState{
                 totalRoll += toEnemyHit;
             }
         }
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`Hit roll for ${player.name} using ${args[0]}!`)
             .addField(`d20`, `${diceRoll.sum}`)
         for(let additional of additionals){
@@ -115,9 +109,7 @@ class ActionState extends DuelState{
         }
         msg.channel.send(embed);
         if (!crit && totalRoll < 11 && !critFail) {
-            embed = new Discord.RichEmbed()
-                .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                .setColor(0x0000AA)
+            embed = embedUtils.getCombatEmbed()
                 .setDescription(`Result for ${player.name} using ${args[0]}!`)
                 .addField(`Miss!`, `And the attack fails!`);
             msg.channel.send(embed);
@@ -126,7 +118,7 @@ class ActionState extends DuelState{
         //Roll for effect
         let effectRoll = this.dice.d20();
         totalRoll = effectRoll.sum;
-        embed = new Discord.RichEmbed()
+        embed = embedUtils.getCombatEmbed()
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Effect roll for ${player.name} using ${args[0]}!`)

@@ -1,5 +1,5 @@
 const state = require('../state');
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 
 class playerClass{
     getSpellList(){
@@ -12,10 +12,8 @@ class playerClass{
     }
 
     applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, Restraint){
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
-            .setDescription(`${enemy.name} has been hit by ${spellName}!`);
+        let embed = embedUtils.getCombatEmbed();
+            embed.setDescription(`${enemy.name} has been hit by ${spellName}!`);
         let existingRestraint = enemy.getRestraints().filter(r => r.getName() === spellName);
         let appliedRestraint;
         let difficulty = effectTable[effectRoll - 1];

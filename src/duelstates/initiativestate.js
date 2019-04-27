@@ -1,7 +1,7 @@
 const state = require('../state');
 const DuelState = require('./DuelState');
 const StartTurnState = require('./StartTurnState');
-const Discord = require('discord.js');
+const embedUtils = require('../utils/embeds');
 
 class InitiativeState extends DuelState{
     getValidActions(){
@@ -17,9 +17,7 @@ class InitiativeState extends DuelState{
         let highestId = -2;
         let i = -1;
         let tied = true;
-        let embed = new Discord.RichEmbed()
-            .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-            .setColor(0x0000AA)
+        let embed = embedUtils.getCombatEmbed()
             .setDescription(`Duel has begun! Rolls for initiative!`);
         msg.channel.send(embed);
         while(tied){
@@ -27,9 +25,7 @@ class InitiativeState extends DuelState{
             i = -1;
             for (let player of this.duel.playerstates) {
                 let roll = this.dice.d20();
-                let embed = new Discord.RichEmbed()
-                    .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
-                    .setColor(0x0000AA)
+                let embed = embedUtils.getCombatEmbed()
                     .setDescription(`Initiative roll for ${player.name}!`)
                     .addField(`d20`, `${roll.sum}`);
                 msg.channel.send(embed);
