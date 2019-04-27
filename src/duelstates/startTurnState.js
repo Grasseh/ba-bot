@@ -36,20 +36,20 @@ class StartTurnState extends DuelState{
                 fullyBound = fullyBound[0];
                 if(fullyBound.time >= 1){
                     let embed = embedUtils.getEndOfGameEmbed()
-                        .setDescription(`${this.duel.getCurrentPlayer().name} is completely bound with extreme restraints!\n${this.duel.getCurrentPlayer().name} wins in 1 turn if no restraints are loosened!`);
+                        .setDescription(`${this.duel.getCurrentPlayer().name} is completely bound with extreme restraints!\n${this.duel.getOtherPlayer().name} wins in 1 turn if no restraints are loosened!`);
                     msg.channel.send(embed);
                     return false;
                 }
                 this.duel.displayStatus(msg);
                 let embed = embedUtils.getEndOfGameEmbed()
-                    .setDescription(`${this.duel.getCurrentPlayer().name} has been completely bound with extreme restraints for 2 turns!\n${this.duel.getCurrentPlayer().name} wins!!!!`);
+                    .setDescription(`${this.duel.getCurrentPlayer().name} has been completely bound with extreme restraints for 2 turns!\n${this.duel.getOtherPlayer().name} wins!!!!`);
                 msg.channel.send(embed);
                 state.getState().duels = state.getState().duels.filter(d => d.id !== this.duel.id);
                 return true;
             }
             this.duel.getCurrentPlayer().addEffect(new FullyBound());
             let embed = embedUtils.getEndOfGameEmbed()
-                .setDescription(`${this.duel.getCurrentPlayer().name} is completely bound with extreme restraints!\n${this.duel.getCurrentPlayer().name} wins in 2 turns if no restraints are loosened!`);
+                .setDescription(`${this.duel.getCurrentPlayer().name} is completely bound with extreme restraints!\n${this.duel.getOtherPlayer().name} wins in 2 turns if no restraints are loosened!`);
             msg.channel.send(embed);
             return false;
         }
