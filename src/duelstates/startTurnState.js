@@ -17,9 +17,9 @@ class StartTurnState extends DuelState{
 
     run(msg){
         this.duel.turnPlayer = (this.duel.turnPlayer + 1) % this.duel.playerstates.length;
-        let gameOver = this.checkWinCondition();
+        let gameOver = this.checkWinCondition(msg);
         if(gameOver){
-            return this.duel.gameOver();
+            return;
         }
         this.duel.getCurrentPlayer().cooldown();
         this.duel.getOtherPlayer().cooldownOther();
@@ -40,10 +40,11 @@ class StartTurnState extends DuelState{
                     msg.channel.send(embed);
                     return false;
                 }
+                this.duel.displayStatus(msg);
                 let embed = embedUtils.getEndOfGameEmbed()
                     .setDescription(`${this.duel.getCurrentPlayer().name} has been completely bound with extreme restraints for 2 turns!\n${this.duel.getCurrentPlayer().name} wins!!!!`);
                 msg.channel.send(embed);
-                state.getState().duels.filter(d => d.id !== this.duel.id);
+                state.getState().duels = state.getState().duels.filter(d => d.id !== this.duel.id);
                 return true;
             }
             this.duel.getCurrentPlayer().addEffect(new FullyBound());
