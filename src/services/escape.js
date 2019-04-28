@@ -90,7 +90,7 @@ class Escape{
         }
         if(totalRoll <= 6){
             let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from its ${restraint.name}!`)
+                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
             msg.channel.send(embed);
             return {valid : true, changedState : false};
         }
