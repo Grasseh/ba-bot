@@ -72,7 +72,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 6){
-            player.addEffect(new AutoEscape(restraint.id));
+            player.addEffect(new AutoEscape(restraint.id, restraint.name));
             let embed = embedUtils.getCombatEmbed()
                 .setDescription(`${player.name} loosen slightly her ${restraint.name}. If it is not tightened, it can be auto-escaped next turn!`)
             msg.channel.send(embed);
