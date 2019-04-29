@@ -66,9 +66,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 3){
-            let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
-            msg.channel.send(embed);
+            this.failFrom(restraint, player, msg);
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 6){
@@ -89,9 +87,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 6){
-            let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
-            msg.channel.send(embed);
+            this.failFrom(restraint, player, msg);
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 14){
@@ -110,9 +106,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 10){
-            let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
-            msg.channel.send(embed);
+            this.failFrom(restraint, player, msg);
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 16){
@@ -130,9 +124,7 @@ class Escape{
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 15){
-            let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
-            msg.channel.send(embed);
+            this.failFrom(restraint, player, msg);
             return {valid : true, changedState : false};
         }
         if(totalRoll <= 18){
@@ -149,9 +141,7 @@ class Escape{
             return {valid : true, changedState : true};
         }
         if(totalRoll <= 19){
-            let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
-            msg.channel.send(embed);
+            this.failFrom(restraint, player, msg);
             return {valid : true, changedState : false};
         }
         //20+
@@ -183,6 +173,12 @@ class Escape{
         this.removeRestraint(restraint, player);
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`${player.name} freed herself from her ${restraint.name}!`)
+        msg.channel.send(embed);
+    }
+
+    failFrom(restraint, player, msg){
+        let embed = embedUtils.getCombatEmbed()
+            .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
         msg.channel.send(embed);
     }
 
