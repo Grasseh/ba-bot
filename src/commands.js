@@ -11,7 +11,8 @@ let commands = {
     stand : stand,
     attack : attack,
     increase : increase,
-    escape : escape
+    escape : escape,
+    move : move
 }
 
 for(let key of Object.keys(commands)){

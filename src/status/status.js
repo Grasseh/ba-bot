@@ -53,6 +53,17 @@ class Status{
     toEscapeLegsHarderThanEasy(){
         return 0;
     }
+
+    triggersCriticalTrap(){
+        return false;
+    }
+
+    isTrapAttackAvailable(){
+        return false;
+    }
+
+    onFailedEscape(player, restraint, msg){
+    }
 }
 
 module.exports = Status;

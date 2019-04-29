@@ -68,7 +68,9 @@ class ActionState extends DuelState{
         let critFail = totalRoll === 1;
         let additionals = [];
         //Add Player hit effects
-        for (let effect of player.effects) {
+        //Dupe in case an effect does modifs
+        let effects = player.effects;
+        for (let effect of effects) {
             let toHit = effect.toHit();
             if (toHit !== 0) {
                 additionals.push({ name: effect.name, value: toHit });

@@ -6,12 +6,14 @@ const FullyBound = require('../status/fullybound');
 
 class StartTurnState extends DuelState{
     getValidActions(){
-        return ['status', 'stand'];
+        return ['status', 'stand', 'move'];
     }
 
     nextState(action, msg){
-        if (action == 'stand')
+        if (action === 'stand')
             stateFactory.createState('action', this.duel, this.dice)
+        if (action === 'move')
+            stateFactory.createState('move', this.duel, this.dice)
         this.duel.state.run(msg);
     }
 
@@ -25,7 +27,7 @@ class StartTurnState extends DuelState{
         this.duel.getOtherPlayer().cooldownOther();
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`Beginning of ${this.duel.getCurrentPlayer().name}'s turn!`)
-            .addField(`Actions available:`, `Stand Still with !stand or Move with NOTIMPLEMENTED`);
+            .addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
         msg.channel.send(embed);
     }
 

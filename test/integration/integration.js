@@ -177,7 +177,7 @@ describe('Integration', function() {
             assert.equal(msgAttackOne.channel.send.getCall(6).args[0].description, "<@2> has been hit by Latex Muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(7).args[0].description, "Beginning of <@2>'s turn!");
             assert.equal(msgEscapeTwo.channel.send.getCall(0).args[0].description, "Escape roll for <@2>, attempting to free head!");
-            assert.equal(msgEscapeTwo.channel.send.getCall(1).args[0].description, "<@2> failed to free itself from its Latex Muzzle!");
+            assert.equal(msgEscapeTwo.channel.send.getCall(1).args[0].description, "<@2> failed to free herself from her Latex Muzzle!");
             assert.equal(msgEscapeTwo.channel.send.getCall(2).args[0].description, "Beginning of <@1>'s turn!");
         });
     });

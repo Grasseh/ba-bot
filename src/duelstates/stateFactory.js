@@ -7,12 +7,16 @@ class FileFactory{
         const WaitingState = require('./waitingstate');
         const InitiativeState = require('./initiativestate');
         const FlubbedEscapeState = require('./flubbedEscapeState');
+        const MoveState = require('./moveState');
+        const HitTrapState = require('./hitTrapState');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
             'waiting' : WaitingState,
             'flubbedEscape' : FlubbedEscapeState,
-            'initiative' : InitiativeState
+            'initiative' : InitiativeState,
+            'move' : MoveState,
+            'hitTrap' : HitTrapState,
         }
 
         let toCreate = states[state];

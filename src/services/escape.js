@@ -180,6 +180,9 @@ class Escape{
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
         msg.channel.send(embed);
+        for(let effect of player.effects){
+            effect.onFailedEscape(player, restraint, msg);
+        }
     }
 
     removeEffects(restraint, player) {
