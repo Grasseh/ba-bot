@@ -36,7 +36,7 @@ class Duel{
     }
 
     isPlaying(){
-        return typeof(this.state) !== "WaitingState";
+        return this.playerstates.length !== 0;
     }
     
     isPlayerTurn(player){
@@ -53,7 +53,7 @@ class Duel{
     }
 
     displayStatus(msg){
-        if(this.isPlaying){
+        if(this.isPlaying()){
             return this.displayPlaying(msg);
         }
         return this.displayWaiting(msg);
@@ -63,7 +63,6 @@ class Duel{
         let embed = embedUtils.getStatusEmbed()
             .setDescription(`${this.players[0]}, you are currently waiting for your partner to accept your challenge.`)
             .addField(`Waiting List`, `${this.invited[0]} you have been challenged to a Bondage Arena duel! Write \`!accept\` to accept or \`!cancel\` to decline.`);
-
         msg.channel.send(embed);
     }
     
