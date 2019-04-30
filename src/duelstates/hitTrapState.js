@@ -2,6 +2,7 @@ const DuelState = require('./DuelState');
 const stateFactory = require('./stateFactory');
 const embedUtils = require('../utils/embeds');
 const RevengeCollarTrap = require('../traps/revengeCollar');
+const TighteningTrap = require('../traps/tightening');
 
 class HitTrapState extends DuelState{
     getValidActions(){
@@ -23,9 +24,10 @@ class HitTrapState extends DuelState{
         //Roll for trap
         let traps = [
             null,
-            RevengeCollarTrap
+            RevengeCollarTrap,
+            TighteningTrap,
         ];
-        let diceRoll = this.dice.xDy(1, 1);
+        let diceRoll = this.dice.xDy(1, 2);
         let player = this.duel.getCurrentPlayer();
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Trap roll for ${player.name}!`)
