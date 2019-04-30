@@ -35,7 +35,7 @@ class HitTrapState extends DuelState{
         let player = this.duel.getCurrentPlayer();
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Trap roll for ${player.name}!`)
-            .addField(`d1`, `${diceRoll.sum}`)
+            .addField(`d4`, `${diceRoll.sum}`)
         msg.channel.send(embed);
         let effectRoll = this.dice.d20();
         embed = embedUtils.getCombatEmbed()
