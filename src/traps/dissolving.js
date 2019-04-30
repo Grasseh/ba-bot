@@ -81,7 +81,7 @@ class DissolvingTrap extends Trap{
         embed.addField(`Extreme trap!`, `Dissolves all non-impossible bindings!`);
         let restraints = player.getRestraints().filter(x => x.difficulty <= 4);
         if(restraints.length > 0){
-            for(let restraint in restraints){
+            for(let restraint of restraints){
                 esc.freeFrom(restraint, player, msg);
             }
             return embed;
