@@ -1,6 +1,6 @@
 class Trap{
     constructor(dice){
-        this.dice = this;
+        this.dice = dice;
     }
 
     activate(){

@@ -26,10 +26,10 @@ class HitTrapState extends DuelState{
         //Roll for trap
         let traps = [
             null,
-            DissolvingTrap,
-            ImmobilizationTrap,
-            RevengeCollarTrap,
-            TighteningTrap,
+            RevengeCollarTrap, //1
+            TighteningTrap, //3
+            ImmobilizationTrap, //11
+            DissolvingTrap, //18
         ];
         let diceRoll = this.dice.xDy(1, 4);
         let player = this.duel.getCurrentPlayer();

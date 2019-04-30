@@ -7,9 +7,9 @@ class SkunkWarlock extends playerClass{
     constructor(){
         super();
         this.spells = {
-            'muzzle' : this.muzzle.bind(this),
-            'heels' : this.heels.bind(this),
-            'mittens' : this.mittens.bind(this),
+            'latexmuzzle' : this.muzzle.bind(this),
+            'latexheels' : this.heels.bind(this),
+            'latexmittens' : this.mittens.bind(this),
         };
         this.actions = {
         };

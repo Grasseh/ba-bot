@@ -29,6 +29,7 @@ class DissolvingTrap extends Trap{
 
     fizzle(embed){
         embed.addField(`The trap fizzles!`, `What a loss. No effect.`);
+        return embed;
     }
 
     activateEasy(embed, player, msg){
@@ -94,9 +95,13 @@ class DissolvingTrap extends Trap{
         for(let difficulty = 5; difficulty >= 1; difficulty--){
             if(difficulty > highest)
                 continue;
-            let restraints = player.getRestraints().filter( x => x.difficulty === difficulty);
+            let restraints = player.getRestraints().filter(x => x.difficulty === difficulty);
             while(restraintsRemaining > 0 && restraints.length > 0){
-                let restraint = restrains[this.dice.xDy(1, restraints.length) - 1];
+                let restraint = restraints[this.dice.xDy(1, restraints.length).sum - 1];
+                console.log(restraint);
+                console.log(restraints);
+                console.log(difficulty);
+                console.log(restraintsRemaining);
                 esc.freeFrom(restraint, player, msg);
                 restraints = restraints.filter(r => r.id !== restraint.id);
                 restraintsRemaining--;
