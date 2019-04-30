@@ -9,10 +9,6 @@ class Hooded extends Status{
         this.binding = binding;
     }
 
-    display(){
-        return `${ this.name } - ${ this.effect } \n`;
-    }
-
     toHit(){
         return -3;
     }

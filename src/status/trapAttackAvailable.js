@@ -8,10 +8,6 @@ class TrapAttackAvailable extends Status{
         this.time = 1;
     }
 
-    display(){
-        return `${ this.name } - ${ this.effect } \n`;
-    }
-
     cooldownOther(){
         this.time--;
         return this.time <= 0;

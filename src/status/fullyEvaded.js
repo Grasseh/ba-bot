@@ -10,7 +10,7 @@ class FullyEvaded extends Status{
     }
 
     display(){
-        return `${ this.name } - ${ this.effect } - Duration : ${ this.time } turn \n`;
+        return `${ this.effect } - Duration : ${ this.time } turn`;
     }
 
     cooldown(){

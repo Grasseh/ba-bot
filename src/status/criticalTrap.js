@@ -7,6 +7,7 @@ class CriticalTrap extends Status{
         this.effect = "Hit yourself harder with the trap";
         this.time = 1;
         this.binding = binding;
+        this.hidden = true;
     }
 
     display(){

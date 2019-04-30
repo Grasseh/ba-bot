@@ -9,10 +9,6 @@ class Bound extends Status{
         this.binding = binding;
     }
 
-    display(){
-        return `${ this.name } - ${ this.effect } \n`;
-    }
-
     toNonSpellHit(){
         return -2;
     }

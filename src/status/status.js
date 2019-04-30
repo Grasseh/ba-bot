@@ -4,10 +4,15 @@ class Status{
         this.effect = "Generic Effect";
         this.extra = "";
         this.binding = null;
+        this.hidden = false;
     }
     
     display(){
-        return `${ this.name } - ${ this.effect } - ${ this.extra } \n`;
+        return `${ this.effect }`;
+    }
+
+    getName(){
+        return this.name;
     }
 
     cooldown(){

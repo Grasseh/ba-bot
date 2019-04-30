@@ -67,26 +67,28 @@ class Duel{
     }
     
     displayPlaying(msg){
-        let embed = embedUtils.getStatusEmbed()
         let no = 0;
         for(let player of this.playerstates){
+            let playerEmbed = embedUtils.getStatusEmbed();
+            let restraintsEmbed = embedUtils.getStatusEmbed();
+            let statusEmbed = embedUtils.getStatusEmbed();
             no++;
-            let restraints = "";
-            let status = "";
+            playerEmbed.addField(`Player #${no}`, `**${player.name}**\n Class : ${player.getClassName()}`);
+
+            restraintsEmbed.addField(`Restraints`, player.name);
+            statusEmbed.addField(`Status Effects`, player.name);
             for(let restraint of player.restraints){
-                restraints += `${restraint.getName()} - ${restraint.getLocation()} - ${restraint.getDifficulty()} - ${restraint.getDescription()}\n`;
+                restraintsEmbed.addField(restraint.getName(), `${restraint.getLocation()} - ${restraint.getDifficulty()} - ${restraint.getDescription()}`);
             }
             for(let effect of player.effects){
-                status += effect.display();
+                if(!statusEmbed.hidden){
+                    statusEmbed.addField(effect.getName(), effect.display());
+                }
             }
-            embed.addField(`Player #${no} `, `
-                **${player.name}**
-                Class : ${player.getClassName()}\n
-                Restraints : ${restraints}\n
-                Status effects : ${status}\n
-            `);
+            msg.channel.send(playerEmbed);
+            msg.channel.send(restraintsEmbed);
+            msg.channel.send(statusEmbed);
         }
-        msg.channel.send(embed);
     }
 }
 

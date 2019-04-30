@@ -37,6 +37,12 @@ class embedUtils{
             .setAuthor('Bondage Arena Duel Status!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x00AA00);
     }
+
+    getBotErrorEmbed(){
+        return new Discord.RichEmbed()
+            .setAuthor('Bondage Arena Duel ERROR!', state.getState().bot.user.displayAvatarURL)
+            .setColor(0xAA0000);
+    }
 }
 
 module.exports = new embedUtils();

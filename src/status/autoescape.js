@@ -9,10 +9,6 @@ class AutoEscape extends Status{
         this.binding = binding;
     }
 
-    display(){
-        return `${ this.name } - ${ this.effect } \n`;
-    }
-
     cooldownOther(){
         this.time--;
         return this.time <= 0;
