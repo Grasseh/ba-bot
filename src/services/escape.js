@@ -39,7 +39,7 @@ class Escape{
             }
         }
         let embed = embedUtils.getCombatEmbed()
-            .setDescription(`Escape roll for ${player.name}, attempting to free ${position}!`)
+            .setDescription(`Escape roll for ${player.name}, attempting to free herself from her ${restraintToEscape.name}!`)
             .addField(`d20`, `${diceRoll.sum}`)
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);

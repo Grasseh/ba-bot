@@ -59,11 +59,11 @@ class Player{
     }
 
     getBoundBodyParts(){
-        return this.restraints.map(r => r.getLocation().toLowerCase());
+        return this.restraints.map(r => r.getCommand().toLowerCase());
     }
 
     getEscapableBodyParts(){
-        return this.restraints.filter(r => r.difficulty < 5).map(r => r.getLocation().toLowerCase());
+        return this.restraints.filter(r => r.difficulty < 5).map(r => r.getCommand().toLowerCase());
     }
 
     isFullExtreme(){
@@ -75,6 +75,13 @@ class Player{
         return values.every(x => x.length > 0);
     }
 
+    canMove(){
+        return !this.effects.some(e => !e.canMove());
+    }
+
+    canStand(){
+        return true;
+    }
 }
 
 module.exports = Player;

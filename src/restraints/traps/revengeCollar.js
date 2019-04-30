@@ -6,6 +6,7 @@ class RevengeCollar extends Restraint{
         super();
         this.location = "Neck";
         this.name = "Revenge Collar";
+        this.command = "revengecollar";
         this.statusTable = [
             [],
             [],

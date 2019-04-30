@@ -69,6 +69,10 @@ class Status{
 
     onFailedEscape(player, restraint, msg){
     }
+
+    canMove(){
+        return true;
+    }
 }
 
 module.exports = Status;

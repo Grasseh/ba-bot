@@ -10,11 +10,28 @@ class StartTurnState extends DuelState{
     }
 
     nextState(action, msg){
-        if (action === 'stand')
+        let canMove = this.duel.getCurrentPlayer().canMove();
+        let canStand = this.duel.getCurrentPlayer().canStand();
+        if (action === 'stand' && (canStand || !canMove)){
+            this.duel.getCurrentPlayer().stand();
             stateFactory.createState('action', this.duel, this.dice)
-        if (action === 'move')
+            this.duel.state.run(msg);
+            return;
+        }
+        if (action === 'move' && canMove){
             stateFactory.createState('move', this.duel, this.dice)
-        this.duel.state.run(msg);
+            this.duel.state.run(msg);
+            return;
+        }
+        let embed = embedUtils.getPlayerErrorEmbed()
+            .setDescription(`Invalid command! ${this.duel.getCurrentPlayer().name}'s turn.`)
+        if(canMove && canStand)
+            embed.addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
+        if(canMove && !canStand)
+            embed.addField(`Actions available:`, `Move with !move`);
+        if(!canMove)
+            embed.addField(`Actions available:`, `Stand Still with !stand`);
+        msg.channel.send(embed);
     }
 
     run(msg){
@@ -25,9 +42,16 @@ class StartTurnState extends DuelState{
         }
         this.duel.getCurrentPlayer().cooldown();
         this.duel.getOtherPlayer().cooldownOther();
+        let canMove = this.duel.getCurrentPlayer().canMove();
+        let canStand = this.duel.getCurrentPlayer().canStand();
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`Beginning of ${this.duel.getCurrentPlayer().name}'s turn!`)
-            .addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
+        if(canMove && canStand)
+            embed.addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
+        if(canMove && !canStand)
+            embed.addField(`Actions available:`, `Move with !move`);
+        if(!canMove)
+            embed.addField(`Actions available:`, `Stand Still with !stand`);
         msg.channel.send(embed);
     }
 

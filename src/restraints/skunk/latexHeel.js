@@ -8,6 +8,7 @@ class LatexHeel extends Restraint{
         super();
         this.location = "Legs";
         this.name = "Latex Heels";
+        this.command = "latexheels";
         this.difficulty = difficulty;
         this.statusTable = [
             [],

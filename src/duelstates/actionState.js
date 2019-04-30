@@ -135,17 +135,17 @@ class ActionState extends DuelState{
     }
 
     escape(msg, args){
-        let position = args[0].toLowerCase();
-        if(!this.duel.getCurrentPlayer().getBoundBodyParts().includes(position)){
+        let command = args[0].toLowerCase();
+        if(!this.duel.getCurrentPlayer().getBoundBodyParts().includes(command)){
             return {valid : false, result : null};
         }
-        let restraintToEscape = this.duel.getCurrentPlayer().restraints.filter(r => r.location.toLowerCase() === position);
+        let restraintToEscape = this.duel.getCurrentPlayer().restraints.filter(r => r.command.toLowerCase() === command);
         if(restraintToEscape.length <= 0){
             return {valid : false, result : null};
         }
         restraintToEscape = restraintToEscape[0];
         let escaping = new EscapeClass();
-        let {changedState, valid} = escaping.escape(this.duel.getCurrentPlayer(), restraintToEscape, position, this.dice, msg);
+        let {changedState, valid} = escaping.escape(this.duel.getCurrentPlayer(), restraintToEscape, restraintToEscape.getLocation(), this.dice, msg);
         if(changedState){
             stateFactory.createState('flubbedEscape', this.duel, this.dice)
             this.duel.state.run(msg);

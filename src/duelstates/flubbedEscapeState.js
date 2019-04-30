@@ -11,10 +11,10 @@ class FlubbedEscapeState extends DuelState{
 
     nextState(action, msg, args){
         if (action == 'increase'){
-            let position = args[0].toLowerCase();
+            let command = args[0].toLowerCase();
             let escapable = this.duel.getCurrentPlayer().getEscapableBodyParts();
-            if (escapable.includes(position)){
-                let restraint = this.duel.getCurrentPlayer().restraints.filter(r => r.location.toLowerCase() === position && r.difficulty < 5);
+            if (escapable.includes(command)){
+                let restraint = this.duel.getCurrentPlayer().restraints.filter(r => r.getCommand().toLowerCase() === command && r.difficulty < 5);
                 let escaping = new EscapeClass();
                 escaping.increaseDifficulty(restraint[0], this.duel.getCurrentPlayer(), msg);
                 stateFactory.createState('startTurn', this.duel, this.dice);
@@ -22,7 +22,7 @@ class FlubbedEscapeState extends DuelState{
             }
             let embed = embedUtils.getPlayerActionEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a binding to increase!`)
-                .addField(`Actions available:`, `Pick a binding to increase with !increase <bodypart>`)
+                .addField(`Actions available:`, `Pick a binding to increase with !increase <binding>`)
                 .addField(`Bound bodyparts:`, `${escapable}`);
             msg.channel.send(embed);
         }

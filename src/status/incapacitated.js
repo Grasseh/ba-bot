@@ -9,7 +9,6 @@ class Incapacitated extends Status{
         this.binding = binding;
     }
 
-
     toEnemyHit(){
         return 6;
     }

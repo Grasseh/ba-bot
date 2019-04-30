@@ -8,6 +8,7 @@ class LatexMuzzle extends Restraint{
         super();
         this.location = "Head";
         this.name = "Latex Muzzle";
+        this.command = "latexmuzzle";
         this.statusTable = [
             [Gagged],
             [Gagged],

@@ -3,6 +3,8 @@ const stateFactory = require('./stateFactory');
 const embedUtils = require('../utils/embeds');
 const RevengeCollarTrap = require('../traps/revengeCollar');
 const TighteningTrap = require('../traps/tightening');
+const ImmobilizationTrap = require('../traps/immobilization');
+const DissolvingTrap = require('../traps/dissolving');
 
 class HitTrapState extends DuelState{
     getValidActions(){
@@ -24,10 +26,12 @@ class HitTrapState extends DuelState{
         //Roll for trap
         let traps = [
             null,
+            DissolvingTrap,
+            ImmobilizationTrap,
             RevengeCollarTrap,
             TighteningTrap,
         ];
-        let diceRoll = this.dice.xDy(1, 2);
+        let diceRoll = this.dice.xDy(1, 4);
         let player = this.duel.getCurrentPlayer();
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Trap roll for ${player.name}!`)
@@ -38,7 +42,7 @@ class HitTrapState extends DuelState{
             .setDescription(`Effect roll for ${player.name}'s trap!`)
             .addField(`d20`, `${effectRoll.sum}`)
         msg.channel.send(embed);
-        let trap = new (traps[diceRoll.sum])();
+        let trap = new (traps[diceRoll.sum])(this.dice);
         let critFail = player.effects.some(e => e.name === 'Critical Trap');
         let skipTurn = trap.activate(effectRoll.sum, player, critFail, msg);
         if(skipTurn){

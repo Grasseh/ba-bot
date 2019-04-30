@@ -9,7 +9,6 @@ let combat = {
             msg.channel.send(embed);
             return;
         }
-        currentDuel.getCurrentPlayer().stand();
         currentDuel.state.nextState('stand', msg);
     },
     move: (args, msg, currentDuel) => {
