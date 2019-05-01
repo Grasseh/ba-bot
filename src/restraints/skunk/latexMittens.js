@@ -4,8 +4,8 @@ const Harnessed = require('../../status/harnessed');
 const Mittened = require('../../status/mittened');
 
 class LatexMittens extends Restraint{
-    constructor(difficulty){
-        super();
+    constructor(difficulty, player){
+        super(player);
         this.location = "Arms";
         this.name = "Latex Mittens";
         this.command = "latexmittens";

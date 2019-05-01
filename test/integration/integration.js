@@ -76,7 +76,7 @@ describe('Integration', function() {
                 guild : "d"
             };
             let msgAttackTwo = {
-                content : "!attack heels",
+                content : "!attack latexheels",
                 author :  { id : '2'},
                 channel : {
                     send : sinon.stub()
@@ -100,7 +100,7 @@ describe('Integration', function() {
                 guild : "d"
             };
             let msgAttackOne = {
-                content : "!attack muzzle",
+                content : "!attack latexmuzzle",
                 author :  { id : '1'},
                 channel : {
                     send : sinon.stub()
@@ -159,21 +159,21 @@ describe('Integration', function() {
             assert.equal(msgStandTwo.channel.send.getCall(0).args[0].description, "<@2>'s Action Phase!");
             assert.equal(msgStatus.channel.send.getCall(0).args[0].author.name, "Bondage Arena Duel Status!");
             assert.equal(msgFailAttack.channel.send.getCall(0).args[0].description, "Invalid command or bodypart! <@2>\'s turn.");
-            assert.equal(msgAttackTwo.channel.send.getCall(0).args[0].description, "Hit roll for <@2> using heels!");
-            assert.equal(msgAttackTwo.channel.send.getCall(1).args[0].description, "Result for <@2> using heels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(0).args[0].description, "Hit roll for <@2> using latexheels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(1).args[0].description, "Result for <@2> using latexheels!");
             assert.equal(msgAttackTwo.channel.send.getCall(2).args[0].description, "Beginning of <@1>'s turn!");
             assert.equal(msgStandOne.channel.send.getCall(0).args[0].description, "<@1>'s Action Phase!");
-            assert.equal(msgAttackOne.channel.send.getCall(0).args[0].description, "Hit roll for <@1> using muzzle!");
-            assert.equal(msgAttackOne.channel.send.getCall(1).args[0].description, "Effect roll for <@1> using muzzle!");
+            assert.equal(msgAttackOne.channel.send.getCall(0).args[0].description, "Hit roll for <@1> using latexmuzzle!");
+            assert.equal(msgAttackOne.channel.send.getCall(1).args[0].description, "Effect roll for <@1> using latexmuzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(2).args[0].description, "<@2> has been hit by Latex Muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(3).args[0].description, "Beginning of <@2>'s turn!");
             assert.equal(msgStandTwo.channel.send.getCall(1).args[0].description, "<@2>'s Action Phase!");
-            assert.equal(msgAttackTwo.channel.send.getCall(3).args[0].description, "Hit roll for <@2> using heels!");
-            assert.equal(msgAttackTwo.channel.send.getCall(4).args[0].description, "Result for <@2> using heels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(3).args[0].description, "Hit roll for <@2> using latexheels!");
+            assert.equal(msgAttackTwo.channel.send.getCall(4).args[0].description, "Result for <@2> using latexheels!");
             assert.equal(msgAttackTwo.channel.send.getCall(5).args[0].description, "Beginning of <@1>'s turn!");
             assert.equal(msgStandOne.channel.send.getCall(1).args[0].description, "<@1>'s Action Phase!");
-            assert.equal(msgAttackOne.channel.send.getCall(4).args[0].description, "Hit roll for <@1> using muzzle!");
-            assert.equal(msgAttackOne.channel.send.getCall(5).args[0].description, "Effect roll for <@1> using muzzle!");
+            assert.equal(msgAttackOne.channel.send.getCall(4).args[0].description, "Hit roll for <@1> using latexmuzzle!");
+            assert.equal(msgAttackOne.channel.send.getCall(5).args[0].description, "Effect roll for <@1> using latexmuzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(6).args[0].description, "<@2> has been hit by Latex Muzzle!");
             assert.equal(msgAttackOne.channel.send.getCall(7).args[0].description, "Beginning of <@2>'s turn!");
             assert.equal(msgEscapeTwo.channel.send.getCall(0).args[0].description, "Escape roll for <@2>, attempting to free herself from her Latex Muzzle!");

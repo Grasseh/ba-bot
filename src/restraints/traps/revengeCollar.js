@@ -2,8 +2,8 @@ const Restraint = require('../restraint');
 const Cursed = require('../../status/cursed');
 
 class RevengeCollar extends Restraint{
-    constructor(difficulty){
-        super();
+    constructor(difficulty, player){
+        super(player);
         this.location = "Neck";
         this.name = "Revenge Collar";
         this.command = "revengecollar";

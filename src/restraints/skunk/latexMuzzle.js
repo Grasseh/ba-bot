@@ -4,8 +4,8 @@ const Gagged = require('../../status/gagged');
 const Hooded = require('../../status/hooded');
 
 class LatexMuzzle extends Restraint{
-    constructor(difficulty){
-        super();
+    constructor(difficulty, player){
+        super(player);
         this.location = "Head";
         this.name = "Latex Muzzle";
         this.command = "latexmuzzle";

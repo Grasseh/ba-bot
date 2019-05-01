@@ -1,9 +1,10 @@
 const crypto = require("crypto");
 
 class Restraint{
-    constructor(){
+    constructor(player){
         this.name = "Generic Restraint";
         this.difficulty = 1;
+        this.player = player;
         this.description = "Generic Restraint, effect : none";
         this.location = "Toe";
         this.command = "genericrestraint";

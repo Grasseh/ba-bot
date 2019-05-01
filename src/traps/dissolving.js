@@ -66,7 +66,7 @@ class DissolvingTrap extends Trap{
     }
 
     activateExtreme(embed, player, msg){
-        embed.addField(`Extreme trap!`, `Dissolves up to one random Hard binding!`);
+        embed.addField(`Extreme trap!`, `Dissolves up to one random Extreme binding!`);
         let restraints = player.getRestraints().filter(x => x.difficulty <= 4);
         if(restraints.length > 0){
             this.dissolve(msg, player, 1, 4);
@@ -78,7 +78,7 @@ class DissolvingTrap extends Trap{
 
     activateAll(embed, player, msg){
         let esc = new EscapeClass();
-        embed.addField(`Extreme trap!`, `Dissolves all non-impossible bindings!`);
+        embed.addField(`Critical trap!`, `Dissolves all non-impossible bindings!`);
         let restraints = player.getRestraints().filter(x => x.difficulty <= 4);
         if(restraints.length > 0){
             for(let restraint of restraints){

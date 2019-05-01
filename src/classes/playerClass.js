@@ -28,12 +28,12 @@ class playerClass{
             enemy.effects = enemy.effects.filter(e => e.binding !== appliedRestraint.id);
         }
         else{
-            appliedRestraint = new Restraint(difficulty);
+            appliedRestraint = new Restraint(difficulty, enemy);
             enemy.addRestraint(appliedRestraint);
         }
         let addedEffects = '';
         for(let StatusEffect of appliedRestraint.statusTable[difficulty - 1]){
-            enemy.addEffect(new StatusEffect(appliedRestraint.id));
+            enemy.addEffect(new StatusEffect(appliedRestraint.id, appliedRestraint));
             addedEffects += `${enemy.name} is now ${StatusEffect.name}!\n`;
         }
         if(addedEffects !== '')

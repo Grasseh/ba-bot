@@ -2,6 +2,7 @@ const playerClass = require('./playerClass');
 const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
 const LatexHeel = require('../restraints/skunk/latexHeel');
 const LatexMittens = require('../restraints/skunk/latexMittens');
+const LatexCorset = require('../restraints/skunk/latexCorset');
 
 class SkunkWarlock extends playerClass{
     constructor(){
@@ -10,6 +11,7 @@ class SkunkWarlock extends playerClass{
             'latexmuzzle' : this.muzzle.bind(this),
             'latexheels' : this.heels.bind(this),
             'latexmittens' : this.mittens.bind(this),
+            'latexcorset' : this.corset.bind(this),
         };
         this.actions = {
         };
@@ -47,6 +49,12 @@ class SkunkWarlock extends playerClass{
         let spellName = "Latex Mittens";
         let effectTable = this.getGenericEffectTable();
         return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexMittens);
+    }
+
+    corset(effectRoll, self, enemy, crit){
+        let spellName = "Latex Corset";
+        let effectTable = this.getGenericEffectTable();
+        return this.applyGenericBinding(enemy, spellName, effectTable, effectRoll, crit, LatexCorset);
     }
 
 }

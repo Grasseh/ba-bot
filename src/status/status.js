@@ -70,6 +70,10 @@ class Status{
     onFailedEscape(player, restraint, msg){
     }
 
+    canStand(){
+        return true;
+    }
+
     canMove(){
         return true;
     }

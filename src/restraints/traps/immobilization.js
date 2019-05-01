@@ -5,9 +5,9 @@ const Hobbled = require('../../status/hobbled');
 const Incapacitated = require('../../status/incapacitated');
 
 class ImmobilizationTrap extends Restraint{
-    constructor(difficulty){
-        super();
-        this.location = "legs";
+    constructor(difficulty, player){
+        super(player);
+        this.location = "Legs";
         this.name = "Immobilization Trap";
         this.command = "immobilizationtrap";
         this.statusTable = [

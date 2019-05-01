@@ -80,7 +80,7 @@ class Player{
     }
 
     canStand(){
-        return true;
+        return !this.effects.some(e => !e.canStand());
     }
 }
 

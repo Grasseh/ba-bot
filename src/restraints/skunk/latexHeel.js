@@ -4,8 +4,8 @@ const Hobbled = require('../../status/hobbled');
 const Incapacitated = require('../../status/incapacitated');
 
 class LatexHeel extends Restraint{
-    constructor(difficulty){
-        super();
+    constructor(difficulty, player){
+        super(player);
         this.location = "Legs";
         this.name = "Latex Heels";
         this.command = "latexheels";
