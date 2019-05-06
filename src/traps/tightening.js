@@ -31,19 +31,20 @@ class TighteningTrap extends Trap{
 
     activateMedium(embed, player, msg){
         embed.addField(`Standard trap!`, `Her highest binding increases by one tier of effect!`);
-        let restraint = player.getRestraints().filter(x => x.difficulty !== 5).reduce((highest, currentRestraint) => currentRestraint.difficulty > highest.difficulty ? currentRestraint : highest); 
-        if(restraint){
+        let restraint = player.getRestraints().filter(x => x.difficulty !== 5).reduce((highest, currentRestraint) => currentRestraint.difficulty > highest.difficulty ? currentRestraint : highest, {difficulty : 0, name : "NONE"}); 
+        if(restraint.name !== 'NONE'){
             let esc = new EscapeClass();
             esc.increaseDifficulty(restraint, player, msg, 1);
             return embed;
         }
         embed.addField(`Lucky!`, `No non-impossible bindings to be tightened!`);
+        return embed;
     }
 
     activateHard(embed, player, msg){
         embed.addField(`Hard trap!`, `Her highest binding increases by two tiers of effect!`);
-        let restraint = player.getRestraints().filter(x => x.difficulty !== 5).reduce((highest, currentRestraint) => currentRestraint.difficulty > highest.difficulty ? currentRestraint : highest); 
-        if(restraint){
+        let restraint = player.getRestraints().filter(x => x.difficulty !== 5).reduce((highest, currentRestraint) => currentRestraint.difficulty > highest.difficulty ? currentRestraint : highest, {difficulty : 0, name : 'NONE'}); 
+        if(restraint.name !== 'NONE'){
             let esc = new EscapeClass();
             esc.increaseDifficulty(restraint, player, msg, 2);
             return embed;
