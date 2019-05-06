@@ -10,9 +10,9 @@ class SummonLatexCorset extends Spell{
         this.name = "Latex Corset";
     }
 
-    cast(opts){
+    cast({enemy, effectRoll, crit}){
         let effectTable = this.getGenericEffectTable();
-        return this.applyGenericBinding(opts.enemy, this.name, effectTable, opts.effectRoll, opts.crit, LatexCorset);
+        return {embed : this.applyGenericBinding(enemy, this.name, effectTable, effectRoll, crit, LatexCorset), changedState : false};
     }
 
 }

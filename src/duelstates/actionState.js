@@ -13,7 +13,7 @@ class ActionState extends DuelState{
         let valid = false;
         let changedState = false;
         if(action === "attack"){
-            valid = this.attack(msg, args);
+            ({changedState, valid} = this.attack(msg, args));
         }
         if(action === 'escape'){
             ({changedState, valid} = this.escape(msg, args));
@@ -56,7 +56,7 @@ class ActionState extends DuelState{
         //Check if action is valid
         let action = args[0];
         if(!this.duel.getCurrentPlayer().getAllActions().includes(action)){
-            return false;
+            return {changedState : false, valid: false };
         }
 
         //Roll for hit
@@ -97,9 +97,9 @@ class ActionState extends DuelState{
             }
         }
         //Add spell hit effect
-        let toActionhit = actionInstance.toHit();
-        if(toActionhit !== 0){
-            additionals.push({ name: `${actionInstace.name}`, value: toActionHit });
+        let toActionHit = actionInstance.toHit({target});
+        if(toActionHit !== 0){
+            additionals.push({ name: `${actionInstance.name}`, value: toActionHit });
             totalRoll += toActionHit;
         }
         let embed = embedUtils.getCombatEmbed()
@@ -122,7 +122,7 @@ class ActionState extends DuelState{
                 .setDescription(`Result for ${player.name} using ${args[0]}!`)
                 .addField(`Miss!`, `And the attack fails!`);
             msg.channel.send(embed);
-            return true;
+            return {changedState : false, valid: true };
         }
         //Roll for effect
         let effectRoll = this.dice.d20();
@@ -136,9 +136,10 @@ class ActionState extends DuelState{
         msg.channel.send(embed);
 
         //Apply effect
-        embed = actionInstance.cast({enemy : target, effectRoll : totalRoll, crit});
+        let changedState = false;
+        ({changedState, embed} = actionInstance.cast({enemy : target, effectRoll : totalRoll, crit, duel : this.duel, msg, dice : this.dice}));
         msg.channel.send(embed);
-        return true;
+        return {changedState, valid : true};
     }
 
     escape(msg, args){

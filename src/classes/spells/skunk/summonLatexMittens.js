@@ -10,9 +10,9 @@ class SummonLatexMittens extends Spell{
         this.name = "Latex Mittens";
     }
 
-    cast(opts){
+    cast({enemy, effectRoll, crit}){
         let effectTable = this.getGenericEffectTable();
-        return this.applyGenericBinding(opts.enemy, this.name, effectTable, opts.effectRoll, opts.crit, LatexMittens);
+        return {embed : this.applyGenericBinding(enemy, this.name, effectTable, effectRoll, crit, LatexMittens), changedState : false};
     }
 
 }

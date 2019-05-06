@@ -9,6 +9,7 @@ class FileFactory{
         const FlubbedEscapeState = require('./flubbedEscapeState');
         const MoveState = require('./moveState');
         const HitTrapState = require('./hitTrapState');
+        const LatexHugChoiceState = require('./latexHugChoiceState');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
@@ -17,6 +18,7 @@ class FileFactory{
             'initiative' : InitiativeState,
             'move' : MoveState,
             'hitTrap' : HitTrapState,
+            'latexHugChoice' : LatexHugChoiceState,
         }
 
         let toCreate = states[state];

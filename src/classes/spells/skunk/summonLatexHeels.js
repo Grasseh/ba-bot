@@ -10,9 +10,9 @@ class SummonLatexHeels extends Spell{
         this.name = "Latex Heels";
     }
 
-    cast(opts){
+    cast({enemy, effectRoll, crit}){
         let effectTable = this.getGenericEffectTable();
-        return this.applyGenericBinding(opts.enemy, this.name, effectTable, opts.effectRoll, opts.crit, LatexHeels);
+        return {embed : this.applyGenericBinding(enemy, this.name, effectTable, effectRoll, crit, LatexHeels), changedState : false};
     }
 
 }
