@@ -5,7 +5,7 @@ const embedUtils = require('../utils/embeds');
 
 class InitiativeState extends DuelState{
     getValidActions(){
-        return ['status'];
+        return ['status', 'cancel'];
     }
 
     nextState(){

@@ -6,7 +6,7 @@ const FullyBound = require('../status/fullybound');
 
 class StartTurnState extends DuelState{
     getValidActions(){
-        return ['status', 'stand', 'move'];
+        return ['status', 'cancel', 'stand', 'move'];
     }
 
     nextState(action, msg){
@@ -35,6 +35,7 @@ class StartTurnState extends DuelState{
     }
 
     run(msg){
+        this.duel.turn++;
         this.duel.turnPlayer = (this.duel.turnPlayer + 1) % this.duel.playerstates.length;
         let gameOver = this.checkWinCondition(msg);
         if(gameOver){

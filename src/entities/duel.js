@@ -8,6 +8,7 @@ class Duel{
     constructor(playerOne, invited, dice){
         stateFactory.createState('waiting', this, dice);
         this.turnphase = "";
+        this.turn = 1;
         this.id = crypto.randomBytes(32).toString("hex");
         this.players = [playerOne.replace('!','')];
         this.invited = [invited.replace('!','')];
@@ -89,6 +90,10 @@ class Duel{
             msg.channel.send(restraintsEmbed);
             msg.channel.send(statusEmbed);
         }
+    }
+
+    getTurnCount(){
+        return (this.turn / this.playerstates.length >> 0);
     }
 }
 

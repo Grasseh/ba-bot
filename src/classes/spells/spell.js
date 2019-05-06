@@ -1,6 +1,14 @@
 const embedUtils = require('../../utils/embeds');
 
 class Spell{
+    constructor(){
+        this.melee = false;
+        this.spell = false;
+        this.ultimate = false;
+        this.used = false;
+        this.name = "Generic Spell";
+    }
+    
     toHit(){
         return 0;
     }
@@ -40,6 +48,18 @@ class Spell{
     getGenericEffectTable(){
         /* 1-6 -> Easy, 7-12 -> Medium, 13-19 -> Hard, 20 -> Extreme */
         return [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,4];
+    }
+
+    isSpell(){
+        return this.spell;
+    }
+
+    isMelee(){
+        return this.melee;
+    }
+
+    isUltimate(){
+        return this.ultimate;
     }
 
     cast(opts){};

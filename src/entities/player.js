@@ -54,8 +54,8 @@ class Player{
         return this.class.getNonSpellList();
     }
 
-    getAllActions(){
-        return this.class.getAllActions();
+    getAllActions(duel){
+        return this.class.getAllActions(duel);
     }
 
     getBoundBodyParts(){

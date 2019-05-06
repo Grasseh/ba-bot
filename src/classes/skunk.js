@@ -4,18 +4,18 @@ const SummonLatexHeels = require('./spells/skunk/summonLatexHeels');
 const SummonLatexMittens = require('./spells/skunk/summonLatexMittens');
 const SummonLatexCorset = require('./spells/skunk/summonLatexCorset');
 const LatexHug = require('./spells/skunk/latexHug');
+const FullSkunking = require('./spells/skunk/fullSkunking');
 
 class SkunkWarlock extends playerClass{
     constructor(){
         super();
-        this.spells = {
-            'latexmuzzle' : SummonLatexMuzzle,
-            'latexheels' : SummonLatexHeels,
-            'latexmittens' : SummonLatexMittens,
-            'latexcorset' : SummonLatexCorset,
-        };
         this.actions = {
-            'latexhug' : LatexHug,
+            'latexmuzzle' : new SummonLatexMuzzle(),
+            'latexheels' : new SummonLatexHeels(),
+            'latexmittens' : new SummonLatexMittens(),
+            'latexcorset' : new SummonLatexCorset(),
+            'latexhug' : new LatexHug(),
+            'fullskunking' : new FullSkunking(),
         };
     }
 

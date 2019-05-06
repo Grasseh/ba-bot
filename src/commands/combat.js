@@ -57,6 +57,15 @@ let combat = {
         }
         currentDuel.state.nextState('hug', msg, args);
     },
+    bind: (args, msg, currentDuel) => {
+        if (!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)) {
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
+            msg.channel.send(embed);
+            return;
+        }
+        currentDuel.state.nextState('bind', msg, args);
+    },
     
 }
 

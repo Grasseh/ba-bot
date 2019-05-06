@@ -9,7 +9,7 @@ const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
 
 class LatexHugChoiceState extends DuelState{
     getValidActions(){
-        return ['status', 'hug'];
+        return ['status', 'cancel', 'hug'];
     }
 
     nextState(action, msg, args){

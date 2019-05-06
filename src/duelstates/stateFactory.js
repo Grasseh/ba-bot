@@ -10,6 +10,7 @@ class FileFactory{
         const MoveState = require('./moveState');
         const HitTrapState = require('./hitTrapState');
         const LatexHugChoiceState = require('./latexHugChoiceState');
+        const PickBindingLocationState = require('./pickBindingLocation');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
@@ -19,6 +20,7 @@ class FileFactory{
             'move' : MoveState,
             'hitTrap' : HitTrapState,
             'latexHugChoice' : LatexHugChoiceState,
+            'pickBindingLocation' : PickBindingLocationState,
         }
 
         let toCreate = states[state];

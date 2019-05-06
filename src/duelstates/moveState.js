@@ -8,7 +8,7 @@ const embedUtils = require('../utils/embeds');
 
 class MoveState extends DuelState{
     getValidActions(){
-        return ['status'];
+        return ['status', 'cancel'];
     }
 
     nextState(action, msg, args){

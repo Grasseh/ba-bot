@@ -6,7 +6,7 @@ const embedUtils = require('../utils/embeds');
 
 class ActionState extends DuelState{
     getValidActions(){
-        return ['status', 'attack', 'escape'];
+        return ['status', 'attack', 'escape', 'cancel'];
     }
 
     nextState(action, msg, args){
@@ -24,7 +24,7 @@ class ActionState extends DuelState{
             return;
         }
         if(!changedState){
-            let actions = this.duel.getCurrentPlayer().getAllActions().join(', ');
+            let actions = this.duel.getCurrentPlayer().getAllActions(this.duel).join(', ');
             let escapable = this.duel.getCurrentPlayer().getBoundBodyParts().join(', ');
             if (escapable === '') {
                 escapable = 'none';
@@ -39,7 +39,7 @@ class ActionState extends DuelState{
     }
 
     run(msg){
-        let spells = this.duel.getCurrentPlayer().getAllActions().join(', ');
+        let spells = this.duel.getCurrentPlayer().getAllActions(this.duel).join(', ');
         let escapable = this.duel.getCurrentPlayer().getBoundBodyParts().join(', ');
         if(escapable === ''){
             escapable = 'none';
@@ -55,7 +55,7 @@ class ActionState extends DuelState{
     attack(msg, args){
         //Check if action is valid
         let action = args[0];
-        if(!this.duel.getCurrentPlayer().getAllActions().includes(action)){
+        if(!this.duel.getCurrentPlayer().getAllActions(this.duel).includes(action)){
             return {changedState : false, valid: false };
         }
 
@@ -137,6 +137,7 @@ class ActionState extends DuelState{
 
         //Apply effect
         let changedState = false;
+        actionInstance.used = true;
         ({changedState, embed} = actionInstance.cast({enemy : target, effectRoll : totalRoll, crit, duel : this.duel, msg, dice : this.dice}));
         msg.channel.send(embed);
         return {changedState, valid : true};

@@ -6,7 +6,7 @@ const embedUtils = require('../utils/embeds');
 
 class FlubbedEscapeState extends DuelState{
     getValidActions(){
-        return ['status', 'increase'];
+        return ['status', 'cancel', 'increase'];
     }
 
     nextState(action, msg, args){

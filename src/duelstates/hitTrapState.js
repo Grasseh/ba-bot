@@ -8,7 +8,7 @@ const DissolvingTrap = require('../traps/dissolving');
 
 class HitTrapState extends DuelState{
     getValidActions(){
-        return ['status'];
+        return ['status', 'cancel'];
     }
 
     nextState(action, msg, args){

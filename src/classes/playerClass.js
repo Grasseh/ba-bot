@@ -2,15 +2,18 @@
 class playerClass{
 
     getSpellList(){
-        return Object.keys(this.spells);
+        return Object.keys(this.actions).filter(a => this.actions[a].isSpell());
     }
 
     getNonSpellList(){
-        return Object.keys(this.actions);
+        return Object.keys(this.actions).filter(a => !this.actions[a].isSpell());
     }
 
-    getAllActions(){
-        return this.getSpellList().concat(this.getNonSpellList());
+    getAllActions(duel){
+        if(duel.getTurnCount() < 4){
+            return Object.keys(this.actions).filter(a => !this.actions[a].isUltimate());
+        } 
+        return Object.keys(this.actions).filter(a => !this.actions[a].isUltimate() || !this.actions[a].used);
     }
 
     isSpell(action){
@@ -22,12 +25,7 @@ class playerClass{
     }
 
     getAction(action){
-        let actionClass = null;
-        if(this.isSpell(action))
-            actionClass = this.spells[action];
-        if(this.isNonSpell(action))
-            actionClass = this.actions[action];
-        return new actionClass();
+        return this.actions[action];
     }
 }
 
