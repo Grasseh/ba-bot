@@ -10,6 +10,7 @@ class FullSkunking extends Spell{
     constructor(){
         super();
         this.ultimate = true;
+        this.spell = true;
         this.name = "Full Skunking";
     }
 

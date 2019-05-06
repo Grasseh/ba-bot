@@ -4,9 +4,7 @@ const LatexHeels = require('../../../restraints/skunk/latexHeel');
 class SummonLatexHeels extends Spell{
     constructor(){
         super();
-        this.melee = false;
         this.spell = true;
-        this.ultimate = false;
         this.name = "Latex Heels";
     }
 

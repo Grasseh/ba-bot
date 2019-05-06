@@ -4,9 +4,7 @@ const LatexMuzzle = require('../../../restraints/skunk/latexMuzzle');
 class SummonLatexMuzzle extends Spell{
     constructor(){
         super();
-        this.melee = false;
         this.spell = true;
-        this.ultimate = false;
         this.name = "Latex Muzzle";
     }
 

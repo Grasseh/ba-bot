@@ -10,8 +10,6 @@ class LatexHug extends Spell{
     constructor(){
         super();
         this.melee = true;
-        this.spell = false;
-        this.ultimate = false;
         this.name = "Latex Hug";
     }
 

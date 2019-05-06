@@ -4,9 +4,7 @@ const LatexMittens = require('../../../restraints/skunk/latexMittens');
 class SummonLatexMittens extends Spell{
     constructor(){
         super();
-        this.melee = false;
         this.spell = true;
-        this.ultimate = false;
         this.name = "Latex Mittens";
     }
 

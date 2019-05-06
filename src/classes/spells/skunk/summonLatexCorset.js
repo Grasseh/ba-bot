@@ -4,9 +4,7 @@ const LatexCorset = require('../../../restraints/skunk/latexCorset');
 class SummonLatexCorset extends Spell{
     constructor(){
         super();
-        this.melee = false;
         this.spell = true;
-        this.ultimate = false;
         this.name = "Latex Corset";
     }
 
