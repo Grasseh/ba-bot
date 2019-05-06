@@ -98,10 +98,6 @@ class DissolvingTrap extends Trap{
             let restraints = player.getRestraints().filter(x => x.difficulty === difficulty);
             while(restraintsRemaining > 0 && restraints.length > 0){
                 let restraint = restraints[this.dice.xDy(1, restraints.length).sum - 1];
-                console.log(restraint);
-                console.log(restraints);
-                console.log(difficulty);
-                console.log(restraintsRemaining);
                 esc.freeFrom(restraint, player, msg);
                 restraints = restraints.filter(r => r.id !== restraint.id);
                 restraintsRemaining--;

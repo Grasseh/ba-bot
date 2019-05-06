@@ -161,7 +161,7 @@ class Escape{
             embed.setDescription(`${player.name} reduced her ${restraint.name} difficulty!`)
         let addedEffects = '';
         for (let StatusEffect of restraint.statusTable[restraint.difficulty - 1]) {
-            player.addEffect(new StatusEffect(restraint.id));
+            player.addEffect(new StatusEffect(restraint.id, restraint));
             addedEffects += `${player.name} is now ${StatusEffect.name}!\n`;
         }
         if (addedEffects !== '')

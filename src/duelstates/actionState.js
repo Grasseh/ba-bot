@@ -66,6 +66,7 @@ class ActionState extends DuelState{
         let target = this.duel.getOtherPlayer();
         let crit = totalRoll === 20;
         let critFail = totalRoll === 1;
+        let actionInstance = player.class.getAction(action);
         let additionals = [];
         //Add Player hit effects
         //Dupe in case an effect does modifs
@@ -94,6 +95,12 @@ class ActionState extends DuelState{
                 additionals.push({ name: `Enemy ${effect.name}`, value: toEnemyHit });
                 totalRoll += toEnemyHit;
             }
+        }
+        //Add spell hit effect
+        let toActionhit = actionInstance.toHit();
+        if(toActionhit !== 0){
+            additionals.push({ name: `${actionInstace.name}`, value: toActionHit });
+            totalRoll += toActionHit;
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Hit roll for ${player.name} using ${args[0]}!`)
@@ -129,7 +136,7 @@ class ActionState extends DuelState{
         msg.channel.send(embed);
 
         //Apply effect
-        embed = player.class.doAction(action, totalRoll, player, target, crit);
+        embed = actionInstance.cast({enemy : target, effectRoll : totalRoll, crit});
         msg.channel.send(embed);
         return true;
     }

@@ -16,7 +16,6 @@ class Vibrating extends Status{
     }
 
     toEscape(){
-        console.log(this.restraint);
         let immobilized = this.restraint.player.effects.some(e => !e.canMove());
         if(immobilized)
             return -2;
