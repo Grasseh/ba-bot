@@ -17,6 +17,12 @@ class Duel{
     }
 
     accept(msg){
+        if(!this.invited.includes(`<@${msg.author.id}>`)){
+            let embed = embedUtils.getPlayerErrorEmbed()
+                .setDescription(`You cannot accept this duel!`);
+            msg.channel.send(embed);
+            return;
+        }
         this.players.push(`<@${msg.author.id}>`);
         this.invited = this.invited.filter(inv => inv !== `<@${msg.author.id}>`);
         this.state.nextState();

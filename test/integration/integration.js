@@ -16,7 +16,9 @@ describe('Integration', function() {
                 },
                 guild : "d"
             }
-            state.getState().logger = console;
+            state.getState().logger = {
+                info : () => {}
+            };
             state.getState().bot = {
                 user : {a : 'a'}
             };
@@ -107,7 +109,9 @@ describe('Integration', function() {
                 },
                 guild : "d"
             };
-            state.getState().logger = console;
+            state.getState().logger = {
+                info : () => {}
+            };
             state.getState().bot = {
                 user : {a : 'a'}
             };
