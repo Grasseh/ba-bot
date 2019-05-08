@@ -1,5 +1,5 @@
 const state = require('../state');
-const DuelState = require('./DuelState');
+const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 const FullyEvaded = require('../status/fullyEvaded');
 const TrapAttackAvailable = require('../status/trapAttackAvailable');

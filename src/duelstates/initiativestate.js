@@ -1,6 +1,6 @@
 const state = require('../state');
-const DuelState = require('./DuelState');
-const StartTurnState = require('./StartTurnState');
+const DuelState = require('./duelState');
+const StartTurnState = require('./startTurnState');
 const embedUtils = require('../utils/embeds');
 
 class InitiativeState extends DuelState{

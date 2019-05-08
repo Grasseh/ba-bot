@@ -4,8 +4,8 @@ class FileFactory{
     createState(state, duel, dice){
         const ActionState = require('./actionState');
         const StartTurnState = require('./startTurnState');
-        const WaitingState = require('./waitingstate');
-        const InitiativeState = require('./initiativestate');
+        const WaitingState = require('./waitingState');
+        const InitiativeState = require('./initiativeState');
         const FlubbedEscapeState = require('./flubbedEscapeState');
         const MoveState = require('./moveState');
         const HitTrapState = require('./hitTrapState');

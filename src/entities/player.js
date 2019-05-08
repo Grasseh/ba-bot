@@ -1,4 +1,4 @@
-const StandingStill = require('../status/standstill');
+const StandingStill = require('../status/standStill');
 const SkunkWarlock = require('../classes/skunk');
 
 class Player{

@@ -1,8 +1,8 @@
-const DuelState = require('./DuelState');
+const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 const state = require('../state');
 const embedUtils = require('../utils/embeds'); 
-const FullyBound = require('../status/fullybound');
+const FullyBound = require('../status/fullyBound');
 
 class StartTurnState extends DuelState{
     getValidActions(){

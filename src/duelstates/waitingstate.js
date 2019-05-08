@@ -1,4 +1,4 @@
-const DuelState = require('./DuelState');
+const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 
 class WaitingState extends DuelState{

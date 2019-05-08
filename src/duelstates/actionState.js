@@ -1,5 +1,5 @@
 const state = require('../state');
-const DuelState = require('./DuelState');
+const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 const EscapeClass = require('../services/escape');
 const embedUtils = require('../utils/embeds');

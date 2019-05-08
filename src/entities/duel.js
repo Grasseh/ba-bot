@@ -2,7 +2,7 @@ const embedUtils = require('../utils/embeds');
 const crypto = require("crypto");
 const state = require('../state');
 const Player = require('./player');
-const stateFactory = require('../duelstates/statefactory');
+const stateFactory = require('../duelstates/stateFactory');
 
 class Duel{
     constructor(playerOne, invited, dice){
