@@ -1,6 +1,6 @@
 {
     "name": "BArenaBot",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Bot to play BA on Discord!",
     "main": "src/bot.js",
     "author": "Steve Gagné",
