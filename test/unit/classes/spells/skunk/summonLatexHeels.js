@@ -7,15 +7,15 @@ const sinon = require('sinon');
 describe('Summon Latex Heels', function() {
     describe('cast', function() {
         it('Should setup a generic Latex Heels', function () {
-            let slc = new SummonLatexHeels();
-            let genBindingStub = sinon.stub(slc, 'applyGenericBinding');
+            let slh = new SummonLatexHeels();
+            let genBindingStub = sinon.stub(slh, 'applyGenericBinding');
             let opts = {
                 enemy : "HY",
                 effectRoll : 2,
                 crit : false
             }
-            slc.cast(opts);
-            assert(genBindingStub.calledWith(opts.enemy, 'Latex Heels', slc.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexHeels));
+            slh.cast(opts);
+            assert(genBindingStub.calledWith(opts.enemy, 'Latex Heels', slh.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexHeels));
         });
     });
 

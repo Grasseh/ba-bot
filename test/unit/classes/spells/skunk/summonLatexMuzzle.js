@@ -7,15 +7,15 @@ const sinon = require('sinon');
 describe('Summon Latex Muzzle', function() {
     describe('cast', function() {
         it('Should setup a generic Latex Muzzle', function () {
-            let slc = new SummonLatexMuzzle();
-            let genBindingStub = sinon.stub(slc, 'applyGenericBinding');
+            let slm = new SummonLatexMuzzle();
+            let genBindingStub = sinon.stub(slm, 'applyGenericBinding');
             let opts = {
                 enemy : "HY",
                 effectRoll : 2,
                 crit : false
             }
-            slc.cast(opts);
-            assert(genBindingStub.calledWith(opts.enemy, 'Latex Muzzle', slc.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexMuzzle));
+            slm.cast(opts);
+            assert(genBindingStub.calledWith(opts.enemy, 'Latex Muzzle', slm.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexMuzzle));
         });
     });
 

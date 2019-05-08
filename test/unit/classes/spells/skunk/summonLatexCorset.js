@@ -19,4 +19,12 @@ describe('Summon Latex Corset', function() {
         });
     });
 
+    describe('toHit', () => {
+        it('should not have any effect', () => {
+            let slc = new SummonLatexCorset();
+            let val = slc.toHit();
+            assert.strictEqual(val, 0);
+        });
+    })
+
 });
