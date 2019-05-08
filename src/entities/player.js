@@ -82,6 +82,14 @@ class Player{
     canStand(){
         return !this.effects.some(e => !e.canStand());
     }
+
+    isTrapAttackEnabled(){
+        return this.effects.some(e => e.isTrapAttackAvailable());
+    }
+
+    getUpgradableTraps(){
+        return this.restraints.filter(r => ['immobilizationtrap'].includes(r.command) && r.difficulty !== 5).map(r => r.command);
+    }
 }
 
 module.exports = Player;

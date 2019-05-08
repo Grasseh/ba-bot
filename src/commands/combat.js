@@ -66,6 +66,21 @@ let combat = {
         }
         currentDuel.state.nextState('bind', msg, args);
     },
+    trapattack: (args, msg, currentDuel) => {
+        if (!currentDuel.isPlayerTurn(`<@${msg.author.id}>`)) {
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('It is currently not your turn!');
+            msg.channel.send(embed);
+            return;
+        }
+        if(!currentDuel.getCurrentPlayer().isTrapAttackEnabled()){
+            let embed = embedUtils.getPlayerErrorEmbed();
+            embed.setDescription('This command is currently not available!');
+            msg.channel.send(embed);
+            return;
+        }
+        currentDuel.state.nextState('trapattack', msg, args);
+    },
     
 }
 
