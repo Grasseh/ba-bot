@@ -13,3 +13,8 @@ A discord but to run BA Duels between two players over discord
 `npm test` to run tests.
 
 To add a new command, it needs to be added to `commands.js`, to a file in the `commands` folder, and to the appropriate duelstates allowed array.
+
+## Deployment
+
+Add SSH Remote to :~/ba-bot
+Push to remote
