@@ -22,21 +22,6 @@ class Escape{
                 additionals.push({ name: effect.name, value: toEscape });
                 totalRoll += toEscape;
             }
-            let toEscapeLegs = effect.toEscapeLegs();
-            if (toEscapeLegs !== 0 && position === 'legs') {
-                additionals.push({ name: effect.name, value: toEscapeLegs });
-                totalRoll += toEscapeLegs;
-            }
-            let toEscapeGagsHarderThanEasy = effect.toEscapeGagsHarderThanEasy();
-            if (toEscapeGagsHarderThanEasy !== 0 && position === 'head' && restraintToEscape.difficulty > 1) {
-                additionals.push({ name: effect.name, value: toEscapeGagsHarderThanEasy });
-                totalRoll += toEscapeGagsHarderThanEasy;
-            }
-            let toEscapeLegsHarderThanEasy = effect.toEscapeLegsHarderThanEasy();
-            if (toEscapeLegsHarderThanEasy !== 0 && position === 'legs' && restraintToEscape.difficulty > 1) {
-                additionals.push({ name: effect.name, value: toEscapeLegsHarderThanEasy });
-                totalRoll += toEscapeLegsHarderThanEasy;
-            }
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Escape roll for ${player.name}, attempting to free herself from her ${restraintToEscape.name}!`)

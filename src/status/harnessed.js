@@ -13,12 +13,12 @@ class Harnessed extends Status{
         return -4;
     }
 
-    toEscapeGagsHarderThanEasy(){
-        return -30;
-    }
-
-    toEscapeLegs(){
-        return -4;
+    toEscape(restraint){
+        if(restraint.location === 'Legs')
+            return -4;
+        if(restraint.location === 'Head' && restraint.difficulty > 1)
+            return -30;
+        return 0;
     }
 
 }

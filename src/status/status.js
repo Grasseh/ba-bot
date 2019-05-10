@@ -47,15 +47,7 @@ class Status{
         return 0;
     }
 
-    toEscapeGagsHarderThanEasy(){
-        return 0;
-    }
-
     toEscapeLegs(){
-        return 0;
-    }
-
-    toEscapeLegsHarderThanEasy(){
         return 0;
     }
 
