@@ -88,7 +88,7 @@ class Player{
     }
 
     getUpgradableTraps(){
-        return this.restraints.filter(r => ['immobilizationtrap'].includes(r.command) && r.difficulty !== 5).map(r => r.command);
+        return this.restraints.filter(r => ['immobilizationtrap', 'chastity'].includes(r.command) && r.difficulty !== 5).map(r => r.command);
     }
 }
 

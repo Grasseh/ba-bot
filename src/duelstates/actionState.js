@@ -4,6 +4,7 @@ const stateFactory = require('./stateFactory');
 const EscapeClass = require('../services/escape');
 const embedUtils = require('../utils/embeds');
 const ImmobilizationTrap = require('../traps/immobilization');
+const ChastityTrap = require('../traps/chastity');
 
 class ActionState extends DuelState{
     getValidActions(){
@@ -171,7 +172,8 @@ class ActionState extends DuelState{
         let crit = totalRoll === 20;
         let critFail = totalRoll === 1;
         let traps = {
-            immobilizationtrap : ImmobilizationTrap
+            immobilizationtrap : ImmobilizationTrap,
+            chastity : ChastityTrap
         };
         let trap = new (traps[action])(this.dice);
         let additionals = [];

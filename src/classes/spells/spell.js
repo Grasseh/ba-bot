@@ -35,8 +35,9 @@ class Spell{
         }
         let addedEffects = '';
         for(let StatusEffect of appliedRestraint.statusTable[difficulty - 1]){
-            enemy.addEffect(new StatusEffect(appliedRestraint.id, appliedRestraint));
-            addedEffects += `${enemy.name} is now ${StatusEffect.name}!\n`;
+            let effect = new StatusEffect(appliedRestraint.id, appliedRestraint)
+            enemy.addEffect(effect);
+            addedEffects += `${enemy.name} is now ${effect.name}!\n`;
         }
         if(addedEffects !== '')
             embed.addField(`Effects:`, addedEffects);

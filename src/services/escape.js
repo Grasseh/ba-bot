@@ -17,7 +17,7 @@ class Escape{
         let additionals = [];
         //Add Player hit effects
         for (let effect of player.effects) {
-            let toEscape = effect.toEscape();
+            let toEscape = effect.toEscape(restraintToEscape);
             if (toEscape !== 0) {
                 additionals.push({ name: effect.name, value: toEscape });
                 totalRoll += toEscape;
