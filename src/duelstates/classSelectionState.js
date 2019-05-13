@@ -25,7 +25,7 @@ class PickClassState extends DuelState{
         console.log(players);
         let classes = this.getPlayableClasses();
         let selectedClass = args[0];
-        let player = this.duel.playerstates.filter(p => p.name === `<@${msg.author.id.replace('!','')}>`);
+        let player = players.filter(p => p.name === `<@${msg.author.id.replace('!','')}>`);
         if(player.length !== 1){
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription('You cannot currently use this command')

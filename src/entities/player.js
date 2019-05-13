@@ -39,6 +39,9 @@ class Player{
     }
 
     getClassName(){
+        if(!this.class){
+            return "No class selected yet";
+        }
         return this.class.getClassName();
     }
     
