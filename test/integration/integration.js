@@ -53,6 +53,22 @@ describe('Integration', function() {
                 },
                 guild : "d"
             };
+            let msgClassTwo = {
+                content : "!class latexskunk",
+                author :  { id : '2'},
+                channel : {
+                    send : sinon.stub()
+                },
+                guild : "d"
+            };
+            let msgClassOne = {
+                content : "!class latexskunk",
+                author :  { id : '1'},
+                channel : {
+                    send : sinon.stub()
+                },
+                guild : "d"
+            };
             let msgStandTwo = {
                 content : "!stand",
                 author :  { id : '2'},
@@ -138,6 +154,8 @@ describe('Integration', function() {
             msgp.processMessage(msgDuel, diceStub);
             msgp.processMessage(msgNotInDuel, diceStub);
             msgp.processMessage(msgAccept, diceStub);
+            msgp.processMessage(msgClassTwo, diceStub);
+            msgp.processMessage(msgClassOne, diceStub);
             msgp.processMessage(msgStandTwo, diceStub);
             msgp.processMessage(msgStatus, diceStub);
             msgp.processMessage(msgFailAttack, diceStub);
@@ -154,12 +172,15 @@ describe('Integration', function() {
             assert.equal(msgDuel.channel.send.getCall(0).args[0].description, "<@2>, you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.");
             assert.equal(msgNotInDuel.channel.send.getCall(0).args[0].description, "You are not currently in a duel!");
             assert.equal(msgAccept.channel.send.getCall(0).args[0].description, "Duel has begun!");
-            assert.equal(msgAccept.channel.send.getCall(1).args[0].description, "Duel has begun! Rolls for initiative!");
-            assert.equal(msgAccept.channel.send.getCall(2).args[0].description, "Initiative roll for <@1>!");
-            assert.equal(msgAccept.channel.send.getCall(3).args[0].description, "Initiative roll for <@2>!");
-            assert.equal(msgAccept.channel.send.getCall(4).args[0].description, "Initiative roll for <@1>!");
-            assert.equal(msgAccept.channel.send.getCall(5).args[0].description, "Initiative roll for <@2>!");
-            assert.equal(msgAccept.channel.send.getCall(6).args[0].description, "Beginning of <@2>'s turn!");
+            assert.equal(msgAccept.channel.send.getCall(1).args[0].description, "Class selection!");
+            assert.equal(msgClassTwo.channel.send.getCall(0).args[0].description, "<@2> is now a Skunk Warlock!");
+            assert.equal(msgClassOne.channel.send.getCall(0).args[0].description, "<@1> is now a Skunk Warlock!");
+            assert.equal(msgClassOne.channel.send.getCall(1).args[0].description, "Duel has begun! Rolls for initiative!");
+            assert.equal(msgClassOne.channel.send.getCall(2).args[0].description, "Initiative roll for <@1>!");
+            assert.equal(msgClassOne.channel.send.getCall(3).args[0].description, "Initiative roll for <@2>!");
+            assert.equal(msgClassOne.channel.send.getCall(4).args[0].description, "Initiative roll for <@1>!");
+            assert.equal(msgClassOne.channel.send.getCall(5).args[0].description, "Initiative roll for <@2>!");
+            assert.equal(msgClassOne.channel.send.getCall(6).args[0].description, "Beginning of <@2>'s turn!");
             assert.equal(msgStandTwo.channel.send.getCall(0).args[0].description, "<@2>'s Action Phase!");
             assert.equal(msgStatus.channel.send.getCall(0).args[0].author.name, "Bondage Arena Duel Status!");
             assert.equal(msgFailAttack.channel.send.getCall(0).args[0].description, "Invalid command or bodypart! <@2>\'s turn.");

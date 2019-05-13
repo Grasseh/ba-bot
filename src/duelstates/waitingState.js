@@ -7,7 +7,7 @@ class WaitingState extends DuelState{
     }
 
     nextState(action){
-        stateFactory.createState('initiative', this.duel, this.dice);
+        stateFactory.createState('classSelect', this.duel, this.dice);
     }
 }
 

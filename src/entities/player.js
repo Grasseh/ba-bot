@@ -4,8 +4,8 @@ const SkunkWarlock = require('../classes/skunk');
 class Player{
     constructor(name){
         this.name = name;
-        this.class = new SkunkWarlock();
-        this.classCode = "skw";
+        this.class = null;
+        this.classCode = "";
         this.restraints = [];
         this.effects = [];
     }

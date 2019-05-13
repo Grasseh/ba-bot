@@ -47,10 +47,6 @@ class Status{
         return 0;
     }
 
-    toEscapeLegs(){
-        return 0;
-    }
-
     triggersCriticalTrap(){
         return false;
     }

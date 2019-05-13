@@ -41,6 +41,9 @@ let generics = {
     },
     cancel: (args, msg, currentDuel) => {
         return currentDuel.cancel(msg);
+    },
+    classSelect: (args, msg, currentDuel) => {
+        currentDuel.state.nextState('class', msg, args);
     }
 }
 

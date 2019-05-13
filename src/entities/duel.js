@@ -101,6 +101,10 @@ class Duel{
     getTurnCount(){
         return (this.turn / this.playerstates.length >> 0);
     }
+
+    getPlayersWithoutClass(){
+        return this.playerstates.filter(p => p.class === null);
+    }
 }
 
 module.exports = Duel;

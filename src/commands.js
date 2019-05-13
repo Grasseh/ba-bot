@@ -1,4 +1,4 @@
-const { help, status, duel, accept, cancel } = require('./commands/generics');
+const { help, status, duel, accept, cancel, classSelect } = require('./commands/generics');
 const { stand, move, attack, escape, increase, hug, bind, trapattack } = require('./commands/combat');
 const commandPreProcessor = require('./commandPreProcessor');
 
@@ -15,7 +15,8 @@ let commands = {
     move : move,
     bind : bind, 
     trapattack : trapattack, 
-    hug : hug
+    hug : hug,
+    class : classSelect
 }
 
 for(let key of Object.keys(commands)){
