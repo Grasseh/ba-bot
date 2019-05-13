@@ -22,7 +22,6 @@ class PickClassState extends DuelState{
 
     nextState(action, msg, args) {
         let players = this.duel.getPlayersWithoutClass();
-        console.log(players);
         let classes = this.getPlayableClasses();
         let selectedClass = args[0];
         let player = players.filter(p => p.name === `<@${msg.author.id.replace('!','')}>`);

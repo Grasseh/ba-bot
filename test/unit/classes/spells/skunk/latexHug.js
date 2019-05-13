@@ -166,4 +166,64 @@ describe('Latex Hug', function() {
             assert.strictEqual(embed.description, 'ThatGirl has been hit by a Latex Hug!\n Snuggle! Medium bindings in every location!');
         });
     });
+
+    describe('activateEasy', () => {
+        it('should set the state to an easy binding selection', () => {
+            let lh = new LatexHug();
+            let msg = {
+                channel : {
+                    send : sinon.stub()
+                } 
+            };
+            let duel = {
+            };
+            let enemy = {name : 'Erika'};
+            let dice = 'hello';
+            let {embed, changedState} = lh.activateEasy(enemy, duel, msg, dice);
+            assert.strictEqual(duel.state.difficulty, 'Easy');
+            assert.strictEqual(duel.state.enemy.name, 'Erika');
+            assert.strictEqual(changedState, true);
+            assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Easy binding in any location except for the gag!');
+        });
+    })
+
+    describe('activateMedium', () => {
+        it('should set the state to a medium binding selection', () => {
+            let lh = new LatexHug();
+            let msg = {
+                channel : {
+                    send : sinon.stub()
+                } 
+            };
+            let duel = {
+            };
+            let enemy = {name : 'Erika'};
+            let dice = 'hello';
+            let {embed, changedState} = lh.activateMedium(enemy, duel, msg, dice);
+            assert.strictEqual(duel.state.difficulty, 'Medium');
+            assert.strictEqual(duel.state.enemy.name, 'Erika');
+            assert.strictEqual(changedState, true);
+            assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Medium binding in any location except for the gag!');
+        });
+    })
+
+    describe('activateHard', () => {
+        it('should set the state to a hard binding selection', () => {
+            let lh = new LatexHug();
+            let msg = {
+                channel : {
+                    send : sinon.stub()
+                } 
+            };
+            let duel = {
+            };
+            let enemy = {name : 'Erika'};
+            let dice = 'hello';
+            let {embed, changedState} = lh.activateHard(enemy, duel, msg, dice);
+            assert.strictEqual(duel.state.difficulty, 'Hard');
+            assert.strictEqual(duel.state.enemy.name, 'Erika');
+            assert.strictEqual(changedState, true);
+            assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Smooch! Hard binding in any location!');
+        });
+    })
 });
