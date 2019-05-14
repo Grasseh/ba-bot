@@ -141,6 +141,10 @@ describe('Latex Hug', function() {
             crit = true;
             lh.cast({enemy, effectRoll: 14, crit, duel, msg, dice});
             assert(activateCritStub.calledWith(enemy, duel, msg, dice));
+            lh = new LatexHug();
+            activateCritStub = sinon.stub(lh, 'activateCrit');
+            lh.cast({enemy, effectRoll: 20, crit, duel, msg, dice});
+            assert(activateCritStub.calledWith(enemy, duel, msg, dice));
         });
     });
 

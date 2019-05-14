@@ -14,10 +14,11 @@
     },
     "scripts": {
         "start": "node src/bot.js",
-        "test": "mocha test --recursive"
+        "test": "mocha test --recursive",
+        "cover": "nyc npm test"
     },
     "devDependencies": {
+        "nyc": "^14.1.1",
         "sinon": "^7.3.1"
     }
 }
-
