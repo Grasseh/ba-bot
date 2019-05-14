@@ -1,5 +1,5 @@
 const playerClass = require('./playerClass');
-const RubberBall = require('./spells/skunk/latexHug');
+const RubberBall = require('./spells/skunk/summonLatexCorset');
 
 class RubberMage extends playerClass{
     constructor(){
