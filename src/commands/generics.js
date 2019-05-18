@@ -20,13 +20,13 @@ let generics = {
     duel: (args, msg, duel, dice) => {
         if (state.getState().getCurrentDuel(msg.author.id)) {
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription('You are already in a duel! Check your current duel status with `!status`! ')
+                .setDescription('You already are in a duel! Check your current duel status with `!status`!')
             msg.channel.send(embed);
             return;
         }
         if (`<@${msg.author.id.replace('!','')}>` === args[0].replace('!','')){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription('You cannot duel yourself! ')
+                .setDescription('You cannot duel yourself!')
             msg.channel.send(embed);
             return;
         }

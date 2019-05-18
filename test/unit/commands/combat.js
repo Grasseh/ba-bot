@@ -136,7 +136,7 @@ describe('combatCommands', () => {
             assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "It is currently not your turn!");
         });
 
-        it(`should set the state to increasing`, () => {
+        it(`should set the state to hugging`, () => {
             let msg = {
                 channel: { send: sinon.stub() },
                 author: { id: '1234' }
@@ -159,7 +159,7 @@ describe('combatCommands', () => {
             assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "It is currently not your turn!");
         });
 
-        it(`should set the state to increasing`, () => {
+        it(`should set the state to binding`, () => {
             let msg = {
                 channel: { send: sinon.stub() },
                 author: { id: '1234' }
@@ -192,7 +192,7 @@ describe('combatCommands', () => {
             assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "This command is currently not available!");
         })
 
-        it(`should set the state to increasing`, () => {
+        it(`should set the state to trap attacking`, () => {
             let msg = {
                 channel: { send: sinon.stub() },
                 author: { id: '1234' }
