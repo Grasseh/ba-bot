@@ -3,6 +3,7 @@ const stateFactory = require('./stateFactory');
 const state = require('../state');
 const embedUtils = require('../utils/embeds'); 
 const FullyBound = require('../status/fullyBound');
+const StandingStill = require('../status/standStill');
 
 class StartTurnState extends DuelState{
     getValidActions(){
@@ -13,7 +14,7 @@ class StartTurnState extends DuelState{
         let canMove = this.duel.getCurrentPlayer().canMove();
         let canStand = this.duel.getCurrentPlayer().canStand();
         if (action === 'stand' && (canStand || !canMove)){
-            this.duel.getCurrentPlayer().stand();
+            this.duel.getCurrentPlayer().addEffect(new StandingStill());
             stateFactory.createState('action', this.duel, this.dice)
             this.duel.state.run(msg);
             return;

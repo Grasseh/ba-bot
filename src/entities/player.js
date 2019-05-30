@@ -1,6 +1,3 @@
-const StandingStill = require('../status/standStill');
-const SkunkWarlock = require('../classes/skunk');
-
 class Player{
     constructor(name){
         this.name = name;
@@ -45,10 +42,6 @@ class Player{
         return this.class.getClassName();
     }
     
-    stand(){
-        this.effects.push(new StandingStill());
-    }
-
     getSpellList(){
         return this.class.getSpellList();
     }
