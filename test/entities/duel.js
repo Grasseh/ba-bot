@@ -166,6 +166,10 @@ describe('Duel', function() {
                     getDescription: sinon.stub().returns('Also the best kind of restraint ever'),
                 }],
                 effects : [{
+                    getName: sinon.stub().returns('Hidden'),
+                    hidden : true,
+                    display : sinon.stub().returns('This status effect is pointless!')
+                },{
                     getName: sinon.stub().returns('Seduced'),
                     display : sinon.stub().returns('The latex is too tight and shiny for you to think about anything else!')
                 }]

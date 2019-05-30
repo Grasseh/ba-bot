@@ -88,7 +88,7 @@ class Duel{
                 restraintsEmbed.addField(restraint.getName(), `${restraint.getLocation()} - ${restraint.getDifficulty()} - ${restraint.getDescription()}`);
             }
             for(let effect of player.effects){
-                if(!statusEmbed.hidden){
+                if(!effect.hidden){
                     statusEmbed.addField(effect.getName(), effect.display());
                 }
             }
