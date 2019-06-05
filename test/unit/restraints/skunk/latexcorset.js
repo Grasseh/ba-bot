@@ -35,7 +35,7 @@ describe('Latex Corset', function() {
         it('should set breathless, dizzy, vibrating on extreme + impossible', () => {
             let lc = new LatexCorset(4, '');
             assert.deepEqual(lc.statusTable[lc.difficulty - 1], [Breathless, Dizzy, Vibrating]);
-            lc = new LatexCorset(4, '');
+            lc = new LatexCorset(5, '');
             assert.deepEqual(lc.statusTable[lc.difficulty - 1], [Breathless, Dizzy, Vibrating]);
         });
     });
