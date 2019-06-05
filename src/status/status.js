@@ -65,6 +65,10 @@ class Status{
     canMove(){
         return true;
     }
+
+    isCollared(){
+        return false;
+    }
 }
 
 module.exports = Status;

@@ -13,6 +13,9 @@ class ChastityMedium extends Status{
         return -2;
     }
 
+    isCollared(){
+        return true;
+    }
 }
 
 module.exports = ChastityMedium;

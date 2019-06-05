@@ -8,11 +8,11 @@ class Cursed extends Status{
         this.effect = `Any failed escape attempt tightens the binding in question!`;
         this.time = 0;
         this.binding = binding;
+        this.escapeClass = new EscapeClass();
     }
 
     onFailedEscape(player, restraint, msg){
-        let escaping = new EscapeClass();
-        escaping.increaseDifficulty(restraint, player, msg, 1);
+        this.escapeClass.increaseDifficulty(restraint, player, msg, 1);
     }
 }
 

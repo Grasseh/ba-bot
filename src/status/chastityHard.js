@@ -25,6 +25,9 @@ class ChastityHard extends Status{
         return 0;
     }
 
+    isCollared(){
+        return true;
+    }
 }
 
 module.exports = ChastityHard;
