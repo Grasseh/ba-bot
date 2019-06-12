@@ -155,7 +155,8 @@ class ActionState extends DuelState{
         let changedState = false;
         actionInstance.used = true;
         ({changedState, embed} = actionInstance.cast({enemy : target, effectRoll : totalRoll, crit, duel : this.duel, msg, dice : this.dice}));
-        msg.channel.send(embed);
+        if(embed)
+            msg.channel.send(embed);
         return {changedState, valid : true};
     }
 

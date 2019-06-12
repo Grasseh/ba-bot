@@ -12,6 +12,7 @@ class FileFactory{
         const LatexHugChoiceState = require('./latexHugChoiceState');
         const PickBindingLocationState = require('./pickBindingLocation');
         const ClassSelectionState = require('./classSelectionState');
+        const RubberBallChoiceState = require('./rubberBallChoiceState');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
@@ -23,6 +24,7 @@ class FileFactory{
             'latexHugChoice' : LatexHugChoiceState,
             'pickBindingLocation' : PickBindingLocationState,
             'classSelect' : ClassSelectionState,
+            'rubberBallChoice' : RubberBallChoiceState
         }
 
         let toCreate = states[state];
