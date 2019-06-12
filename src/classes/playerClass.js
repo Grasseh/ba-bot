@@ -27,6 +27,8 @@ class playerClass{
     getAction(action){
         return this.actions[action];
     }
+
+    addPassives(){}
 }
 
 module.exports = playerClass;

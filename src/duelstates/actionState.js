@@ -88,7 +88,7 @@ class ActionState extends DuelState{
         //Dupe in case an effect does modifs
         let effects = player.effects;
         for (let effect of effects) {
-            let toHit = effect.toHit();
+            let toHit = effect.toHit(target);
             if (toHit !== 0) {
                 additionals.push({ name: effect.name, value: toHit });
                 totalRoll += toHit;
@@ -184,7 +184,7 @@ class ActionState extends DuelState{
         //Dupe in case an effect does modifs
         let effects = player.effects;
         for (let effect of effects) {
-            let toHit = effect.toHit();
+            let toHit = effect.toHit(target);
             if (toHit !== 0) {
                 additionals.push({ name: effect.name, value: toHit });
                 totalRoll += toHit;

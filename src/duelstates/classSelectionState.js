@@ -40,6 +40,7 @@ class PickClassState extends DuelState{
         }
         player = player[0];
         player.class = new (classes[selectedClass])();
+        player.class.addPassives(player);
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`${player.name} is now a ${player.class.getClassName()}!`);
         msg.channel.send(embed);

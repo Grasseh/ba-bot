@@ -23,7 +23,7 @@ class Status{
         return false;
     }
 
-    toHit(){
+    toHit(target){
         return 0;
     }
 

@@ -16,15 +16,15 @@ describe('RubberMage', function() {
         it('should return all spells', function () {
             let rm = new RubberMage();
             let spells = rm.getSpellList();
-            assert.deepEqual(spells, ['rubberball']);
+            assert.deepEqual(spells, []);
         });
     });
 
-    describe('getSpellList', function() {
+    describe('getNonSpellList', function() {
         it('should return all non spells', function () {
             let rm = new RubberMage();
             let spells = rm.getNonSpellList();
-            assert.deepEqual(spells, []);
+            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
         });
     });
 
@@ -33,14 +33,14 @@ describe('RubberMage', function() {
             let duelStub = {getTurnCount : sinon.stub().returns(2)}
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball']);
+            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
         });
 
         it('should return all actions with ultimate', function () {
             let duelStub = {getTurnCount : sinon.stub().returns(5)}
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball']);
+            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
         });
     });
 

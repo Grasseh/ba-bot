@@ -5,6 +5,8 @@ const SummonLatexMittens = require('./spells/skunk/summonLatexMittens');
 const SummonLatexCorset = require('./spells/skunk/summonLatexCorset');
 const LatexHug = require('./spells/skunk/latexHug');
 const FullSkunking = require('./spells/skunk/fullSkunking');
+const LatexMagnet = require('../status/regeneratingLatex')
+const RegeneratingLatex = require('../status/latexMagnet')
 
 class SkunkWarlock extends playerClass{
     constructor(){
@@ -21,6 +23,11 @@ class SkunkWarlock extends playerClass{
 
     getClassName(){
         return "Skunk Warlock";
+    }
+
+    addPassives(player){
+        player.effects.push(new RegeneratingLatex());
+        player.effects.push(new LatexMagnet());
     }
 
 }
