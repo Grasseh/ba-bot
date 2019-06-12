@@ -1,6 +1,6 @@
 /* global describe, it */
 const assert = require('assert');
-const Player = require('../../src/entities/player');
+const Player = require('../../../src/entities/player');
 const sinon = require('sinon');
 
 describe('Player', function() {

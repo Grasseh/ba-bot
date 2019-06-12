@@ -1,7 +1,7 @@
 /* global describe, it */
 const assert = require('assert');
-const Duel = require('../../src/entities/duel');
-const state = require('../../src/state');
+const Duel = require('../../../src/entities/duel');
+const state = require('../../../src/state');
 const sinon = require('sinon');
 
 describe('Duel', function() {
