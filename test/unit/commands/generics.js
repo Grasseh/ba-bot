@@ -18,17 +18,17 @@ let currentDuel = {
 
 describe('combatCommands', () => {
     describe('help', () => {
-        it(`should give out the list of basic commands`, () => {
+        it('should give out the list of basic commands', () => {
             let msg = {
                 channel: { send: sinon.stub() }
             };
             help([], msg);
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "List of basic commands");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, 'List of basic commands');
         });
     });
 
     describe('status', () => {
-        it(`should propagate to duel entity`, () => {
+        it('should propagate to duel entity', () => {
             let msg = {
                 channel: { send: sinon.stub() }
             };
@@ -46,7 +46,7 @@ describe('combatCommands', () => {
             };
             duel([], msg, currentDuel, {});
             assert(currentDuelStub.calledWith('123'));
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "You already are in a duel! Check your current duel status with `!status`!");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, 'You already are in a duel! Check your current duel status with `!status`!');
             currentDuelStub.restore();
         });
 
@@ -59,7 +59,7 @@ describe('combatCommands', () => {
             duel(['<@!123>'], msg, currentDuel, {});
             assert(currentDuelStub.calledWith('123'));
             currentDuelStub.restore();
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "You cannot duel yourself!");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, 'You cannot duel yourself!');
         });
 
         it('should create a new duel if all conditions are met', () => {
@@ -70,13 +70,13 @@ describe('combatCommands', () => {
             };
             duel(['<@!125>'], msg, currentDuel, {});
             assert(currentDuelStub.calledWith('<@123>'));
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "<@!125>, you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, '<@!125>, you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.');
             currentDuelStub.restore();
         });
-    })
+    });
 
     describe('accept', () => {
-        it(`should propagate to duel entity`, () => {
+        it('should propagate to duel entity', () => {
             let msg = {
                 channel: { send: sinon.stub() }
             };
@@ -86,7 +86,7 @@ describe('combatCommands', () => {
     });
 
     describe('cancel', () => {
-        it(`should propagate to duel entity`, () => {
+        it('should propagate to duel entity', () => {
             let msg = {
                 channel: { send: sinon.stub() }
             };
@@ -96,7 +96,7 @@ describe('combatCommands', () => {
     });
 
     describe('classSelect', () => {
-        it(`should propagate to duel entity`, () => {
+        it('should propagate to duel entity', () => {
             let msg = {
                 channel: { send: sinon.stub() }
             };

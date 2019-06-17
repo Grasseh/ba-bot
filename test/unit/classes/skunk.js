@@ -11,12 +11,12 @@ describe('Skunk Warlock', function() {
             assert.strictEqual(name, 'Skunk Warlock');
         });
     });
-    
+
     describe('getSpellList', function() {
         it('should return all spells', function () {
             let skw = new SkunkWarlock();
             let spells = skw.getSpellList();
-            assert.deepEqual(spells, ['latexmuzzle', 'latexheels','latexmittens', 'latexcorset', 'fullskunking']);
+            assert.deepEqual(spells, ['latexmuzzle', 'latexheels', 'latexmittens', 'latexcorset', 'fullskunking']);
         });
     });
 
@@ -30,30 +30,30 @@ describe('Skunk Warlock', function() {
 
     describe('getAllActions', function() {
         it('should return all actions except ultimate if it is before 4 turns', function () {
-            let duelStub = {getTurnCount : sinon.stub().returns(2)}
+            let duelStub = {getTurnCount : sinon.stub().returns(2)};
             let skw = new SkunkWarlock();
             let spells = skw.getAllActions(duelStub);
-            assert.deepEqual(spells, ['latexmuzzle', 'latexheels','latexmittens', 'latexcorset', 'latexhug']);
+            assert.deepEqual(spells, ['latexmuzzle', 'latexheels', 'latexmittens', 'latexcorset', 'latexhug']);
         });
 
         it('should return all actions except ultimate if it has been used', function () {
-            let duelStub = {getTurnCount : sinon.stub().returns(5)}
+            let duelStub = {getTurnCount : sinon.stub().returns(5)};
             let skw = new SkunkWarlock();
             skw.actions['fullskunking'].used = true;
             let spells = skw.getAllActions(duelStub);
-            assert.deepEqual(spells, ['latexmuzzle', 'latexheels','latexmittens', 'latexcorset', 'latexhug']);
+            assert.deepEqual(spells, ['latexmuzzle', 'latexheels', 'latexmittens', 'latexcorset', 'latexhug']);
         });
 
         it('should return all actions with ultimate', function () {
-            let duelStub = {getTurnCount : sinon.stub().returns(5)}
+            let duelStub = {getTurnCount : sinon.stub().returns(5)};
             let skw = new SkunkWarlock();
             let spells = skw.getAllActions(duelStub);
-            assert.deepEqual(spells, ['latexmuzzle', 'latexheels','latexmittens', 'latexcorset', 'latexhug', 'fullskunking']);
+            assert.deepEqual(spells, ['latexmuzzle', 'latexheels', 'latexmittens', 'latexcorset', 'latexhug', 'fullskunking']);
         });
     });
 
     describe('isSpell', function() {
-        it('should return a spell as a spell', () => {
+        it('should return a spell as a spell', () => {
             let skw = new SkunkWarlock();
             let actual = skw.isSpell('latexmittens');
             assert.strictEqual(actual, true);
@@ -67,7 +67,7 @@ describe('Skunk Warlock', function() {
             assert.strictEqual(actual, true);
         });
 
-        it('should not return a spell as a spell', () => {
+        it('should not return a spell as a spell', () => {
             let skw = new SkunkWarlock();
             let actual = skw.isSpell('latexhug');
             assert.strictEqual(actual, false);
@@ -75,7 +75,7 @@ describe('Skunk Warlock', function() {
     });
 
     describe('isNonSpell', function() {
-        it('should not return a spell as a non spell', () => {
+        it('should not return a spell as a non spell', () => {
             let skw = new SkunkWarlock();
             let actual = skw.isNonSpell('latexmittens');
             assert.strictEqual(actual, false);
@@ -89,7 +89,7 @@ describe('Skunk Warlock', function() {
             assert.strictEqual(actual, false);
         });
 
-        it('should return a non spell as a non spell', () => {
+        it('should return a non spell as a non spell', () => {
             let skw = new SkunkWarlock();
             let actual = skw.isNonSpell('latexhug');
             assert.strictEqual(actual, true);
@@ -101,7 +101,7 @@ describe('Skunk Warlock', function() {
             let skw = new SkunkWarlock();
             let actual = skw.getAction('latexmuzzle');
             assert.strictEqual(actual, skw.actions['latexmuzzle']);
-        })
-    })
+        });
+    });
 
 });

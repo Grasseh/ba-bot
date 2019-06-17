@@ -5,7 +5,7 @@ class SummonLatexCorset extends Spell{
     constructor(){
         super();
         this.spell = true;
-        this.name = "Latex Corset";
+        this.name = 'Latex Corset';
     }
 
     cast({enemy, effectRoll, crit}){

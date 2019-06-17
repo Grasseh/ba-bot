@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Bound = require('../../../../src/status/bound');
 const Harnessed = require('../../../../src/status/harnessed');
@@ -8,10 +9,10 @@ describe('Latex Mittens', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let lm = new LatexMittens(1, '');
-            assert.strictEqual(lm.getDescription(), "Wrist-length latex gloves -- No Effect");
+            assert.strictEqual(lm.getDescription(), 'Wrist-length latex gloves -- No Effect');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set no status on easy', () => {
             let lm = new LatexMittens(1, '');

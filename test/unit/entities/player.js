@@ -44,7 +44,7 @@ describe('Player', function() {
             player.cooldown();
             assert.strictEqual(player.effects[0].name, 'Tight');
             assert.strictEqual(player.effects.length, 1);
-        })
+        });
     });
 
     describe('cooldownOther', () => {
@@ -61,7 +61,7 @@ describe('Player', function() {
             player.cooldownOther();
             assert.strictEqual(player.effects[0].name, 'Bound');
             assert.strictEqual(player.effects.length, 1);
-        })
+        });
     });
 
     describe('getClassName', () => {
@@ -75,7 +75,7 @@ describe('Player', function() {
             let player = new Player('<@12345>');
             player.class = {
                 getClassName : sinon.stub().returns('Latex Wizard')
-            }
+            };
             let result = player.getClassName();
             assert.strictEqual(result, 'Latex Wizard');
         });
@@ -86,7 +86,7 @@ describe('Player', function() {
             let player = new Player('<@12345>');
             player.class = {
                 getSpellList : sinon.stub().returns('SPELLS')
-            }
+            };
             let result = player.getSpellList();
             assert.strictEqual(result, 'SPELLS');
         });
@@ -97,7 +97,7 @@ describe('Player', function() {
             let player = new Player('<@12345>');
             player.class = {
                 getNonSpellList : sinon.stub().returns('NOTSPELLS')
-            }
+            };
             let result = player.getNonSpellList();
             assert.strictEqual(result, 'NOTSPELLS');
         });
@@ -108,7 +108,7 @@ describe('Player', function() {
             let player = new Player('<@12345>');
             player.class = {
                 getAllActions : sinon.stub().returns('ACTIONS')
-            }
+            };
             let result = player.getAllActions('dueelz');
             assert.strictEqual(result, 'ACTIONS');
             assert(player.class.getAllActions.calledWith('dueelz'));

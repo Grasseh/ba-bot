@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Encumbered = require('../../../../src/status/encumbered');
 const Hobbled = require('../../../../src/status/hobbled');
@@ -8,10 +9,10 @@ describe('Latex Heels', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let lh = new LatexHeels(1, '');
-            assert.strictEqual(lh.getDescription(), "Ankle-high short heels -- No Effect");
+            assert.strictEqual(lh.getDescription(), 'Ankle-high short heels -- No Effect');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set no status on easy', () => {
             let lh = new LatexHeels(1, '');

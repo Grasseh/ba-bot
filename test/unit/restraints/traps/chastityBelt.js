@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const ChastityBelt = require('../../../../src/restraints/traps/chastityBelt');
 const Vibrating = require('../../../../src/status/vibrating');
@@ -9,10 +10,10 @@ describe('Chastity Belt', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let cb = new ChastityBelt(1, '');
-            assert.strictEqual(cb.getDescription(), "A nice buckled leather chastity belt slides around your hips -- No effect");
+            assert.strictEqual(cb.getDescription(), 'A nice buckled leather chastity belt slides around your hips -- No effect');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set no status on easy', () => {
             let cb = new ChastityBelt(1, '');

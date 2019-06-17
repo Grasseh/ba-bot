@@ -5,7 +5,7 @@ class SummonLatexHeels extends Spell{
     constructor(){
         super();
         this.spell = true;
-        this.name = "Latex Heels";
+        this.name = 'Latex Heels';
     }
 
     cast({enemy, effectRoll, crit}){

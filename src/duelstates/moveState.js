@@ -45,17 +45,17 @@ class MoveState extends DuelState{
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Trap roll for ${player.name}!`)
-            .addField(`d20`, `${diceRoll.sum}`)
+            .addField('d20', `${diceRoll.sum}`);
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);
         }
-        embed.addField(`total`, `${totalRoll}`);
+        embed.addField('total', `${totalRoll}`);
         if(crit){
-            embed.addField(`CRITICAL HIT!`, `Fully evaded: +4 to hit if attacking, -4 to enemy hit if not attacking this round`);
+            embed.addField('CRITICAL HIT!', 'Fully evaded: +4 to hit if attacking, -4 to enemy hit if not attacking this round');
             player.addEffect(new FullyEvaded(player));
         }
         if(critFail){
-            embed.addField(`CRITICAL FAIL!`, `+1 To trap effect tier!`);
+            embed.addField('CRITICAL FAIL!', '+1 To trap effect tier!');
             player.addEffect(new CriticalTrap());
         }
         if (totalRoll <= 4 || critFail) {

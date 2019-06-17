@@ -12,7 +12,7 @@ class playerClass{
     getAllActions(duel){
         if(duel.getTurnCount() < 4){
             return Object.keys(this.actions).filter(a => !this.actions[a].isUltimate());
-        } 
+        }
         return Object.keys(this.actions).filter(a => !this.actions[a].isUltimate() || !this.actions[a].used);
     }
 

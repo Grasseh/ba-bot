@@ -10,10 +10,10 @@ describe('Summon Latex Muzzle', function() {
             let slm = new SummonLatexMuzzle();
             let genBindingStub = sinon.stub(slm, 'applyGenericBinding');
             let opts = {
-                enemy : "HY",
+                enemy : 'HY',
                 effectRoll : 2,
                 crit : false
-            }
+            };
             slm.cast(opts);
             assert(genBindingStub.calledWith(opts.enemy, 'Latex Muzzle', slm.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexMuzzle));
         });

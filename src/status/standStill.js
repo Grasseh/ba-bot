@@ -3,8 +3,8 @@ const Status = require('./status');
 class StandingStill extends Status{
     constructor(){
         super();
-        this.name = "Standing Still";
-        this.effect = "+4 to Enemy Hit, +2 to all Escape Rolls";
+        this.name = 'Standing Still';
+        this.effect = '+4 to Enemy Hit, +2 to all Escape Rolls';
         this.time = 1;
     }
 

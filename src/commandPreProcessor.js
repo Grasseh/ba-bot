@@ -17,13 +17,13 @@ class Preprocessor{
         this.duel = state.getState().getCurrentDuel(msg.author.id);
         if (!this.duel) {
             this.message = embedUtils.getPlayerErrorEmbed()
-                .setDescription('You are not currently in a duel!')
+                .setDescription('You are not currently in a duel!');
             return this.getReturns();
         }
         if (!this.duel.state.isValidAction(cmd)){
             this.message = embedUtils.getPlayerErrorEmbed()
-                .setDescription('You cannot currently use this command!')
-            return this.getReturns()
+                .setDescription('You cannot currently use this command!');
+            return this.getReturns();
         }
         this.success = true;
         return this.getReturns();

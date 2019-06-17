@@ -39,14 +39,14 @@ class HitTrapState extends DuelState{
         let player = this.duel.getCurrentPlayer();
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Trap roll for ${player.name}!`)
-            .addField(`d6`, `${diceRoll.sum}`)
+            .addField('d6', `${diceRoll.sum}`);
         msg.channel.send(embed);
         let effectRoll = this.dice.d20();
         embed = embedUtils.getCombatEmbed()
             .setDescription(`Effect roll for ${player.name}'s trap!`)
-            .addField(`d20`, `${effectRoll.sum}`)
+            .addField('d20', `${effectRoll.sum}`);
         msg.channel.send(embed);
-        let trap = new (traps[diceRoll.sum])(this.dice);
+        let trap = new traps[diceRoll.sum](this.dice);
         let critFail = player.effects.some(e => e.name === 'Critical Trap');
         let skipTurn = trap.activate(effectRoll.sum, player, critFail, msg);
         if(skipTurn){

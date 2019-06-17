@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const ImmobilizationTrap = require('../../../../src/restraints/traps/immobilization');
 const Immobilized = require('../../../../src/status/immobilized');
@@ -9,10 +10,10 @@ describe('Immobilization Trap', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let imt = new ImmobilizationTrap(1, '');
-            assert.strictEqual(imt.getDescription(), "Buckled leather cuffs bind your ankles to the floor -- Immobilized");
+            assert.strictEqual(imt.getDescription(), 'Buckled leather cuffs bind your ankles to the floor -- Immobilized');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set immobilized on easy', () => {
             let imt = new ImmobilizationTrap(1, '');

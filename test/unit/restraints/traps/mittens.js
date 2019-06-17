@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Mittens = require('../../../../src/restraints/traps/mittens');
 const MittenedTrap = require('../../../../src/status/mittenedTrap');
@@ -6,10 +7,10 @@ describe('Mittens', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let mit = new Mittens(1, '');
-            assert.strictEqual(mit.getDescription(), "Simple mittens make it impossible to properly grasp a weapon! -- Mittened");
+            assert.strictEqual(mit.getDescription(), 'Simple mittens make it impossible to properly grasp a weapon! -- Mittened');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set mittened on easy', () => {
             let mit = new Mittens(1, '');

@@ -3,7 +3,7 @@ const Status = require('./status');
 class AutoEscape extends Status{
     constructor(binding, bindingName){
         super();
-        this.name = "Auto Escape";
+        this.name = 'Auto Escape';
         this.effect = `On next turn, can escape ${bindingName} if they were not tightened.`;
         this.time = 2;
         this.binding = binding;

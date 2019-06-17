@@ -25,7 +25,7 @@ class FileFactory{
             'pickBindingLocation' : PickBindingLocationState,
             'classSelect' : ClassSelectionState,
             'rubberBallChoice' : RubberBallChoiceState
-        }
+        };
 
         let toCreate = states[state];
         duel.state = new toCreate(duel, dice);

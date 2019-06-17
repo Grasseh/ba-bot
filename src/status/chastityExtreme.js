@@ -3,8 +3,8 @@ const Status = require('./status');
 class ChastityExtreme extends Status{
     constructor(binding, restraint){
         super();
-        this.name = "Chaste -- Extreme";
-        this.effect = "-6 Traps, -4 to Hit, -4 to Escape bindings other than the Chastity Belt.";
+        this.name = 'Chaste -- Extreme';
+        this.effect = '-6 Traps, -4 to Hit, -4 to Escape bindings other than the Chastity Belt.';
         this.time = 0;
         this.binding = binding;
         this.restraint = restraint;

@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const TrapAttackAvailable = require('../../../src/status/trapAttackAvailable');
 
@@ -5,10 +6,10 @@ describe('TrapAttackAvailable', function() {
     describe('display', function() {
         it('should return description', () => {
             let taa = new TrapAttackAvailable();
-            assert.strictEqual(taa.display(), "Can use a trap attack this turn");
+            assert.strictEqual(taa.display(), 'Can use a trap attack this turn');
         });
     });
-    
+
     describe('cooldown', () => {
         it('should end on next turn', () => {
             let taa = new TrapAttackAvailable(1);

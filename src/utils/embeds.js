@@ -13,7 +13,7 @@ class embedUtils{
             .setAuthor('Bondage Arena Error!', state.getState().bot.user.displayAvatarURL)
             .setColor(0xFF0000);
     }
-    
+
     getBotInfoEmbed(){
         return new Discord.RichEmbed()
             .setAuthor('Bondage Arena Info!', state.getState().bot.user.displayAvatarURL)

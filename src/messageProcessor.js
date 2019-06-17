@@ -14,8 +14,8 @@ class Processor {
         state.getState().logger.info(channel.id);
         state.getState().logger.info(guild.id);
         if (this.isCommand(message)) {
-            var args = message.substring(1).split(' ');
-            var cmd = args[0].toLowerCase();
+            let args = message.substring(1).split(' ');
+            let cmd = args[0].toLowerCase();
 
             args = args.splice(1);
             if(cmd in commands){
@@ -27,7 +27,7 @@ class Processor {
     }
     isCommand(msg){
         let prefix = msg.substring(0, 1);
-        return prefix === '!'
+        return prefix === '!';
     }
 }
 

@@ -25,8 +25,8 @@ class PickBindingLocationState extends DuelState{
             }
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a location for a ${this.difficulty} binding!`)
-                .addField(`Actions available:`, `Pick a binding to place with !bind <location>`)
-                .addField(`Available binding locations:`, `${allowed}`)
+                .addField('Actions available:', 'Pick a binding to place with !bind <location>')
+                .addField('Available binding locations:', `${allowed}`);
             msg.channel.send(embed);
         }
     }
@@ -34,7 +34,7 @@ class PickBindingLocationState extends DuelState{
     prepare(difficulty, enemy, restraints) {
         this.difficulty = difficulty;
         this.enemy = enemy;
-        this.restraints = restraints
+        this.restraints = restraints;
     }
 }
 

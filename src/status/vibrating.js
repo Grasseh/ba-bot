@@ -5,8 +5,8 @@ class Vibrating extends Status{
     constructor(binding, restraint){
         super();
         this.restraint = restraint;
-        this.name = "Vibrating";
-        this.effect = "Cannot 'stand still'. If also Immobilized, -2 on all Escape rolls.";
+        this.name = 'Vibrating';
+        this.effect = 'Cannot \'stand still\'. If also Immobilized, -2 on all Escape rolls.';
         this.time = 0;
         this.binding = binding; //ID
     }

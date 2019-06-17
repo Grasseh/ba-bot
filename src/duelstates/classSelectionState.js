@@ -13,10 +13,10 @@ class PickClassState extends DuelState{
         let players = this.duel.getPlayersWithoutClass();
         let classes = this.getPlayableClasses();
         let embed = embedUtils.getPlayerActionEmbed()
-            .setDescription(`Class selection!`)
-            .addField(`Pick a class!`, `To select your class, use \`!class <classname>\`.`)
-            .addField(`Available classes`, Object.keys(classes).join(', '))
-            .addField(`Players without classes`, players.map(p => p.name));
+            .setDescription('Class selection!')
+            .addField('Pick a class!', 'To select your class, use `!class <classname>`.')
+            .addField('Available classes', Object.keys(classes).join(', '))
+            .addField('Players without classes', players.map(p => p.name));
         msg.channel.send(embed);
     }
 
@@ -24,22 +24,22 @@ class PickClassState extends DuelState{
         let players = this.duel.getPlayersWithoutClass();
         let classes = this.getPlayableClasses();
         let selectedClass = args[0];
-        let player = players.filter(p => p.name === `<@${msg.author.id.replace('!','')}>`);
+        let player = players.filter(p => p.name === `<@${msg.author.id.replace('!', '')}>`);
         if(player.length !== 1){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription('You cannot currently use this command')
+                .setDescription('You cannot currently use this command');
             msg.channel.send(embed);
             return;
         }
         if(!Object.keys(classes).includes(selectedClass)){
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription('Invalid class.')
-                .addField(`Available classes`, Object.keys(classes).join(', '))
+                .addField('Available classes', Object.keys(classes).join(', '));
             msg.channel.send(embed);
             return;
         }
         player = player[0];
-        player.class = new (classes[selectedClass])();
+        player.class = new classes[selectedClass]();
         player.class.addPassives(player);
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`${player.name} is now a ${player.class.getClassName()}!`);
@@ -54,7 +54,7 @@ class PickClassState extends DuelState{
         return {
             latexskunk : LatexSkunk,
             rubbermage : RubberMage
-        }
+        };
     }
 }
 

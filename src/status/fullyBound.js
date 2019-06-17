@@ -3,8 +3,8 @@ const Status = require('./status');
 class FullyBound extends Status{
     constructor(){
         super();
-        this.name = "Fully Bound";
-        this.effect = "This player has Extreme bindings on Arms, Legs and Head.";
+        this.name = 'Fully Bound';
+        this.effect = 'This player has Extreme bindings on Arms, Legs and Head.';
         this.time = 2;
     }
 

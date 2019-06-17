@@ -22,8 +22,8 @@ class FlubbedEscapeState extends DuelState{
             }
             let embed = embedUtils.getPlayerActionEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a binding to increase!`)
-                .addField(`Actions available:`, `Pick a binding to increase with !increase <binding>`)
-                .addField(`Bound bodyparts:`, `${escapable}`);
+                .addField('Actions available:', 'Pick a binding to increase with !increase <binding>')
+                .addField('Bound bodyparts:', `${escapable}`);
             msg.channel.send(embed);
         }
     }
@@ -32,15 +32,15 @@ class FlubbedEscapeState extends DuelState{
         let escapable = this.duel.getCurrentPlayer().getEscapableBodyParts().join(', ');
         if (escapable === '') {
             let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${this.duel.getCurrentPlayer().name} needs to pick a binding to increase... But no other bodyparts are currently bound!`)
+                .setDescription(`${this.duel.getCurrentPlayer().name} needs to pick a binding to increase... But no other bodyparts are currently bound!`);
             msg.channel.send(embed);
             stateFactory.createState('startTurn', this.duel, this.dice);
             return this.duel.state.run(msg);
         }
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`${this.duel.getCurrentPlayer().name} needs to pick a binding to increase!`)
-            .addField(`Actions available:`, `Pick a binding to increase with !increase <bodypart>`)
-            .addField(`Bound bodyparts:`, `${escapable}`);
+            .addField('Actions available:', 'Pick a binding to increase with !increase <bodypart>')
+            .addField('Bound bodyparts:', `${escapable}`);
         msg.channel.send(embed);
     }
 }

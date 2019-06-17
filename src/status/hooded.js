@@ -3,8 +3,8 @@ const Status = require('./status');
 class Hooded extends Status{
     constructor(binding){
         super();
-        this.name = "Hooded";
-        this.effect = "-3 Traps, -3 Hit, +5 Enemy Hit, -30 to Spell Attacks";
+        this.name = 'Hooded';
+        this.effect = '-3 Traps, -3 Hit, +5 Enemy Hit, -30 to Spell Attacks';
         this.time = 0;
         this.binding = binding;
     }

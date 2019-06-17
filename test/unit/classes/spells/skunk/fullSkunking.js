@@ -10,9 +10,9 @@ const sinon = require('sinon');
 describe('Full Skunking', function() {
     describe('cast', function() {
         it('should call the easy-one activation on 1-4', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let fs = new FullSkunking();
@@ -28,11 +28,11 @@ describe('Full Skunking', function() {
             fs.cast({enemy, effectRoll: 3, crit, duel, msg, dice});
             assert(activateOneStub.calledWith(enemy, msg, duel, dice));
         });
-        
+
         it('should call the easy activation on 5-10', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let fs = new FullSkunking();
@@ -55,9 +55,9 @@ describe('Full Skunking', function() {
         });
 
         it('should call the medium activation on 11-16', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let fs = new FullSkunking();
@@ -80,9 +80,9 @@ describe('Full Skunking', function() {
         });
 
         it('should call the hard activation on 17-19', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let fs = new FullSkunking();
@@ -105,9 +105,9 @@ describe('Full Skunking', function() {
         });
 
         it('should call the impossible activation on 20', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let fs = new FullSkunking();
@@ -126,7 +126,7 @@ describe('Full Skunking', function() {
         });
     });
 
-    describe('activateEasy', () => {
+    describe('activateEasy', () => {
         it('should apply easy in four locations', () => {
             let fs = new FullSkunking();
             let genBindingStub = sinon.stub(fs, 'applyGenericBinding');
@@ -137,8 +137,8 @@ describe('Full Skunking', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
-            }
+                }
+            };
             let {embed, changedState} = fs.activateEasy(enemy, msg, duel);
             assert(genBindingStub.calledWith(enemy, 'Latex Mittens', [1], 1, false, LatexMittens));
             assert(genBindingStub.calledWith(enemy, 'Latex Corset', [1], 1, false, LatexCorset));
@@ -149,7 +149,7 @@ describe('Full Skunking', function() {
         });
     });
 
-    describe('activateMedium', () => {
+    describe('activateMedium', () => {
         it('should apply medium in four locations', () => {
             let fs = new FullSkunking();
             let genBindingStub = sinon.stub(fs, 'applyGenericBinding');
@@ -160,8 +160,8 @@ describe('Full Skunking', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
-            }
+                }
+            };
             let {embed, changedState} = fs.activateMedium(enemy, msg, duel);
             assert(genBindingStub.calledWith(enemy, 'Latex Mittens', [2], 1, false, LatexMittens));
             assert(genBindingStub.calledWith(enemy, 'Latex Corset', [2], 1, false, LatexCorset));
@@ -171,7 +171,7 @@ describe('Full Skunking', function() {
             assert.strictEqual(embed.description, 'ThatGirl has been hit by Full Skunking!\n All Medium bindings applied!');
         });
     });
-    describe('activateHard', () => {
+    describe('activateHard', () => {
         it('should apply hard in four locations', () => {
             let fs = new FullSkunking();
             let genBindingStub = sinon.stub(fs, 'applyGenericBinding');
@@ -182,8 +182,8 @@ describe('Full Skunking', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
-            }
+                }
+            };
             let {embed, changedState} = fs.activateHard(enemy, msg, duel);
             assert(genBindingStub.calledWith(enemy, 'Latex Mittens', [3], 1, false, LatexMittens));
             assert(genBindingStub.calledWith(enemy, 'Latex Corset', [3], 1, false, LatexCorset));
@@ -193,7 +193,7 @@ describe('Full Skunking', function() {
             assert.strictEqual(embed.description, 'ThatGirl has been hit by Full Skunking!\n All Hard bindings applied!');
         });
     });
-    describe('activateCrit', () => {
+    describe('activateCrit', () => {
         it('should apply impossible in four locations', () => {
             let fs = new FullSkunking();
             let genBindingStub = sinon.stub(fs, 'applyGenericBinding');
@@ -204,8 +204,8 @@ describe('Full Skunking', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
-            }
+                }
+            };
             let {embed, changedState} = fs.activateCrit(enemy, msg, duel);
             assert(genBindingStub.calledWith(enemy, 'Latex Mittens', [5], 1, false, LatexMittens));
             assert(genBindingStub.calledWith(enemy, 'Latex Corset', [5], 1, false, LatexCorset));
@@ -217,12 +217,12 @@ describe('Full Skunking', function() {
     });
 
     describe('activateOne', () => {
-       it('should set the state to one easy binding selection, out of all skunk fours', () => {
+        it('should set the state to one easy binding selection, out of all skunk fours', () => {
             let fs = new FullSkunking();
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
+                }
             };
             let duel = {
             };
@@ -237,7 +237,7 @@ describe('Full Skunking', function() {
             assert.strictEqual(duel.state.restraints.torso.name, 'Latex Corset');
             assert.strictEqual(changedState, true);
             assert.strictEqual(embed.description, 'Erika has been hit by a Full Skunking!\n Easy binding of any type.');
-       });
+        });
     });
 
     describe('toHit', () => {
@@ -246,6 +246,6 @@ describe('Full Skunking', function() {
             let val = fs.toHit();
             assert.strictEqual(val, 0);
         });
-    })
+    });
 
 });

@@ -23,9 +23,9 @@ class LatexHugChoiceState extends DuelState{
                 let difficultyTable = {Easy : 1, Medium : 2, Hard : 3};
                 let difficulty = difficultyTable[this.difficulty];
                 let restraint = {arms : {restraint : LatexMittens, name : 'Latex Mittens'},
-                legs : {restraint : LatexHeels, name : 'Latex Heels'},
-                torso : { restraint : LatexCorset, name : 'Latex Corset'},
-                head : {restraint : LatexMuzzle, name : 'Latex Muzzle'}};
+                    legs : {restraint : LatexHeels, name : 'Latex Heels'},
+                    torso : { restraint : LatexCorset, name : 'Latex Corset'},
+                    head : {restraint : LatexMuzzle, name : 'Latex Muzzle'}};
                 let genericSpell = new Spell();
                 let enemy = this.enemy;
                 let embed = genericSpell.applyGenericBinding(enemy, restraint[location].name, [difficulty], 1, false, restraint[location].restraint);
@@ -35,8 +35,8 @@ class LatexHugChoiceState extends DuelState{
             }
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a location for a hard binding!`)
-                .addField(`Actions available:`, `Pick a binding to place with !hug <location>`)
-                .addField(`Available binding locations:`, `${allowed}`)
+                .addField('Actions available:', 'Pick a binding to place with !hug <location>')
+                .addField('Available binding locations:', `${allowed}`);
             msg.channel.send(embed);
         }
     }

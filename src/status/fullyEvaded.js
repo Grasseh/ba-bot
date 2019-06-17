@@ -3,8 +3,8 @@ const Status = require('./status');
 class FullyEvaded extends Status{
     constructor(player){
         super();
-        this.name = "Fully Evaded Trap";
-        this.effect = "+4 to hit if attacking, -4 to enemy hit if not attacking this round;";
+        this.name = 'Fully Evaded Trap';
+        this.effect = '+4 to hit if attacking, -4 to enemy hit if not attacking this round;';
         this.time = 1;
         this.player = player;
     }

@@ -11,7 +11,7 @@ describe('RubberMage', function() {
             assert.strictEqual(name, 'RubberMage');
         });
     });
-    
+
     describe('getSpellList', function() {
         it('should return all spells', function () {
             let rm = new RubberMage();
@@ -24,23 +24,23 @@ describe('RubberMage', function() {
         it('should return all non spells', function () {
             let rm = new RubberMage();
             let spells = rm.getNonSpellList();
-            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
+            assert.deepEqual(spells, ['rubberball', 'rubbertouch']);
         });
     });
 
     describe('getAllActions', function() {
         it('should return all actions except ultimate if it is before 4 turns', function () {
-            let duelStub = {getTurnCount : sinon.stub().returns(2)}
+            let duelStub = {getTurnCount : sinon.stub().returns(2)};
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
+            assert.deepEqual(spells, ['rubberball', 'rubbertouch']);
         });
 
         it('should return all actions with ultimate', function () {
-            let duelStub = {getTurnCount : sinon.stub().returns(5)}
+            let duelStub = {getTurnCount : sinon.stub().returns(5)};
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball' , 'rubbertouch']);
+            assert.deepEqual(spells, ['rubberball', 'rubbertouch']);
         });
     });
 

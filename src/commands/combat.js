@@ -81,7 +81,7 @@ let combat = {
         }
         currentDuel.state.nextState('trapattack', msg, args);
     },
-    
-}
+
+};
 
 module.exports = combat;

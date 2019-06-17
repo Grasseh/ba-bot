@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const ChastityExtreme = require('../../../src/status/chastityExtreme');
 
@@ -5,10 +6,10 @@ describe('ChastityExtreme', function() {
     describe('display', function() {
         it('should return description', () => {
             let chastityExtreme = new ChastityExtreme(1, 'Latex Belt');
-            assert.strictEqual(chastityExtreme.display(), "-6 Traps, -4 to Hit, -4 to Escape bindings other than the Chastity Belt.");
+            assert.strictEqual(chastityExtreme.display(), '-6 Traps, -4 to Hit, -4 to Escape bindings other than the Chastity Belt.');
         });
     });
-    
+
     describe('toHit', () => {
         it('should be -4', () => {
             let chastityExtreme = new ChastityExtreme(1, 'Latex Belt');

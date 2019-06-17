@@ -3,8 +3,8 @@ const Status = require('./status');
 class Mittened extends Status{
     constructor(binding){
         super();
-        this.name = "Mittened";
-        this.effect = "-30 Non-Spell Hit, -30 to escape gags and legs harder than easy.";
+        this.name = 'Mittened';
+        this.effect = '-30 Non-Spell Hit, -30 to escape gags and legs harder than easy.';
         this.time = 0;
         this.binding = binding;
     }

@@ -1,14 +1,14 @@
-const crypto = require("crypto");
+const crypto = require('crypto');
 
 class Restraint{
     constructor(player){
-        this.name = "Generic Restraint";
+        this.name = 'Generic Restraint';
         this.difficulty = 1;
         this.player = player;
-        this.description = "Generic Restraint, effect : none";
-        this.location = "Toe";
-        this.command = "genericrestraint";
-        this.id = crypto.randomBytes(32).toString("hex");
+        this.description = 'Generic Restraint, effect : none';
+        this.location = 'Toe';
+        this.command = 'genericrestraint';
+        this.id = crypto.randomBytes(32).toString('hex');
         this.statusTable = [
             [],
             [],
@@ -16,15 +16,15 @@ class Restraint{
             [],
             []
         ];
-    }   
+    }
 
     getDifficulty(){
         let difficulties = [
-            "Easy",
-            "Medium",
-            "Hard",
-            "Extreme",
-            "Impossible"
+            'Easy',
+            'Medium',
+            'Hard',
+            'Extreme',
+            'Impossible'
         ];
         return difficulties[this.difficulty - 1];
     }

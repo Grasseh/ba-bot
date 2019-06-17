@@ -1,12 +1,12 @@
 class Status{
     constructor(){
-        this.name = "Generic Status";
-        this.effect = "Generic Effect";
-        this.extra = "";
+        this.name = 'Generic Status';
+        this.effect = 'Generic Effect';
+        this.extra = '';
         this.binding = null;
         this.hidden = false;
     }
-    
+
     display(){
         return `${ this.effect }`;
     }

@@ -5,7 +5,7 @@ class SummonLatexMittens extends Spell{
     constructor(){
         super();
         this.spell = true;
-        this.name = "Latex Mittens";
+        this.name = 'Latex Mittens';
     }
 
     cast({enemy, effectRoll, crit}){

@@ -3,8 +3,8 @@ const Status = require('./status');
 class Hobbled extends Status{
     constructor(binding){
         super();
-        this.name = "Hobbled";
-        this.effect = "-2 Traps, +4 Enemy Hit";
+        this.name = 'Hobbled';
+        this.effect = '-2 Traps, +4 Enemy Hit';
         this.time = 0;
         this.binding = binding;
     }

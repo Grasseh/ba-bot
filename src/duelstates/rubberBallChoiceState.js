@@ -6,13 +6,13 @@ const RubberHood = require('../restraints/rubber/rubberHood');
 const RubberJacket = require('../restraints/rubber/rubberJacket');
 const RubberHobble = require('../restraints/rubber/rubberHobble');
 
-class LatexHugChoiceState extends DuelState{
+class RubberBallChoiceState extends DuelState{
     getValidActions(){
         return ['status', 'cancel', 'bind'];
     }
 
     nextState(action, msg, args){
-        if (action == 'bind'){
+        if (action === 'bind'){
             let location = args[0].toLowerCase();
             let allowed = ['arms', 'legs', 'head', 'random'];
             if (allowed.includes(location)){
@@ -29,24 +29,24 @@ class LatexHugChoiceState extends DuelState{
                     msg.channel.send(embed);
                 }
                 //If all applied
-                return this.run(msg, location == 'random' ? true : false);
+                return this.run(msg, location === 'random');
             }
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid location! ${this.duel.getCurrentPlayer().name} needs to pick a hit location!`)
-                .addField(`Actions available:`, `Sacrifice two hits to pick a binding to place with \`!bind <location>\`, or use all remaining hits randomly with \`!bind random\`.`)
-                .addField(`Available binding locations:`, `${allowed}`)
-                .addField(`Hit Count remaining:`, `${this.hitCount}`);
+                .addField('Actions available:', 'Sacrifice two hits to pick a binding to place with `!bind <location>`, or use all remaining hits randomly with `!bind random`.')
+                .addField('Available binding locations:', `${allowed}`)
+                .addField('Hit Count remaining:', `${this.hitCount}`);
             msg.channel.send(embed);
         }
     }
 
     run(msg, isRandom){
         if(isRandom || this.hitCount <= 1){
-            while(this.hitCount > 0){
+            while(this.hitCount > 0){
                 let roll = this.dice.xDy(1, 6).sum;
                 let embed = embedUtils.getCombatEmbed()
                     .setDescription(`Location roll for ${this.duel.getCurrentPlayer().name} using Rubber Ball!`)
-                    .addField(`d6`, `${roll}`)
+                    .addField('d6', `${roll}`);
                 msg.channel.send(embed);
                 let effectTable = [null, 0, 1, 1, 1, 2, 2];
                 let restraint = [
@@ -66,9 +66,9 @@ class LatexHugChoiceState extends DuelState{
         let allowed = ['arms', 'legs', 'head', 'random'];
         let embed = embedUtils.getPlayerActionEmbed()
             .setDescription(`Rubber Ball! ${this.duel.getCurrentPlayer().name} needs to pick a hit location!`)
-            .addField(`Actions available:`, `Sacrifice two hits to pick a binding to place with \`!bind <location>\`, or use all remaining hits randomly with \`!bind random\`.`)
-            .addField(`Available binding locations:`, `${allowed}`)
-            .addField(`Hit Count remaining:`, `${this.hitCount}`);
+            .addField('Actions available:', 'Sacrifice two hits to pick a binding to place with `!bind <location>`, or use all remaining hits randomly with `!bind random`.')
+            .addField('Available binding locations:', `${allowed}`)
+            .addField('Hit Count remaining:', `${this.hitCount}`);
         msg.channel.send(embed);
     }
 
@@ -78,4 +78,4 @@ class LatexHugChoiceState extends DuelState{
     }
 }
 
-module.exports = LatexHugChoiceState;
+module.exports = RubberBallChoiceState;

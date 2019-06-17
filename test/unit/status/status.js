@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Status = require('../../../src/status/status');
 
@@ -5,14 +6,14 @@ describe('Status', function() {
     describe('display', function() {
         it('should return generic description', () => {
             let status = new Status();
-            assert.strictEqual(status.display(), "Generic Effect");
+            assert.strictEqual(status.display(), 'Generic Effect');
         });
     });
-    
+
     describe('getName', () => {
         it('should be generic', () => {
             let status = new Status(1);
-            assert.strictEqual(status.getName(), "Generic Status");
+            assert.strictEqual(status.getName(), 'Generic Status');
         });
     });
 

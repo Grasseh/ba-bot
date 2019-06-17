@@ -9,14 +9,14 @@ describe('Spell', () => {
             let spell = new Spell();
             assert.strictEqual(spell.toHit(), 0);
         });
-    })
+    });
 
     describe('getGenericEffectTable', () => {
         it('should return 1-6 easy, 7-12 medium, 13-19 hard, 20 extreme', () => {
             let spell = new Spell();
             assert.deepEqual(spell.getGenericEffectTable(), [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4]);
         });
-    })
+    });
 
     describe('isMelee', () => {
         it('should not generically be melee', () => {
@@ -41,7 +41,7 @@ describe('Spell', () => {
     describe('applyGenericBinding', () => {
         class GenericRestraint {
             constructor(difficulty) {
-                this.name = "Generic Restraint";
+                this.name = 'Generic Restraint';
                 this.id = '1';
                 this.statusTable = [[], [GenericEffectOne], [GenericEffectOne], [GenericEffectTwo], [GenericEffectOne, GenericEffectTwo]];
                 this.difficulty = difficulty;
@@ -52,7 +52,7 @@ describe('Spell', () => {
             }
 
             getDescription() {
-                return "Generic Description";
+                return 'Generic Description';
             }
 
             getName() {
@@ -62,14 +62,14 @@ describe('Spell', () => {
 
         class GenericEffectOne {
             constructor() {
-                this.name = "Effected";
+                this.name = 'Effected';
                 this.binding = '1';
             }
         }
 
         class GenericEffectTwo {
             constructor() {
-                this.name = "Afflicted";
+                this.name = 'Afflicted';
                 this.binding = '1';
             }
         }
@@ -174,7 +174,7 @@ describe('Spell', () => {
             assert.strictEqual(genericEnemy.restraints[0].name, 'Generic Restraint');
             assert.strictEqual(genericEnemy.restraints[1].name, 'Generic Restraint');
             assert.strictEqual(genericEnemy.effects[0].name, 'Effected');
-        })
+        });
 
         it('should one up on crits', () => {
             let spell = new Spell();
@@ -189,6 +189,6 @@ describe('Spell', () => {
             spell.applyGenericBinding(genericEnemy, 'Generic Restraint', [1, 3, 5], 2, true, GenericRestraint);
             assert.strictEqual(genericEnemy.restraints[0].name, 'Generic Restraint');
             assert.strictEqual(genericEnemy.effects[0].name, 'Afflicted');
-        })
+        });
     });
 });

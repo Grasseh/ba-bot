@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Blinded = require('../../../../src/status/blinded');
 const Gagged = require('../../../../src/status/gagged');
@@ -8,10 +9,10 @@ describe('Latex Muzzle', function() {
     describe('getDescription', function() {
         it('should return difficulty description', () => {
             let lm = new LatexMuzzle(1, '');
-            assert.strictEqual(lm.getDescription(), "Latex ball fills the mouth. -- Gagged");
+            assert.strictEqual(lm.getDescription(), 'Latex ball fills the mouth. -- Gagged');
         });
     });
-    
+
     describe('constructor', () => {
         it('should set gagged on easy and medium', () => {
             let lm = new LatexMuzzle(1, '');

@@ -12,7 +12,7 @@ class RubberMage extends playerClass{
     }
 
     getClassName(){
-        return "RubberMage";
+        return 'RubberMage';
     }
 
 }

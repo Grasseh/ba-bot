@@ -8,15 +8,15 @@ class DissolvingTrap extends Trap{
 
     activate(effectRoll, player, critFail, msg){
         let embed = embedUtils.getCombatEmbed();
-            embed.setDescription(`${player.name} has been hit by a dissolving trap!`);
-        let effectTable = [0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,4,4,5];
-        let closures = [this.fizzle.bind(this), 
+        embed.setDescription(`${player.name} has been hit by a dissolving trap!`);
+        let effectTable = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
+        let closures = [this.fizzle.bind(this),
             this.activateEasy.bind(this),
             this.activateMedium.bind(this),
             this.activateHard.bind(this),
             this.activateExtreme.bind(this),
             this.activateAll.bind(this),
-        ]
+        ];
         let difficulty = effectTable[effectRoll - 1];
         if(critFail)
             difficulty += 1;
@@ -28,57 +28,57 @@ class DissolvingTrap extends Trap{
     }
 
     fizzle(embed){
-        embed.addField(`The trap fizzles!`, `What a loss. No effect.`);
+        embed.addField('The trap fizzles!', 'What a loss. No effect.');
         return embed;
     }
 
     activateEasy(embed, player, msg){
-        embed.addField(`Simple trap!`, `Dissolves up to one random Easy binding!`);
+        embed.addField('Simple trap!', 'Dissolves up to one random Easy binding!');
         let restraints = player.getRestraints().filter(x => x.difficulty <= 1);
         if(restraints.length > 0){
             this.dissolve(msg, player, 1, 1);
             return embed;
         }
-        embed.addField(`What a loss!`, `No Easy binding...`);
+        embed.addField('What a loss!', 'No Easy binding...');
         return embed;
     }
 
     activateMedium(embed, player, msg){
-        embed.addField(`Medium trap!`, `Dissolves up to two random Medium binding!`);
+        embed.addField('Medium trap!', 'Dissolves up to two random Medium binding!');
         let restraints = player.getRestraints().filter(x => x.difficulty <= 2);
         if(restraints.length > 0){
             this.dissolve(msg, player, 2, 2);
             return embed;
         }
-        embed.addField(`What a loss!`, `No Medium or easier bindings...`);
+        embed.addField('What a loss!', 'No Medium or easier bindings...');
         return embed;
     }
 
     activateHard(embed, player, msg){
-        embed.addField(`Hard trap!`, `Dissolves up to two random Hard binding!`);
+        embed.addField('Hard trap!', 'Dissolves up to two random Hard binding!');
         let restraints = player.getRestraints().filter(x => x.difficulty <= 3);
         if(restraints.length > 0){
             this.dissolve(msg, player, 2, 3);
             return embed;
         }
-        embed.addField(`What a loss!`, `No Hard or easier bindings...`);
+        embed.addField('What a loss!', 'No Hard or easier bindings...');
         return embed;
     }
 
     activateExtreme(embed, player, msg){
-        embed.addField(`Extreme trap!`, `Dissolves up to one random Extreme binding!`);
+        embed.addField('Extreme trap!', 'Dissolves up to one random Extreme binding!');
         let restraints = player.getRestraints().filter(x => x.difficulty <= 4);
         if(restraints.length > 0){
             this.dissolve(msg, player, 1, 4);
             return embed;
         }
-        embed.addField(`What a loss!`, `No Extreme or easier bindings...`);
+        embed.addField('What a loss!', 'No Extreme or easier bindings...');
         return embed;
     }
 
     activateAll(embed, player, msg){
         let esc = new EscapeClass();
-        embed.addField(`Critical trap!`, `Dissolves all non-impossible bindings!`);
+        embed.addField('Critical trap!', 'Dissolves all non-impossible bindings!');
         let restraints = player.getRestraints().filter(x => x.difficulty <= 4);
         if(restraints.length > 0){
             for(let restraint of restraints){
@@ -86,7 +86,7 @@ class DissolvingTrap extends Trap{
             }
             return embed;
         }
-        embed.addField(`What a loss!`, `No Extreme or easier bindings...`);
+        embed.addField('What a loss!', 'No Extreme or easier bindings...');
         return embed;
     }
 

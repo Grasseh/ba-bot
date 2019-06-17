@@ -13,7 +13,7 @@ describe('Latex Hug', function() {
             let lh = new LatexHug();
             let target = {
                 effects : []
-            }
+            };
             let val = lh.toHit({target});
             assert.strictEqual(val, 0);
         });
@@ -22,7 +22,7 @@ describe('Latex Hug', function() {
             let lh = new LatexHug();
             let target = {
                 effects : [{name : 'Hobbled'}]
-            }
+            };
             let val = lh.toHit({target});
             assert.strictEqual(val, 0);
         });
@@ -31,7 +31,7 @@ describe('Latex Hug', function() {
             let lh = new LatexHug();
             let target = {
                 effects : [{name : 'Bound'}, {name : 'Vibrating'}]
-            }
+            };
             let val = lh.toHit({target});
             assert.strictEqual(val, 2);
         });
@@ -40,7 +40,7 @@ describe('Latex Hug', function() {
             let lh = new LatexHug();
             let target = {
                 effects : [{name : 'Immobilized'}, {name : 'Mittened'}]
-            }
+            };
             let val = lh.toHit({target});
             assert.strictEqual(val, 2);
         });
@@ -49,17 +49,17 @@ describe('Latex Hug', function() {
             let lh = new LatexHug();
             let target = {
                 effects : [{name : 'Harnessed'}]
-            }
+            };
             let val = lh.toHit({target});
             assert.strictEqual(val, 2);
         });
-    })
+    });
 
     describe('cast', () => {
         it('should call the easy activation on 1-7', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let lh = new LatexHug();
@@ -77,9 +77,9 @@ describe('Latex Hug', function() {
         });
 
         it('should call the medium activation on 8-13', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let lh = new LatexHug();
@@ -102,9 +102,9 @@ describe('Latex Hug', function() {
         });
 
         it('should call the hard activation on 14-19', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let lh = new LatexHug();
@@ -127,9 +127,9 @@ describe('Latex Hug', function() {
         });
 
         it('should call the crit activation on 20', () => {
-            let enemy = "hi";
+            let enemy = 'hi';
             let crit = false;
-            let duel = "hello";
+            let duel = 'hello';
             let msg = 'hola';
             let dice = 'greetings';
             let lh = new LatexHug();
@@ -148,7 +148,7 @@ describe('Latex Hug', function() {
         });
     });
 
-    describe('activateCrit', () => {
+    describe('activateCrit', () => {
         it('should apply medium in four locations', () => {
             let lh = new LatexHug();
             let genBindingStub = sinon.stub(lh, 'applyGenericBinding');
@@ -159,8 +159,8 @@ describe('Latex Hug', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
-            }
+                }
+            };
             let {embed, changedState} = lh.activateCrit(enemy, duel, msg);
             assert(genBindingStub.calledWith(enemy, 'Latex Mittens', [2], 1, false, LatexMittens));
             assert(genBindingStub.calledWith(enemy, 'Latex Corset', [2], 1, false, LatexCorset));
@@ -171,13 +171,13 @@ describe('Latex Hug', function() {
         });
     });
 
-    describe('activateEasy', () => {
+    describe('activateEasy', () => {
         it('should set the state to an easy binding selection', () => {
             let lh = new LatexHug();
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
+                }
             };
             let duel = {
             };
@@ -189,15 +189,15 @@ describe('Latex Hug', function() {
             assert.strictEqual(changedState, true);
             assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Easy binding in any location except for the gag!');
         });
-    })
+    });
 
-    describe('activateMedium', () => {
+    describe('activateMedium', () => {
         it('should set the state to a medium binding selection', () => {
             let lh = new LatexHug();
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
+                }
             };
             let duel = {
             };
@@ -209,7 +209,7 @@ describe('Latex Hug', function() {
             assert.strictEqual(changedState, true);
             assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Medium binding in any location except for the gag!');
         });
-    })
+    });
 
     describe('activateHard', () => {
         it('should set the state to a hard binding selection', () => {
@@ -217,7 +217,7 @@ describe('Latex Hug', function() {
             let msg = {
                 channel : {
                     send : sinon.stub()
-                } 
+                }
             };
             let duel = {
             };
@@ -229,5 +229,5 @@ describe('Latex Hug', function() {
             assert.strictEqual(changedState, true);
             assert.strictEqual(embed.description, 'Erika has been hit by a Latex Hug!\n Smooch! Hard binding in any location!');
         });
-    })
+    });
 });

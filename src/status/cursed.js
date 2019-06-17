@@ -4,8 +4,8 @@ const EscapeClass = require('../services/escape');
 class Cursed extends Status{
     constructor(binding){
         super();
-        this.name = "Cursed";
-        this.effect = `Any failed escape attempt tightens the binding in question!`;
+        this.name = 'Cursed';
+        this.effect = 'Any failed escape attempt tightens the binding in question!';
         this.time = 0;
         this.binding = binding;
         this.escapeClass = new EscapeClass();

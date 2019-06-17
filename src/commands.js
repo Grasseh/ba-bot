@@ -13,11 +13,11 @@ let commands = {
     increase : increase,
     escape : escape,
     move : move,
-    bind : bind, 
-    trapattack : trapattack, 
+    bind : bind,
+    trapattack : trapattack,
     hug : hug,
     class : classSelect
-}
+};
 
 for(let key of Object.keys(commands)){
     let fn = commands[key];
@@ -28,7 +28,7 @@ for(let key of Object.keys(commands)){
             return fn(args, msg, duel, dice);
         }
         return msg.channel.send(message);
-    }
+    };
     commands[key] = newFn;
 }
 

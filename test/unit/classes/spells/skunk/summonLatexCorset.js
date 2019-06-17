@@ -10,10 +10,10 @@ describe('Summon Latex Corset', function() {
             let slc = new SummonLatexCorset();
             let genBindingStub = sinon.stub(slc, 'applyGenericBinding');
             let opts = {
-                enemy : "HY",
+                enemy : 'HY',
                 effectRoll : 2,
                 crit : false
-            }
+            };
             slc.cast(opts);
             assert(genBindingStub.calledWith(opts.enemy, 'Latex Corset', slc.getGenericEffectTable(), opts.effectRoll, opts.crit, LatexCorset));
         });
@@ -25,6 +25,6 @@ describe('Summon Latex Corset', function() {
             let val = slc.toHit();
             assert.strictEqual(val, 0);
         });
-    })
+    });
 
 });

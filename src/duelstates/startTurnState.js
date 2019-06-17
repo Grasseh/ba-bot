@@ -1,7 +1,7 @@
 const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 const state = require('../state');
-const embedUtils = require('../utils/embeds'); 
+const embedUtils = require('../utils/embeds');
 const FullyBound = require('../status/fullyBound');
 const StandingStill = require('../status/standStill');
 
@@ -15,23 +15,23 @@ class StartTurnState extends DuelState{
         let canStand = this.duel.getCurrentPlayer().canStand();
         if (action === 'stand' && (canStand || !canMove)){
             this.duel.getCurrentPlayer().addEffect(new StandingStill());
-            stateFactory.createState('action', this.duel, this.dice)
+            stateFactory.createState('action', this.duel, this.dice);
             this.duel.state.run(msg);
             return;
         }
         if (action === 'move' && canMove){
-            stateFactory.createState('move', this.duel, this.dice)
+            stateFactory.createState('move', this.duel, this.dice);
             this.duel.state.run(msg);
             return;
         }
         let embed = embedUtils.getPlayerErrorEmbed()
-            .setDescription(`Invalid command! ${this.duel.getCurrentPlayer().name}'s turn.`)
+            .setDescription(`Invalid command! ${this.duel.getCurrentPlayer().name}'s turn.`);
         if(canMove && canStand)
-            embed.addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
+            embed.addField('Actions available:', 'Stand Still with !stand or Move with !move');
         if(canMove && !canStand)
-            embed.addField(`Actions available:`, `Move with !move`);
+            embed.addField('Actions available:', 'Move with !move');
         if(!canMove)
-            embed.addField(`Actions available:`, `Stand Still with !stand`);
+            embed.addField('Actions available:', 'Stand Still with !stand');
         msg.channel.send(embed);
     }
 
@@ -47,19 +47,19 @@ class StartTurnState extends DuelState{
         let canMove = this.duel.getCurrentPlayer().canMove();
         let canStand = this.duel.getCurrentPlayer().canStand();
         let embed = embedUtils.getPlayerActionEmbed()
-            .setDescription(`Beginning of ${this.duel.getCurrentPlayer().name}'s turn!`)
+            .setDescription(`Beginning of ${this.duel.getCurrentPlayer().name}'s turn!`);
         if(canMove && canStand)
-            embed.addField(`Actions available:`, `Stand Still with !stand or Move with !move`);
+            embed.addField('Actions available:', 'Stand Still with !stand or Move with !move');
         if(canMove && !canStand)
-            embed.addField(`Actions available:`, `Move with !move`);
+            embed.addField('Actions available:', 'Move with !move');
         if(!canMove)
-            embed.addField(`Actions available:`, `Stand Still with !stand`);
+            embed.addField('Actions available:', 'Stand Still with !stand');
         msg.channel.send(embed);
     }
 
     checkWinCondition(msg){
         if(this.duel.getCurrentPlayer().isFullExtreme()){
-            let fullyBound = this.duel.getCurrentPlayer().effects.filter(e => e.name === "Fully Bound");
+            let fullyBound = this.duel.getCurrentPlayer().effects.filter(e => e.name === 'Fully Bound');
             if(fullyBound.length > 0){
                 fullyBound = fullyBound[0];
                 if(fullyBound.time >= 1){
@@ -81,7 +81,7 @@ class StartTurnState extends DuelState{
             msg.channel.send(embed);
             return false;
         }
-        this.duel.getCurrentPlayer().effects = this.duel.getCurrentPlayer().effects.filter(e => e.name !== "Fully Bound");
+        this.duel.getCurrentPlayer().effects = this.duel.getCurrentPlayer().effects.filter(e => e.name !== 'Fully Bound');
         return false;
     }
 }

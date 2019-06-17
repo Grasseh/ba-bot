@@ -3,8 +3,8 @@ const Status = require('./status');
 class MittenedTrap extends Status{
     constructor(binding, restraint){
         super();
-        this.name = "Mittened";
-        this.effect = "-30 Non-Spell Hit, -30 to escape gags and legs harder than easy, -30 to escape arm restraints that aren't causing this status.";
+        this.name = 'Mittened';
+        this.effect = '-30 Non-Spell Hit, -30 to escape gags and legs harder than easy, -30 to escape arm restraints that aren\'t causing this status.';
         this.time = 0;
         this.binding = binding;
         this.restraint = restraint;

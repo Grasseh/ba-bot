@@ -8,7 +8,7 @@ class ImmobilizationTrap extends Trap{
     activate(effectRoll, player, critFail, msg){
         let genericSpell = new Spell();
         let restraintName = 'Immobilization Trap';
-        let effectTable = [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,4];
+        let effectTable = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4];
         let embed = genericSpell.applyGenericBinding(player, restraintName, effectTable, effectRoll, critFail, Immobilization);
         msg.channel.send(embed);
         return effectRoll > 10;

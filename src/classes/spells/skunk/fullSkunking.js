@@ -11,17 +11,17 @@ class FullSkunking extends Spell{
         super();
         this.ultimate = true;
         this.spell = true;
-        this.name = "Full Skunking";
+        this.name = 'Full Skunking';
     }
 
     cast({enemy, effectRoll, crit, duel, msg, dice}){
-        let effectTable = [0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,4];
-        let closures = [this.activateOne.bind(this), 
+        let effectTable = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4];
+        let closures = [this.activateOne.bind(this),
             this.activateEasy.bind(this),
             this.activateMedium.bind(this),
             this.activateHard.bind(this),
             this.activateCrit.bind(this),
-        ]
+        ];
         let difficulty = effectTable[effectRoll - 1];
         if(crit)
             difficulty += 1;
@@ -52,7 +52,7 @@ class FullSkunking extends Spell{
 
     activate(enemy, difficulty, description, msg){
         let embed = embedUtils.getCombatEmbed();
-            embed.setDescription(description);
+        embed.setDescription(description);
         let embeds = [];
         embeds.push(this.applyGenericBinding(enemy, 'Latex Mittens', [difficulty], 1, false, LatexMittens));
         embeds.push(this.applyGenericBinding(enemy, 'Latex Heels', [difficulty], 1, false, LatexHeels));
@@ -67,8 +67,8 @@ class FullSkunking extends Spell{
     activateOne(enemy, msg, duel, dice){
         let embed = embedUtils.getPlayerActionEmbed();
         embed.setDescription(`${enemy.name} has been hit by a Full Skunking!\n Easy binding of any type.`)
-            .addField(`Actions available:`, `Pick a binding to place with !bind <location>`)
-            .addField(`Available binding locations:`, `head, arms, torso, legs`)
+            .addField('Actions available:', 'Pick a binding to place with !bind <location>')
+            .addField('Available binding locations:', 'head, arms, torso, legs');
         stateFactory.createState('pickBindingLocation', duel, dice);
         let restraints = {
             arms: { restraint: LatexMittens, name: 'Latex Mittens' },
@@ -76,7 +76,7 @@ class FullSkunking extends Spell{
             torso: { restraint: LatexCorset, name: 'Latex Corset' },
             head: { restraint: LatexMuzzle, name: 'Latex Muzzle' }
         };
-        duel.state.prepare("Easy", enemy, restraints);
+        duel.state.prepare('Easy', enemy, restraints);
         return {embed, changedState : true};
     }
 

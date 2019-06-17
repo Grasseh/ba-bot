@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const StandStill = require('../../../src/status/standStill');
 
@@ -5,10 +6,10 @@ describe('StandStill', function() {
     describe('display', function() {
         it('should return description', () => {
             let ss = new StandStill();
-            assert.strictEqual(ss.display(), " +4 to Enemy Hit, +2 to all Escape Rolls - Duration : 1 turn");
+            assert.strictEqual(ss.display(), ' +4 to Enemy Hit, +2 to all Escape Rolls - Duration : 1 turn');
         });
     });
-    
+
     describe('cooldown', () => {
         it('should end on next turn', () => {
             let ss = new StandStill(1);

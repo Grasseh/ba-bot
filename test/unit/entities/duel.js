@@ -23,9 +23,9 @@ describe('Duel', function() {
             let msg = {
                 channel : { send : sinon.stub() },
                 author : {id : '123'}
-            }
+            };
             duel.accept(msg);
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "You cannot accept this duel!");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, 'You cannot accept this duel!');
             assert.strictEqual(duel.players.length, 1);
         });
 
@@ -57,11 +57,11 @@ describe('Duel', function() {
             let msg = {
                 channel : {send : sinon.stub()},
             };
-            assert.strictEqual(state.getState().duels.length , 1);
+            assert.strictEqual(state.getState().duels.length, 1);
             duel.cancel(msg);
-            assert.strictEqual(state.getState().duels.length , 0);
+            assert.strictEqual(state.getState().duels.length, 0);
         });
-    })
+    });
 
     describe('isPlaying', () => {
         it('should be true if the game is going', () => {
@@ -79,15 +79,15 @@ describe('Duel', function() {
     describe('isPlayerTurn', () => {
         it('should be true if it\'s the player\'s turn', () => {
             let duel = new Duel('<@123>', '<@1234>', {});
-            duel.playerstates.push('<@1234>' , '<@123>');
-            duel.getCurrentPlayer = sinon.stub().returns({name : '<@123>'})
+            duel.playerstates.push('<@1234>', '<@123>');
+            duel.getCurrentPlayer = sinon.stub().returns({name : '<@123>'});
             assert.strictEqual(duel.isPlayerTurn('<@123>'), true);
         });
 
         it('should be false if it\'s not the player\'s turn', () => {
             let duel = new Duel('<@123>', '<@1234>', {});
-            duel.playerstates.push('<@1234>' , '<@123>');
-            duel.getCurrentPlayer = sinon.stub().returns({name : '<@123>'})
+            duel.playerstates.push('<@1234>', '<@123>');
+            duel.getCurrentPlayer = sinon.stub().returns({name : '<@123>'});
             assert.strictEqual(duel.isPlayerTurn('<@1234>'), false);
         });
     });
@@ -95,7 +95,7 @@ describe('Duel', function() {
     describe('getCurrentPlayer', () => {
         it('should return the player who\'s turn it is', () => {
             let duel = new Duel('<@123>', '<@1234>', {});
-            duel.playerstates.push('<@1234>' , '<@123>');
+            duel.playerstates.push('<@1234>', '<@123>');
             duel.turnPlayer = 1;
             assert.strictEqual(duel.getCurrentPlayer(), '<@123>');
         });
@@ -104,7 +104,7 @@ describe('Duel', function() {
     describe('getCurrentPlayer', () => {
         it('should return the player who\'s turn it is', () => {
             let duel = new Duel('<@123>', '<@1234>', {});
-            duel.playerstates.push('<@1234>' , '<@123>');
+            duel.playerstates.push('<@1234>', '<@123>');
             duel.turnPlayer = 1;
             assert.strictEqual(duel.getOtherPlayer(), '<@1234>');
         });
@@ -137,9 +137,9 @@ describe('Duel', function() {
                 channel : {send : sinon.stub()}
             };
             duel.displayWaiting(msg);
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, "<@123>, you are currently waiting for your partner to accept your challenge.");
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].name, "Waiting List");
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].value, "<@1234> you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].description, '<@123>, you are currently waiting for your partner to accept your challenge.');
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].name, 'Waiting List');
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].value, '<@1234> you have been challenged to a Bondage Arena duel! Write `!accept` to accept or `!cancel` to decline.');
         });
     });
 
@@ -159,7 +159,7 @@ describe('Duel', function() {
                     getLocation: sinon.stub().returns('Arms'),
                     getDifficulty: sinon.stub().returns('Extreme'),
                     getDescription: sinon.stub().returns('The best kind of restraint ever'),
-                },{
+                }, {
                     getName: sinon.stub().returns('Latex Straitjacket'),
                     getLocation: sinon.stub().returns('Body'),
                     getDifficulty: sinon.stub().returns('Impossible'),
@@ -169,7 +169,7 @@ describe('Duel', function() {
                     getName: sinon.stub().returns('Hidden'),
                     hidden : true,
                     display : sinon.stub().returns('This status effect is pointless!')
-                },{
+                }, {
                     getName: sinon.stub().returns('Seduced'),
                     display : sinon.stub().returns('The latex is too tight and shiny for you to think about anything else!')
                 }]
@@ -178,31 +178,31 @@ describe('Duel', function() {
                 channel : {send : sinon.stub()}
             };
             duel.displayPlaying(msg);
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].name, "Player #1");
-            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].value, "**<@123>**\n Class : Skunk Warlock");
-            assert.strictEqual(msg.channel.send.getCall(1).args[0].fields[0].name, "Restraints");
-            assert.strictEqual(msg.channel.send.getCall(1).args[0].fields[0].value, "<@123>");
-            assert.strictEqual(msg.channel.send.getCall(2).args[0].fields[0].name, "Status Effects");
-            assert.strictEqual(msg.channel.send.getCall(2).args[0].fields[0].value, "<@123>");
-            assert.strictEqual(msg.channel.send.getCall(3).args[0].fields[0].name, "Player #2");
-            assert.strictEqual(msg.channel.send.getCall(3).args[0].fields[0].value, "**<@1234>**\n Class : Rubber Mage");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[0].name, "Restraints");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[0].value, "<@1234>");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[1].name, "Latex Mittens");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[1].value, "Arms - Extreme - The best kind of restraint ever");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[2].name, "Latex Straitjacket");
-            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[2].value, "Body - Impossible - Also the best kind of restraint ever");
-            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[0].name, "Status Effects");
-            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[0].value, "<@1234>");
-            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[1].name, "Seduced");
-            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[1].value, "The latex is too tight and shiny for you to think about anything else!");
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].name, 'Player #1');
+            assert.strictEqual(msg.channel.send.getCall(0).args[0].fields[0].value, '**<@123>**\n Class : Skunk Warlock');
+            assert.strictEqual(msg.channel.send.getCall(1).args[0].fields[0].name, 'Restraints');
+            assert.strictEqual(msg.channel.send.getCall(1).args[0].fields[0].value, '<@123>');
+            assert.strictEqual(msg.channel.send.getCall(2).args[0].fields[0].name, 'Status Effects');
+            assert.strictEqual(msg.channel.send.getCall(2).args[0].fields[0].value, '<@123>');
+            assert.strictEqual(msg.channel.send.getCall(3).args[0].fields[0].name, 'Player #2');
+            assert.strictEqual(msg.channel.send.getCall(3).args[0].fields[0].value, '**<@1234>**\n Class : Rubber Mage');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[0].name, 'Restraints');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[0].value, '<@1234>');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[1].name, 'Latex Mittens');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[1].value, 'Arms - Extreme - The best kind of restraint ever');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[2].name, 'Latex Straitjacket');
+            assert.strictEqual(msg.channel.send.getCall(4).args[0].fields[2].value, 'Body - Impossible - Also the best kind of restraint ever');
+            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[0].name, 'Status Effects');
+            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[0].value, '<@1234>');
+            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[1].name, 'Seduced');
+            assert.strictEqual(msg.channel.send.getCall(5).args[0].fields[1].value, 'The latex is too tight and shiny for you to think about anything else!');
         });
     });
 
     describe('getTurnCount', () => {
         it('should return turn number', () => {
             let duel = new Duel('<@123>', '<@1234>', {});
-            duel.playerstates.push('<@1234>' , '<@123>');
+            duel.playerstates.push('<@1234>', '<@123>');
             duel.turn = 6;
             assert.strictEqual(duel.getTurnCount(), 3);
         });

@@ -18,7 +18,7 @@ class InitiativeState extends DuelState{
         let i = -1;
         let tied = true;
         let embed = embedUtils.getCombatEmbed()
-            .setDescription(`Duel has begun! Rolls for initiative!`);
+            .setDescription('Duel has begun! Rolls for initiative!');
         msg.channel.send(embed);
         while(tied){
             highest = 0;
@@ -27,7 +27,7 @@ class InitiativeState extends DuelState{
                 let roll = this.dice.d20();
                 let embed = embedUtils.getCombatEmbed()
                     .setDescription(`Initiative roll for ${player.name}!`)
-                    .addField(`d20`, `${roll.sum}`);
+                    .addField('d20', `${roll.sum}`);
                 msg.channel.send(embed);
                 if (roll.sum === highest) {
                     tied = true;

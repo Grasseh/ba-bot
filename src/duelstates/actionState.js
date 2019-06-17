@@ -15,7 +15,7 @@ class ActionState extends DuelState{
     nextState(action, msg, args){
         let valid = false;
         let changedState = false;
-        if(action === "attack"){
+        if(action === 'attack'){
             ({changedState, valid} = this.attack(msg, args));
         }
         if(action === 'escape'){
@@ -31,7 +31,7 @@ class ActionState extends DuelState{
         }
         if(!changedState){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription(`Invalid command or bodypart! ${this.duel.getCurrentPlayer().name}'s turn.`)
+                .setDescription(`Invalid command or bodypart! ${this.duel.getCurrentPlayer().name}'s turn.`);
             embed = this.buildCommands(embed);
             msg.channel.send(embed);
         }
@@ -59,11 +59,11 @@ class ActionState extends DuelState{
         if(trapAttackEnabled){
             trapAttackMessage = 'or increase a trap with !trapattack <trap>';
         }
-        embed.addField(`Actions available:`, `Attack with !attack <command> or Escape a binding with !escape <bodypart> ${trapAttackMessage}`)
-            .addField(`Attacks available:`, `${spells}`)
-            .addField(`Bound bodyparts:`, `${escapable}`);
+        embed.addField('Actions available:', `Attack with !attack <command> or Escape a binding with !escape <bodypart> ${trapAttackMessage}`)
+            .addField('Attacks available:', `${spells}`)
+            .addField('Bound bodyparts:', `${escapable}`);
         if(trapAttackEnabled){
-            embed.addField(`Upgradable traps:`, trapAttackable);
+            embed.addField('Upgradable traps:', trapAttackable);
         }
         return embed;
     }
@@ -120,23 +120,23 @@ class ActionState extends DuelState{
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Hit roll for ${player.name} using ${args[0]}!`)
-            .addField(`d20`, `${diceRoll.sum}`)
+            .addField('d20', `${diceRoll.sum}`);
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);
         }
-        embed.addField(`total`, `${totalRoll}`);
+        embed.addField('total', `${totalRoll}`);
         if(crit){
-            embed.addField(`CRITICAL HIT!`, `+1 To Effect Tier!`);
+            embed.addField('CRITICAL HIT!', '+1 To Effect Tier!');
         }
         if(critFail){
-            embed.addField(`CRITICAL FAIL!`, `You hit yourself!`);
+            embed.addField('CRITICAL FAIL!', 'You hit yourself!');
             target = player;
         }
         msg.channel.send(embed);
         if (!crit && totalRoll < 11 && !critFail) {
             embed = embedUtils.getCombatEmbed()
                 .setDescription(`Result for ${player.name} using ${args[0]}!`)
-                .addField(`Miss!`, `And the attack fails!`);
+                .addField('Miss!', 'And the attack fails!');
             msg.channel.send(embed);
             return {changedState : false, valid: true };
         }
@@ -147,8 +147,8 @@ class ActionState extends DuelState{
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Effect roll for ${player.name} using ${args[0]}!`)
-            .addField(`d20`, `${effectRoll.sum}`)
-            .addField(`total`, `${totalRoll}`);
+            .addField('d20', `${effectRoll.sum}`)
+            .addField('total', `${totalRoll}`);
         msg.channel.send(embed);
 
         //Apply effect
@@ -178,7 +178,7 @@ class ActionState extends DuelState{
             chastity : ChastityTrap,
             mittens : MittensTrap
         };
-        let trap = new (traps[action])(this.dice);
+        let trap = new traps[action](this.dice);
         let additionals = [];
         //Add Player hit effects
         //Dupe in case an effect does modifs
@@ -200,23 +200,23 @@ class ActionState extends DuelState{
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Hit roll for ${player.name} using ${action}!`)
-            .addField(`d20`, `${diceRoll.sum}`)
+            .addField('d20', `${diceRoll.sum}`);
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);
         }
-        embed.addField(`total`, `${totalRoll}`);
+        embed.addField('total', `${totalRoll}`);
         if(crit){
-            embed.addField(`CRITICAL HIT!`, `+1 To Effect Tier!`);
+            embed.addField('CRITICAL HIT!', '+1 To Effect Tier!');
         }
         if(critFail){
-            embed.addField(`CRITICAL FAIL!`, `You hit yourself!`);
+            embed.addField('CRITICAL FAIL!', 'You hit yourself!');
             target = player;
         }
         msg.channel.send(embed);
         if (!crit && totalRoll < 13 && !critFail) {
             embed = embedUtils.getCombatEmbed()
                 .setDescription(`Result for ${player.name} using ${action}!`)
-                .addField(`Miss!`, `And the attack fails!`);
+                .addField('Miss!', 'And the attack fails!');
             msg.channel.send(embed);
             return {changedState : false, valid: true };
         }
@@ -227,8 +227,8 @@ class ActionState extends DuelState{
             .setAuthor('Bondage Arena Duel!', state.getState().bot.user.displayAvatarURL)
             .setColor(0x0000AA)
             .setDescription(`Effect roll for ${player.name} using ${action}!`)
-            .addField(`d20`, `${effectRoll.sum}`)
-            .addField(`total`, `${totalRoll}`);
+            .addField('d20', `${effectRoll.sum}`)
+            .addField('total', `${totalRoll}`);
         msg.channel.send(embed);
 
         //Apply effect
@@ -251,7 +251,7 @@ class ActionState extends DuelState{
         let escaping = new EscapeClass();
         let {changedState, valid} = escaping.escape(this.duel.getCurrentPlayer(), restraintToEscape, restraintToEscape.getLocation(), this.dice, msg);
         if(changedState){
-            stateFactory.createState('flubbedEscape', this.duel, this.dice)
+            stateFactory.createState('flubbedEscape', this.duel, this.dice);
             this.duel.state.run(msg);
         }
         return {changedState, valid};

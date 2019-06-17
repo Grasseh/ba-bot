@@ -1,3 +1,4 @@
+/* global describe, it */
 const assert = require('assert');
 const Vibrating = require('../../../src/status/vibrating');
 
@@ -5,10 +6,10 @@ describe('Vibrating', function() {
     describe('display', function() {
         it('should return description', () => {
             let vibrating = new Vibrating(1);
-            assert.strictEqual(vibrating.display(), "Cannot 'stand still'. If also Immobilized, -2 on all Escape rolls.");
+            assert.strictEqual(vibrating.display(), 'Cannot \'stand still\'. If also Immobilized, -2 on all Escape rolls.');
         });
     });
-    
+
     describe('canStand', () => {
         it('should be false', () => {
             let vibrating = new Vibrating(1);
@@ -26,5 +27,5 @@ describe('Vibrating', function() {
             let vibrating = new Vibrating(1, {player : { effects : [{canMove : () => true}]}});
             assert.strictEqual(vibrating.toEscape({location : 'Legs', difficulty : 2}), 0);
         });
-    })
+    });
 });

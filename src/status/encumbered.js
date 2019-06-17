@@ -3,8 +3,8 @@ const Status = require('./status');
 class Encumbered extends Status{
     constructor(binding){
         super();
-        this.name = "Encumbered";
-        this.effect = "-1 Traps, +2 Enemy Hit";
+        this.name = 'Encumbered';
+        this.effect = '-1 Traps, +2 Enemy Hit';
         this.time = 0;
         this.binding = binding;
     }

@@ -3,8 +3,8 @@ const Status = require('./status');
 class TrapAttackAvailable extends Status{
     constructor(){
         super();
-        this.name = "Trap Attack Available";
-        this.effect = "Can use a trap attack this turn";
+        this.name = 'Trap Attack Available';
+        this.effect = 'Can use a trap attack this turn';
         this.time = 1;
     }
 

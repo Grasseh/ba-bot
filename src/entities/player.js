@@ -2,7 +2,7 @@ class Player{
     constructor(name){
         this.name = name;
         this.class = null;
-        this.classCode = "";
+        this.classCode = '';
         this.restraints = [];
         this.effects = [];
     }
@@ -10,7 +10,7 @@ class Player{
     addRestraint(restraint){
         this.restraints.push(restraint);
     }
-    
+
     getRestraints(){
         return this.restraints;
     }
@@ -37,15 +37,15 @@ class Player{
 
     getClassName(){
         if(!this.class){
-            return "No class selected yet";
+            return 'No class selected yet';
         }
         return this.class.getClassName();
     }
-    
+
     getSpellList(){
         return this.class.getSpellList();
     }
-    
+
     getNonSpellList(){
         return this.class.getNonSpellList();
     }
@@ -64,9 +64,9 @@ class Player{
 
     isFullExtreme(){
         let values = [
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Legs"),
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Arms"),
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == "Head"),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Legs'),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Arms'),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Head'),
         ];
         return values.every(x => x.length > 0);
     }

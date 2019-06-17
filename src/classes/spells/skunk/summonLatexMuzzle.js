@@ -5,7 +5,7 @@ class SummonLatexMuzzle extends Spell{
     constructor(){
         super();
         this.spell = true;
-        this.name = "Latex Muzzle";
+        this.name = 'Latex Muzzle';
     }
 
     cast({enemy, effectRoll, crit}){

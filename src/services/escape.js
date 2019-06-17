@@ -6,7 +6,7 @@ class Escape{
     escape(player, restraintToEscape, position, dice, msg){
         //Attempt auto-escape
         for(let status of player.effects){
-            if(status.name === "Auto Escape" && status.binding === restraintToEscape.id && restraintToEscape.difficulty === 1){
+            if(status.name === 'Auto Escape' && status.binding === restraintToEscape.id && restraintToEscape.difficulty === 1){
                 this.freeFrom(restraintToEscape, player, msg);
                 return { valid: true, changedState: false };
             }
@@ -25,13 +25,13 @@ class Escape{
         }
         let embed = embedUtils.getCombatEmbed()
             .setDescription(`Escape roll for ${player.name}, attempting to free herself from her ${restraintToEscape.name}!`)
-            .addField(`d20`, `${diceRoll.sum}`)
+            .addField('d20', `${diceRoll.sum}`);
         for(let additional of additionals){
             embed.addField(additional.name, additional.value);
         }
-        embed.addField(`total`, `${totalRoll}`);
+        embed.addField('total', `${totalRoll}`);
         if(critFail){
-            embed.addField(`CRITICAL FAIL!`, `Natural 1!`);
+            embed.addField('CRITICAL FAIL!', 'Natural 1!');
         }
         msg.channel.send(embed);
 
@@ -57,7 +57,7 @@ class Escape{
         if(totalRoll <= 6){
             player.addEffect(new AutoEscape(restraint.id, restraint.name));
             let embed = embedUtils.getCombatEmbed()
-                .setDescription(`${player.name} loosen slightly her ${restraint.name}. If it is not tightened, it can be auto-escaped next turn!`)
+                .setDescription(`${player.name} loosen slightly her ${restraint.name}. If it is not tightened, it can be auto-escaped next turn!`);
             msg.channel.send(embed);
             return {valid : true, changedState : false};
         }
@@ -139,33 +139,33 @@ class Escape{
         restraint.difficulty += value;
         if(restraint.difficulty > 5)
             restraint.difficulty = 5;
-        let embed = embedUtils.getCombatEmbed()
+        let embed = embedUtils.getCombatEmbed();
         if(value > 0)
-            embed.setDescription(`${player.name} increased her ${restraint.name} difficulty!`)
+            embed.setDescription(`${player.name} increased her ${restraint.name} difficulty!`);
         if(value < 0)
-            embed.setDescription(`${player.name} reduced her ${restraint.name} difficulty!`)
+            embed.setDescription(`${player.name} reduced her ${restraint.name} difficulty!`);
         let addedEffects = '';
         for (let StatusEffect of restraint.statusTable[restraint.difficulty - 1]) {
             player.addEffect(new StatusEffect(restraint.id, restraint));
             addedEffects += `${player.name} is now ${StatusEffect.name}!\n`;
         }
         if (addedEffects !== '')
-            embed.addField(`Effects:`, addedEffects);
-        embed.addField(`Difficulty:`, restraint.getDifficulty());
-        embed.addField(`Description:`, restraint.getDescription());
+            embed.addField('Effects:', addedEffects);
+        embed.addField('Difficulty:', restraint.getDifficulty());
+        embed.addField('Description:', restraint.getDescription());
         msg.channel.send(embed);
     }
 
     freeFrom(restraint, player, msg){
         this.removeRestraint(restraint, player);
         let embed = embedUtils.getCombatEmbed()
-            .setDescription(`${player.name} freed herself from her ${restraint.name}!`)
+            .setDescription(`${player.name} freed herself from her ${restraint.name}!`);
         msg.channel.send(embed);
     }
 
     failFrom(restraint, player, msg){
         let embed = embedUtils.getCombatEmbed()
-            .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`)
+            .setDescription(`${player.name} failed to free herself from her ${restraint.name}!`);
         msg.channel.send(embed);
         for(let effect of player.effects){
             effect.onFailedEscape(player, restraint, msg);
