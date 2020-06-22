@@ -16,7 +16,7 @@ class LatexMuzzle extends Restraint{
             [Hooded],
             [Hooded]
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

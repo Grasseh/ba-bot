@@ -17,7 +17,7 @@ class ChastityBelt extends Restraint{
             [Vibrating, ChastityExtreme],
             [Vibrating, ChastityExtreme],
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

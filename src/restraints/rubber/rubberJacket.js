@@ -9,7 +9,7 @@ class RubberJacket extends Restraint{
         this.location = 'Arms';
         this.name = 'Rubber Straitjacket';
         this.command = 'rubberstraitjacket';
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
         this.statusTable = [
             [],
             [Bound],

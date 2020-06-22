@@ -9,7 +9,7 @@ class RubberHobble extends Restraint{
         this.location = 'Legs';
         this.name = 'Rubber Hobble Dress';
         this.command = 'rubberhobbledress';
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
         this.statusTable = [
             [],
             [Encumbered],

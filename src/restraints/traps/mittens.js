@@ -14,7 +14,7 @@ class Mittens extends Restraint{
             [MittenedTrap],
             [MittenedTrap],
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

@@ -14,7 +14,7 @@ class RevengeCollar extends Restraint{
             [Cursed],
             [Cursed]
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

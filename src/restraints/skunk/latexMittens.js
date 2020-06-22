@@ -9,7 +9,7 @@ class LatexMittens extends Restraint{
         this.location = 'Arms';
         this.name = 'Latex Mittens';
         this.command = 'latexmittens';
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
         this.statusTable = [
             [],
             [Bound],

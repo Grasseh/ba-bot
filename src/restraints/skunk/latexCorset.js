@@ -20,7 +20,7 @@ class LatexCorset extends Restraint{
             [Breathless, Dizzy, Vibrating],
             [Breathless, Dizzy, Vibrating],
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

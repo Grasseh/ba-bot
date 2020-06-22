@@ -4,6 +4,7 @@ class Restraint{
     constructor(player){
         this.name = 'Generic Restraint';
         this.difficulty = 1;
+        this.highestDifficulty = 1;
         this.player = player;
         this.description = 'Generic Restraint, effect : none';
         this.location = 'Toe';
@@ -16,6 +17,11 @@ class Restraint{
             [],
             []
         ];
+    }
+
+    setDifficulty(difficulty){
+        this.highestDifficulty = Math.max([difficulty, this.difficulty]);
+        this.difficulty = difficulty;
     }
 
     getDifficulty(){

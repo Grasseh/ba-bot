@@ -13,7 +13,7 @@ class LatexHugChoiceState extends DuelState{
     }
 
     nextState(action, msg, args){
-        if (action == 'hug'){
+        if (action === 'hug'){
             let location = args[0].toLowerCase();
             let allowed = ['arms', 'legs', 'torso'];
             if(this.difficulty === 'Hard'){

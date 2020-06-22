@@ -9,7 +9,7 @@ class LatexHeel extends Restraint{
         this.location = 'Legs';
         this.name = 'Latex Heels';
         this.command = 'latexheels';
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
         this.statusTable = [
             [],
             [Encumbered],

@@ -16,7 +16,7 @@ class RubberHood extends Restraint{
             [Hooded],
             [Hooded]
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){

@@ -45,6 +45,12 @@ describe('Spell', () => {
                 this.id = '1';
                 this.statusTable = [[], [GenericEffectOne], [GenericEffectOne], [GenericEffectTwo], [GenericEffectOne, GenericEffectTwo]];
                 this.difficulty = difficulty;
+                this.maxDifficulty = difficulty;
+            }
+
+            setDifficulty(difficulty) {
+                this.difficulty = difficulty;
+                this.maxDifficulty = difficulty;
             }
 
             getDifficulty() {

@@ -23,8 +23,8 @@ class Spell{
         if(existingRestraint.length > 0){
             appliedRestraint = existingRestraint[0];
             appliedRestraint.difficulty += difficulty;
-            if(appliedRestraint.difficulty > 5)
-                appliedRestraint.difficulty = 5;
+            if(appliedRestraint.difficulty > 5)
+                appliedRestraint.setDifficulty(5);
             difficulty = appliedRestraint.difficulty;
             //Remove active effects
             enemy.effects = enemy.effects.filter(e => e.binding !== appliedRestraint.id);

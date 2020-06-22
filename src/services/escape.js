@@ -138,7 +138,7 @@ class Escape{
         this.removeEffects(restraint, player);
         restraint.difficulty += value;
         if(restraint.difficulty > 5)
-            restraint.difficulty = 5;
+            restraint.setDifficulty(5);
         let embed = embedUtils.getCombatEmbed();
         if(value > 0)
             embed.setDescription(`${player.name} increased her ${restraint.name} difficulty!`);

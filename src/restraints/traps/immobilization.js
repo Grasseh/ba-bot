@@ -17,7 +17,7 @@ class ImmobilizationTrap extends Restraint{
             [Immobilized, Incapacitated],
             [Immobilized, Incapacitated]
         ];
-        this.difficulty = difficulty;
+        this.setDifficulty(difficulty);
     }
 
     getDescription(){
