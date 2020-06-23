@@ -239,6 +239,9 @@ class ActionState extends DuelState{
     }
 
     escape(msg, args){
+        if(args.length < 1){
+            return {valid : false, result : null};
+        }
         let command = args[0].toLowerCase();
         if(!this.duel.getCurrentPlayer().getBoundBodyParts().includes(command)){
             return {valid : false, result : null};

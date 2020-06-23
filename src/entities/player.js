@@ -19,17 +19,17 @@ class Player{
         this.effects.push(effect);
     }
 
-    cooldown(){
+    cooldown(players, msg){
         for (let effect of this.effects){
-            if(effect.cooldown()){
+            if(effect.cooldown(players, msg)){
                 this.effects = this.effects.filter(eff => eff !== effect);
             }
         }
     }
 
-    cooldownOther(){
+    cooldownOther(players, msg){
         for (let effect of this.effects){
-            if(effect.cooldownOther()){
+            if(effect.cooldownOther(players, msg)){
                 this.effects = this.effects.filter(eff => eff !== effect);
             }
         }
@@ -64,9 +64,9 @@ class Player{
 
     isFullExtreme(){
         let values = [
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Legs'),
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Arms'),
-            this.restraints.filter(r => r.difficulty >= 4 && r.location == 'Head'),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location === 'Legs'),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location === 'Arms'),
+            this.restraints.filter(r => r.difficulty >= 4 && r.location === 'Head'),
         ];
         return values.every(x => x.length > 0);
     }

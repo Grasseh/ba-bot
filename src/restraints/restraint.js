@@ -20,7 +20,7 @@ class Restraint{
     }
 
     setDifficulty(difficulty){
-        this.highestDifficulty = Math.max([difficulty, this.difficulty]);
+        this.highestDifficulty = Math.max(difficulty, this.difficulty);
         this.difficulty = difficulty;
     }
 

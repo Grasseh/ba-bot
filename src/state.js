@@ -2,7 +2,7 @@ class stateSingleton {
     constructor(){
         this.state = {
             duels : [],
-            getCurrentDuel: (id) => {
+            getCurrentDuel: (id) => {
                 return this.getState().duels.filter(duel => {
                     return duel.players.some(player => player === `<@${id}>`) || duel.invited.some(player => player === `<@${id}>`);
                 })[0];

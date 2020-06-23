@@ -42,8 +42,8 @@ class StartTurnState extends DuelState{
         if(gameOver){
             return;
         }
-        this.duel.getCurrentPlayer().cooldown();
-        this.duel.getOtherPlayer().cooldownOther();
+        this.duel.getCurrentPlayer().cooldown(this.duel.playerstates, msg);
+        this.duel.getOtherPlayer().cooldownOther(this.duel.playerstates, msg);
         let canMove = this.duel.getCurrentPlayer().canMove();
         let canStand = this.duel.getCurrentPlayer().canStand();
         let embed = embedUtils.getPlayerActionEmbed()

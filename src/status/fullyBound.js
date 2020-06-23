@@ -12,7 +12,7 @@ class FullyBound extends Status{
         return ` ${ this.effect } - Time before opponent wins : ${ this.time } turn${this.time !== 1 ? 's' : ''}`;
     }
 
-    cooldownOther(){
+    cooldownOther(_a, _b){
         this.time--;
         return false;
     }

@@ -9,7 +9,7 @@ class AutoEscape extends Status{
         this.binding = binding;
     }
 
-    cooldownOther(){
+    cooldownOther(_a, _b){
         this.time--;
         return this.time <= 0;
     }

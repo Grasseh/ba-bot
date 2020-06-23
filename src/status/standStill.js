@@ -12,7 +12,7 @@ class StandingStill extends Status{
         return ` ${ this.effect } - Duration : ${ this.time } turn`;
     }
 
-    cooldown(){
+    cooldown(_a, _b){
         this.time--;
         return this.time <= 0;
     }

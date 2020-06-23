@@ -22,9 +22,10 @@ class Spell{
         difficulty += crit ? 1 : 0;
         if(existingRestraint.length > 0){
             appliedRestraint = existingRestraint[0];
-            appliedRestraint.difficulty += difficulty;
-            if(appliedRestraint.difficulty > 5)
-                appliedRestraint.setDifficulty(5);
+            let toApply = appliedRestraint.difficulty + difficulty;
+            if(toApply > 5)
+                toApply = 5;
+            appliedRestraint.setDifficulty(toApply);
             difficulty = appliedRestraint.difficulty;
             //Remove active effects
             enemy.effects = enemy.effects.filter(e => e.binding !== appliedRestraint.id);

@@ -15,11 +15,11 @@ class Status{
         return this.name;
     }
 
-    cooldown(){
+    cooldown(players){
         return false;
     }
 
-    cooldownOther(){
+    cooldownOther(players){
         return false;
     }
 

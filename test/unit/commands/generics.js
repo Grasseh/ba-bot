@@ -7,7 +7,7 @@ const state = require('../../../src/state');
 let currentPlayer = {};
 let currentDuel = {
     isPlayerTurn: (id) => id === '<@1234>',
-    getCurrentPlayer : () => currentPlayer,
+    getCurrentPlayer : () => currentPlayer,
     displayStatus : sinon.stub(),
     cancel : sinon.stub(),
     accept : sinon.stub(),

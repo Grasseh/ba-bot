@@ -11,10 +11,10 @@ class CriticalTrap extends Status{
     }
 
     display(){
-        return ``;
+        return '';
     }
 
-    cooldown(){
+    cooldown(_a, _b){
         this.time--;
         return this.time <= 0;
     }
