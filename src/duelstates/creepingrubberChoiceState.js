@@ -39,7 +39,7 @@ class CreepingRubberChoiceState extends DuelState{
             'head' : 'torso',
             'torso' : 'legs'
         }[location];
-        let source = getSourceBinding(location);
+        let source = this.getSourceBinding(location);
 
         if(!source){
             let embed = embedUtils.getPlayerErrorEmbed()
@@ -132,15 +132,15 @@ class CreepingRubberChoiceState extends DuelState{
     generateActions(embed) {
         let allowed = 'head, torso';
         if (this.difficulty !== 'Easy')
-            allowed += ', legs'
+            allowed += ', legs';
 
-        let actions = 'Pick a binding to move with !down '
+        let actions = 'Pick a binding to move with !down ';
         if (this.difficulty !== 'Easy')
-            actions += '/up'
-        actions += ' <location>'
+            actions += '/up';
+        actions += ' <location>';
 
         if (this.difficulty === 'Impossible')
-            actions += '. You can also use !any <source> <target> to switch between legs and head due to the critical!'
+            actions += '. You can also use !any <source> <target> to switch between legs and head due to the critical!';
 
         embed
             .addField('Actions available:', actions)

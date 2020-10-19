@@ -33,14 +33,14 @@ describe('RubberMage', function() {
             let duelStub = {getTurnCount : sinon.stub().returns(2)};
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball', 'rubbertouch']);
+            assert.deepEqual(spells, ['rubberball', 'rubbertouch', 'creepingrubber']);
         });
 
         it('should return all actions with ultimate', function () {
             let duelStub = {getTurnCount : sinon.stub().returns(5)};
             let rm = new RubberMage();
             let spells = rm.getAllActions(duelStub);
-            assert.deepEqual(spells, ['rubberball', 'rubbertouch']);
+            assert.deepEqual(spells, ['rubberball', 'rubbertouch', 'creepingrubber']);
         });
     });
 
