@@ -1,6 +1,4 @@
-
 class playerClass{
-
     getSpellList(){
         return Object.keys(this.actions).filter(a => this.actions[a].isSpell());
     }

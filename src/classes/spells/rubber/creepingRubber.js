@@ -23,6 +23,10 @@ class CreepingRubber extends Spell{
         return closures[difficulty-1](enemy, duel, msg, dice);
     }
 
+    // 1-6	Move Down, old binding removed
+    // 7-12	Move Up or Down, old bind removed.
+    // 13-19	Move Up or Down, old bind becomes Easy
+    // 20	Jump to any, old bind becomes Medium
     activateEasy(enemy, duel, msg, dice){
         let embed = null;
         stateFactory.createState('creepingRubberChoice', duel, dice);

@@ -13,6 +13,7 @@ class FileFactory{
         const PickBindingLocationState = require('./pickBindingLocation');
         const ClassSelectionState = require('./classSelectionState');
         const RubberBallChoiceState = require('./rubberBallChoiceState');
+        const CreepingRubberChoiceState = require('./creepingRubberChoiceState');
         let states = {
             'action' : ActionState,
             'startTurn' : StartTurnState,
@@ -24,7 +25,8 @@ class FileFactory{
             'latexHugChoice' : LatexHugChoiceState,
             'pickBindingLocation' : PickBindingLocationState,
             'classSelect' : ClassSelectionState,
-            'rubberBallChoice' : RubberBallChoiceState
+            'rubberBallChoice' : RubberBallChoiceState,
+            'currepingRubberChoice': CreepingRubberChoiceState
         };
 
         let toCreate = states[state];
