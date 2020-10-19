@@ -2,9 +2,9 @@ const DuelState = require('./duelState');
 const stateFactory = require('./stateFactory');
 const embedUtils = require('../utils/embeds');
 const Spell = require('../classes/spells/spell');
-const LatexCorset = require('../restraints/skunk/latexCorset');
-const LatexHeels = require('../restraints/skunk/latexHeel');
-const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
+const RubberHood = require('../../../restraints/rubber/rubberHood');
+const RubberJacket = require('../../../restraints/rubber/rubberJacket');
+const RubberHobble = require('../../../restraints/rubber/rubberHobble');
 const Escape = require('../services/escape');
 
 class CreepingRubberChoiceState extends DuelState{
@@ -36,7 +36,7 @@ class CreepingRubberChoiceState extends DuelState{
 
     moveBindingDown(msg, args){
         let location = args[0].toLowerCase();
-        if (!['head', 'torso'].includes(location)){
+        if (!['head', 'arms'].includes(location)){
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a location to move down!`);
             embed = this.generateActions(embed);
@@ -44,14 +44,14 @@ class CreepingRubberChoiceState extends DuelState{
             return;
         }
         let target = {
-            'head' : 'torso',
-            'torso' : 'legs'
+            'head' : 'arms',
+            'arms' : 'legs'
         }[location];
         let source = this.getSourceBinding(location);
 
         if(!source){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription(`Selected body part has no restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move down!`);
+                .setDescription(`Selected body part has no rubber restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move down!`);
             embed = this.generateActions(embed);
             msg.channel.send(embed);
             return;
@@ -61,7 +61,7 @@ class CreepingRubberChoiceState extends DuelState{
 
     moveBindingUp(msg, args){
         let location = args[0].toLowerCase();
-        if (!['legs', 'torso'].includes(location)){
+        if (!['legs', 'arms'].includes(location)){
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a location to move up!`);
             embed = this.generateActions(embed);
@@ -69,14 +69,14 @@ class CreepingRubberChoiceState extends DuelState{
             return;
         }
         let target = {
-            'legs' : 'torso',
-            'torso' : 'head'
+            'legs' : 'arms',
+            'arms' : 'head'
         }[location];
         let source = this.getSourceBinding(location);
 
         if(!source){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription(`Selected body part has no restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move up!`);
+                .setDescription(`Selected body part has no rubber restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move up!`);
             embed = this.generateActions(embed);
             msg.channel.send(embed);
             return;
@@ -87,7 +87,7 @@ class CreepingRubberChoiceState extends DuelState{
     moveBindingAny(msg, args){
         let location = args[0].toLowerCase();
         let target = args[0].toLowerCase();
-        if (!['legs', 'torso', 'arms'].includes(location) || !['legs', 'torso', 'arms'].includes(target)){
+        if (!['legs', 'head', 'arms'].includes(location) || !['legs', 'head', 'arms'].includes(target)){
             let embed = embedUtils.getPlayerErrorEmbed()
                 .setDescription(`Invalid bodypart! ${this.duel.getCurrentPlayer().name} needs to pick a valid location to move!`);
             embed = this.generateActions(embed);
@@ -106,7 +106,7 @@ class CreepingRubberChoiceState extends DuelState{
 
         if(!source){
             let embed = embedUtils.getPlayerErrorEmbed()
-                .setDescription(`Selected body part has no restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move!`);
+                .setDescription(`Selected body part has no rubber restraint! ${this.duel.getCurrentPlayer().name} needs to pick a bound location to move!`);
             embed = this.generateActions(embed);
             msg.channel.send(embed);
             return;
@@ -138,17 +138,17 @@ class CreepingRubberChoiceState extends DuelState{
     }
 
     generateActions(embed) {
-        let allowed = 'head, torso';
+        let allowed = 'head, arms';
         if (this.difficulty !== 'Easy')
             allowed += ', legs';
 
-        let actions = 'Pick a binding to move with !down ';
+        let actions = 'Pick a binding to move with `!down`';
         if (this.difficulty !== 'Easy')
-            actions += '/up';
-        actions += ' <location>.';
+            actions += ' or `!up`';
+        actions += ' `<location>`.';
 
         if (this.difficulty === 'Impossible')
-            actions += ' You can also use !any <source> <target> to switch between legs and head due to the critical!';
+            actions += ' You can also use `!any <source> <target>` to switch between legs and head due to the critical!';
         actions += ' You can also decide to not move any rubber with `!cancel`';
 
         embed
@@ -159,13 +159,15 @@ class CreepingRubberChoiceState extends DuelState{
 
     restraint() {
         return {
-            'legs': { restraint: LatexHeels, name: 'Latex Heels' },
-            'torso': { restraint: LatexCorset, name: 'Latex Corset' },
-            'head': { restraint: LatexMuzzle, name: 'Latex Muzzle' }
+            'legs': { restraint: RubberHood, name: 'Rubber Hobble Dress' },
+            'arms': { restraint: RubberJacket, name: 'Rubber Straitjacket' },
+            'head': { restraint: RubberHobble, name: 'Rubber Hood' }
         };
     }
 
     getSourceBinding(location) {
+        console.log(this.enemy.restraints);
+        console.log(this.restraint()[location]);
         let filtered = this.enemy.restraints.filter(r => r.name === this.restraint()[location]);
         if (filtered.count > 0)
             return filtered[0];

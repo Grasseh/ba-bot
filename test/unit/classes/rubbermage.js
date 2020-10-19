@@ -16,7 +16,7 @@ describe('RubberMage', function() {
         it('should return all spells', function () {
             let rm = new RubberMage();
             let spells = rm.getSpellList();
-            assert.deepEqual(spells, []);
+            assert.deepEqual(spells, ['creepingrubber']);
         });
     });
 
