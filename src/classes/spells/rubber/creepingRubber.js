@@ -27,7 +27,7 @@ class CreepingRubber extends Spell{
         let embed = null;
         stateFactory.createState('creepingRubberChoice', duel, dice);
         duel.state.prepare(difficulty, enemy);
-        duel.state.run(msg, false);
+        duel.state.run(msg);
         return {embed, changedState : true};
     }
 }

@@ -26,7 +26,7 @@ class FileFactory{
             'pickBindingLocation' : PickBindingLocationState,
             'classSelect' : ClassSelectionState,
             'rubberBallChoice' : RubberBallChoiceState,
-            'currepingRubberChoice': CreepingRubberChoiceState
+            'creepingRubberChoice': CreepingRubberChoiceState
         };
 
         let toCreate = states[state];

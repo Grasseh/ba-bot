@@ -3,7 +3,7 @@ const stateFactory = require('./stateFactory');
 const embedUtils = require('../utils/embeds');
 const Spell = require('../classes/spells/spell');
 const LatexCorset = require('../restraints/skunk/latexCorset');
-const LatexHeels = require('../restraints/skunk/latexHeels');
+const LatexHeels = require('../restraints/skunk/latexHeel');
 const LatexMuzzle = require('../restraints/skunk/latexMuzzle');
 const Escape = require('../services/escape');
 
@@ -23,6 +23,14 @@ class CreepingRubberChoiceState extends DuelState{
             'up' : this.moveBindingUp.bind(this),
             'any' : this.moveBindingAny.bind(this),
         };
+        if(action === 'cancel'){
+            let embed = embedUtils.getPlayerActionEmbed()
+                .setDescription(`${this.duel.getCurrentPlayer().name} has decided to not creep any rubber!`);
+            embed = this.generateActions(embed);
+            msg.channel.send(embed);
+            stateFactory.createState('startTurn', this.duel, this.dice);
+            return this.duel.state.run(msg);
+        }
         functions[action](msg, args);
     }
 
@@ -137,10 +145,11 @@ class CreepingRubberChoiceState extends DuelState{
         let actions = 'Pick a binding to move with !down ';
         if (this.difficulty !== 'Easy')
             actions += '/up';
-        actions += ' <location>';
+        actions += ' <location>.';
 
         if (this.difficulty === 'Impossible')
-            actions += '. You can also use !any <source> <target> to switch between legs and head due to the critical!';
+            actions += ' You can also use !any <source> <target> to switch between legs and head due to the critical!';
+        actions += ' You can also decide to not move any rubber with `!cancel`';
 
         embed
             .addField('Actions available:', actions)
@@ -161,6 +170,13 @@ class CreepingRubberChoiceState extends DuelState{
         if (filtered.count > 0)
             return filtered[0];
         return null;
+    }
+
+    run(msg){
+        let embed = embedUtils.getPlayerActionEmbed()
+            .setDescription(`Creeping Rubber! ${this.duel.getCurrentPlayer().name} needs to pick a movement location!`);
+        embed = this.generateActions(embed);
+        msg.channel.send(embed);
     }
 
     prepare(difficulty, enemy) {
