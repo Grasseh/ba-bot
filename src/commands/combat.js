@@ -28,6 +28,7 @@ let combat = {
     'bind',
     'up',
     'down',
+    'none',
     'any'
 ].forEach(name => {
     combat[name] = (args, msg, currentDuel) => {

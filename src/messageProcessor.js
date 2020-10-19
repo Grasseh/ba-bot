@@ -28,10 +28,13 @@ class Processor {
             }
         }
         catch(err){
-            // TODO : Remove in release
             let embed = embedUtils.getBotErrorEmbed();
-            embed.setDescription('An error has occured!');
-            embed.addField('Error:', err.message);
+            embed.setDescription('An error has occured! Please contact Erika for help!');
+            embed.addField('Error:', err.message); //TODO: Remove
+            state.getState().logger.error('ERROR');
+            state.getState().logger.error(err.message);
+            state.getState().logger.error(err.stack);
+            console.log(err);
             msg.channel.send(embed);
         }
     }
